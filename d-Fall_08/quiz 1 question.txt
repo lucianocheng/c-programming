@@ -1,0 +1,33 @@
+Unix Survival Skills:
+
+You wake up in a cement room.  Light floods the ceiling as you realize you had slept on the floor.  Your devotion to your work keeps you from home, but soon you realize you'll have to leave this room.  There are no windows, doors, or visible exits ... not even a ray of light from the outside.  As the fuzzyness fades, you remember there is an elevator that comes out of the floor, that is activated by a UNIX terminal nearby.
+
+a. You log on to the elevator terminal with the username "namtab".  You access the terminal and start bash, and the shell takes you to your home directory.  You know that the program to activate the elevator is in your home directory, but you forget the program's name.  What single full command and associated argument(s) could you use to see your home directory's contents, and whether or not any of those contents can be run as programs?
+
+Answer: ls -l OR any ls with the -l flag
+
+b. You find the program to activate the elevator and run it.  The elevator lowers from the ceiling when you realize that you don't have your car.  You find your car and attempt to initiate the activation sequence, but it fails.  You open up a shell within the car's computer interface, and realize the problem is a corrupt file that got damaged from the last time the car bumped into a building.  You decide to move the file to a temporary folder. If your current directory is ~/activation, what is the full command necessary to move the corrupt file 'keyfile' which is in ~/activation/files/ to a directory called temp, which is a sibling of the grandparent of your current working directory?
+
+Answer: mv ./files/keyfile ../../temp
+
+c.  You go up the elevator.  You open up the metal doors and take to the streets with your car.  You speed up the freeway to start you work for the night, which involves protecting a man in custody.  You carefully observe the rules of the road, when a inconsiderate driver in a tractor trailer attacks you and your car is immediately disabled.  Red lights blink on the control panels as the computer screams "System Failure".  You decide to leave your car by way of a secret door activated by program 'eject.exe', located in your current working directory.  However since this program has never been used and cannot currently be run by anyone, you need to change the permissions to run it.  What single full command and associated argument(s) could you use to change eject.exe so you, the person who created eject.exe, and ONLY you, can run it?
+
+Answer: chmod u+x eject.exe OR chmod u=x eject.exe
+
+d. You leave your car in style, and pursue your attacker.  You capture him, and lock him safely in a room with absolutely no chance of escape.  Deciding to keep this capture a secret, you decide to go onto the police computers and delete any files associated with this man.  You open up the computer, and you are given a shell with full (root) access to all files and folders.  The captor has two things that represent him, a folder called /criminals/reallybad/rekoj/, and a single file in that folder called 'information.dat'.  What single or pair of commands, with associated argument(s), could you use to delete both the 'information.dat' file and the 'rekoj' folder?
+
+Answer:
+
+Either:
+rm /criminals/reallybad/rekoj/information.dat
+rmdir /criminals/reallybad/rekoj/
+
+or:
+
+rm -r /criminals/reallybad/rekoj/
+
+e. Your actions successfully wipe the information on the prisoner, but then you remember that you have to leave a note to your policeman friend, whose username is nodrog, in order to explain the deletion.  You create a file called message.txt in your current working directory, then create a folder named 'secret' in /messages, where /messages is a public directory with full permissions for everyone.  What are the command(s) and associated argument(s) necessary to copy message.txt to /messages/secret, and guarantee that your friend has all the necessary permissions to access and read the file?
+
+Answer:  cp ./message.txt /messages/secret
+               chmod a+x /messages/secret
+               chmod a+rwx /messages/secret/message.txt

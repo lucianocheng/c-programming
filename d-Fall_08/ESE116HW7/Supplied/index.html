@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+ <title>C Language</title>
+</head><body>
+
+<center>
+<h2>More Memory Allocation <br>
+  using malloc() and memcpy() </h2>
+</center>
+
+<h3>Supplied Files </h3> 
+Download 
+<a href="http://www.seas.upenn.edu/%7Ecis1xx/projects/CandC++/Malloc/Part2/Supplied/malloc.c">malloc.c</a>
+<h3>Exercises </h3> 
+<ol><li>nChars() <br>
+We will a funcion called nChars() and another function that tests it
+called nCharsTest(). After learning how nChars() should work, we will
+write nCharsTest() BEFORE we write nChars(). This approach, writing <em>tests first</em>, is
+a good software engineering practice. Here's the spec:
+    <pre>  /*
+   * Allocate memory for n characters and initialize them all to c.
+   * Returns null if n &lt; 1 or if the memory allocation failed.
+   * Example: nChars(3, 'b') creates a block that contains bbb.
+   */
+  char * nChars(int n, char c)
+</pre>
+<ul>
+  <li>Write the function called nCharsTest() that calls nChars several times
+      with different parameters and tests to see if it works correctly. Put the function in
+	  malloc.c which has a main method that calls it.
+  (In order for it to compile, create a skeleton/dummy function for nChars that returns NULL). </li>
+  <li>Write the nChars() function. Work on it until the tests work. If a test
+      is found to be faulty, have partner1 fix it. Remeber to free() the memory you allocated before your program exits. </li>
+</ul>
+</li>
+<br>
+<li>Imagine that you allocated some memory, but it has become full with
+data and now you and wish you had more memory. You're treating the
+memory you allocated like one bit array, so you want one bigchunk of
+memory to hold all the data (the data you already have and additional
+data to be added), not two separate chunks. We will write a function
+called grow() to accomplish this in 3 steps: <ul>
+<li>allocate a large chunk of memory </li>
+<li>copy the data from the old/smaller memory area to the new/large area (using C's memcpy() function) </li>
+  <li>free up the  old/small memory area (! ALWAYS REMEMBER TO FREE UNNEEDED MEMORY!) </li>
+  </ul>
+
+To learn more  about the memcpy() function you will use, which is C's "memory copy" function:
+<ul>
+   <li>Read its unix manual page "man page" by typing  "man memcpy" on the shell command line. </li>
+   <li>Consult wikipedia. </li>
+   <li>Note: size_t is system dependent but is usually a typdef for an "unsigned long" integer. </li>
+</ul>
+  <pre>/*
+ * Copies sizeOfSource bytes from memory stored at source to a newly allocated block of memory
+ * which is twice the size of source. Frees the memory pointed to by source and return the address
+ * of the newly allocated memory. Returns NULL if orig is NULL or on memory error. Assumes that
+ * source points to memory obtained via malloc() as opposed to being a standard array.
+ */
+void * grow(void *source, int sizeOfSource) </pre>
+  <ul>
+    <li>partner1:
+write a growTest() function. Put it in a grow.c program with a main
+method that calls it. Write tests that call grow with a variety of data
+types (e.g. memory that contains ints, memory that contains doubles,
+etc.).</li>
+    <li>partner2: write grow() and run the tests on it until it works. If a test is faulty,
+      ask partner1 to fix it.</li>
+    </ul>
+</li></ol>
+<hr>
+</body></html>

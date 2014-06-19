@@ -1,0 +1,51 @@
+C Programming: Using GDB
+
+What is GDB?
+
+GDB stands for the GNU Debugger.  GDB is a command prompt runtime debugger, 
+with the ability to run your program in a sandbox so that you can montior
+it and make sure that what it's doing is what you want it to do.  Although
+it has no GUI, GDB can be essential in cutting down the time it takes
+to debug your programs rather than using printf statements.
+
+An example: Using GDB to find where a segmentation fault occurred:
+
+The first step in using gdb is to compile your program with debugger
+flags.  Your compiled program by itself has no information about the line
+numbers or location of functions in your high level code.  To be able to
+give you information about your program during runtime relative to your
+high level code, your program must be compiled with debug tags.  To
+add debug tags in gcc, add the "-g" flag to the compile line.
+
+Example of a compilation with the debug tag:
+
+gcc -g -Wall -o myprog myprog.c
+
+lcheng@plus:~> gdb ./segfault
+GNU gdb 6.4
+Copyright 2005 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i586-suse-linux"...Using host libthread_db library "/lib/libthread_db.so.1".
+
+(gdb) run
+Starting program: /mnt/castor/seas_home/l/lcheng/segfault
+Calling findNull, will seg fault now
+
+Program received signal SIGSEGV, Segmentation fault.
+0x08048467 in findA (newArray=0xbfffeace "Hello\nðêÿ¿Hëÿ¿|èê·à\f")
+    at segfault.c:34
+34        while(newArray[i] != 'A' || newArray[i+1] != 'A'){
+
+(gdb) where
+#0  0x08048467 in findA (newArray=0xbfffeace "Hello\nðêÿ¿Hëÿ¿|èê·à\f")
+    at segfault.c:34
+#1  0x08048434 in main () at segfault.c:25
+
+
+(gdb) quit
+The program is running.  Exit anyway? (y or n)
+
+

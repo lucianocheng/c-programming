@@ -1,0 +1,50 @@
+ACCESS GRANTED via program ./skynet...
+LOADING DARPA SkyNet...
+
+Welcome to Skynet, funded by the Microsoft Corperation.  Type 'h' for the help menu
+QUERY: h
+Skynet Help Menu - By DARPA:
+
+C or c: Start Countdown
+M or m: Calculate Maximum Age
+A or a: Calculate Average Age
+R or r: Calculate Expected Resistance
+H or h: Print this Help Menu
+X or x: Exit SkyNet
+
+QUERY: m
+How many ages?: 5
+Input an age: 11
+Input an age: 22
+Input an age: 33
+Input an age: 69
+Input an age: 3
+Maximum human age: 69
+QUERY: a
+How many ages?: 5
+Input an age: 3.3
+Input an age: 4.4
+Input an age: 5.6
+Input an age: 9.8
+Input an age: 4.6
+Average human age: 5.54
+QUERY: C
+Countdown from number: 10
+Human Average Age: 5.54, Human Maximum Age: 69
+Beginning Countdown From 10...
+Countdown: 10
+Countdown: 9
+Countdown: 8
+Countdown: 7
+Countdown: 6
+Countdown: 5
+Countdown: 4
+Countdown: 3
+Countdown: 2
+Countdown: 1
+Countdown: 0
+Countdown completed. Bye!
+QUERY: r
+The humans will send bears with deadly lasers attached to their chests!
+QUERY: x
+SkyNet Operations Completed.  Have a nice day!

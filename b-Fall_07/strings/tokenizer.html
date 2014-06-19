@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>ESE 116 Homework 3: Strings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="file:///Macintosh HD/Users/jeaniacgriffin/Documents/Sites/cis110/content/style.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>String Tokenizer and Sorter</h1>
+<h2>ESE 116 Fall 2007 Homework 3 </h2>
+<h4>Files to Submit: strings.c <br>
+Due 10:45am Tuesday 11/06 (Late date is always 24 hrs later)</h4>
+<h3>Purposes of this assignment:</h3>
+To practice and learn:
+<ul>
+  <li>Working with char[][] arrays </li>
+  <li>Using the string.h library and getchar()</li>
+  <li>Parsing and tokenizing  user input </li>
+  <li>Constructing strings, and the subtleties involved with NULL termination </li>
+  <li>Sorting strings in C </li>
+  <li>Learning why covering all the edge cases is half of computer science</li>
+</ul>
+<h3>Overview:</h3>
+<p>When writing pieces of software that deal with user input, a tokenizer is a function designed to take user input and cut it up into pieces in order to be parsed. A string tokenizer literally cuts a input string up into smaller strings called &quot;tokens&quot;, which can then be parsed as commands.</p>
+<p>In this assignment you will be creating a tokenizer. The tokenizer will read input from STDIN using getchar(). While reading, it will look for spaces and newlines and create new &quot;token&quot; words based on their separation with this whitespace. These token words will be stored in an array of strings (char[][], or a char**). After the tokenizer terminates on a EOF (end of file) character, you will write a function to sort the tokens alpha-numerically. </p>
+<p>There are two functions you will be writing, getWord and sortWords </p>
+<ul>
+  <li>getWord will pull a single word &quot;token&quot; from STANDARD IN
+    <ul>
+      <li>The main() function will call getWord until there are no tokens left </li>
+      <li>packData's first argument is char array where the &quot;token&quot; string is to be written. The second argument is the size of this array. The function packData returns different constants based on whether      
+        <ul>
+          <li>The parser hit a EOF before reading a word &quot;token&quot; </li>
+          <li>The parser hit a EOF immediately after reading a word &quot;token&quot; </li>
+          <li>The parser read a word with no EOF </li>
+        </ul>
+      </li>
+      <li>Read the C file for the detailed description.</li>
+    </ul>
+  </li>
+  <li>sortWords will sort the tokens in place, which are stored in an array of strings 
+    <ul>
+      <li>sortWords will be passed a array of strings, a char[][] (aka a char**) </li>
+      <li>sortWords will then sort the words alphanumerically.</li>
+      <li><a href="http://en.wikipedia.org/wiki/Bubble_sort">Bubblesort</a> is recommended, however you can use any sorting algorithm you like as long as it follows<br>
+        the parameters of the assignment and <strong>does not use malloc()
+      </strong></li>
+      <li>Read the C file for the detailed description. </li>
+    </ul>
+  </li>
+</ul>
+<h3>Important Notes:</h3>
+<ul>
+  <li>Please remember that for this assignment, you are <strong>not allowed to use malloc()</strong> in any of the functions you write.</li>
+  <li>For those of you lucky enough to be taking <a href="http://www.seas.upenn.edu/~cse381/">CIS 381</a>, <strong>it is not ok </strong>to copy / paste the supplied shell tokenizer code into this homework. We will be checking for this and things similar. Trust me, it's easier just to write your own. </li>
+  <li><strong>You are not allowed to use qsort()</strong>, or any of the sorting functions provided in stdlib. You must implement the sorting yourself. </li>
+  <li>A bash shell tester will be posted over the weekend to test cases for the tokenizer </li>
+  <li>Please re-read the <a href="https://www.seas.upenn.edu/~cis1xx/lectures/C_Programming/40_Strings/strings.pdf">strings.h slides</a> before you start, and try to use the strings.h library as much as possible. If strings.h is used properly, the sorter can be written in under 15 lines.<br>
+  </li>
+</ul>
+<ul>
+  <li>Homework assignments should be <strong>done alone</strong>. We will be comparing your homeworks to make sure this occurs.</li>
+  <li>Help is available via the bulletin board, office hours, and during the optional lab. TA's are also often available  after class on Tuesday.</li>
+  <li>Please be respectful of the TAs' time and refrain from emailing them individually. The TA's take turns answering questions on the bulletin board. Please ask questions on the bulletin board or bring them to office hours.</li>
+  <li>At the top of the Content page, read the posted Homework Submission and Policy Information 
+  <li>At the top of the Content page, see the link to use for submitting homework. 
+  </ul>
+<h3>Diagram:</h3>
+<p><img src="stringsPic.gif" alt="Strings Description" width="800" height="600" align="middle">&nbsp;</p>
+<hr>
+<h3>Files:</h3>
+<ul>
+  <li><a href="strings.c">strings.c</a> (to be completed / submitted)</li>
+  <li><a href="strings.h">strings.h</a> (needed for strings.c to compile)</li>
+</ul>
+</body>
+</html>
+

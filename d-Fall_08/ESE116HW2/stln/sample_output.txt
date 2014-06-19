@@ -1,0 +1,109 @@
+ACCESS GRANTED via program ./skynet...
+LOADING DARPA SkyNet...
+
+Welcome to Skynet, funded by the Microsoft Corperation.  Type 'h' for the help menu
+QUERY: h
+Skynet Help Menu - By DARPA:
+
+C or c: Start Countdown
+M or m: Calculate Maximum Age
+A or a: Calculate Average Age
+R or r: Calculate Expected Resistance
+H or h: Print this Help Menu
+X or x: Exit SkyNet
+
+QUERY: m
+How many ages?: 5
+Input an age: 3
+Input an age: 6
+Input an age: 9
+Input an age: 12
+Input an age: 15
+Maximum human age: 15
+QUERY: A
+How many ages?: 1
+Input an age: 3
+Average human age: 3.00
+QUERY: a
+How many ages?: 6
+Input an age: 3
+Input an age: 5
+Input an age: 6
+Input an age: 7
+Input an age: 9.5
+Input an age: 3.3
+Average human age: 5.63
+QUERY: 5.63
+Error in input
+QUERY: r
+The humans will send Tony Stark!
+QUERY: h
+Skynet Help Menu - By DARPA:
+
+C or c: Start Countdown
+M or m: Calculate Maximum Age
+A or a: Calculate Average Age
+R or r: Calculate Expected Resistance
+H or h: Print this Help Menu
+X or x: Exit SkyNet
+
+QUERY: M
+How many ages?: 4
+Input an age: 2
+Input an age: 20
+Input an age: 7
+Input an age: 30
+Maximum human age: 30
+QUERY: r
+The humans will send Tony Stark!
+QUERY: m
+How many ages?: 1
+Input an age: 1
+Maximum human age: 1
+QUERY: r
+The humans will send Tony Stark!
+QUERY: A
+How many ages?: 4
+Input an age: 1
+Input an age: 2
+Input an age: 3
+Input an age: 4
+Average human age: 2.50
+QUERY: r
+The humans will send the Mighty Care Bears!
+QUERY: c
+Countdown from number: 10
+Human Average Age: 2.50, Human Maximum Age: 1
+Beginning Countdown From 10...
+Countdown: 10
+Countdown: 9
+Countdown: 8
+Countdown: 7
+Countdown: 6
+Countdown: 5
+Countdown: 4
+Countdown: 3
+Countdown: 2
+Countdown: 1
+Countdown: 0
+Countdown completed. Bye!
+QUERY: C
+Countdown from number: 12
+Human Average Age: 2.50, Human Maximum Age: 1
+Beginning Countdown From 12...
+Countdown: 12
+Countdown: 11
+Countdown: 10
+Countdown: 9
+Countdown: 8
+Countdown: 7
+Countdown: 6
+Countdown: 5
+Countdown: 4
+Countdown: 3
+Countdown: 2
+Countdown: 1
+Countdown: 0
+Countdown completed. Bye!
+QUERY: X
+SkyNet Operations Completed.  Have a nice day!

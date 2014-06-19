@@ -1,0 +1,86 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>C Language</title>
+ 
+<link rel="stylesheet" type="text/css" href="http://www.seas.upenn.edu/~cis1xx/projects/assignmentstyle.css" />
+ </head>
+<body>
+
+<center>
+<h2>Getting Started With Pointers  </h2>
+</center>
+
+<a href="#chickenimage"><img src="speedCar.jpg" height="160" /></a>
+<h3>Goals</h3>
+Learn how to
+<ul>
+  <li>Write FAST programs by mastering pointers   
+  <li>Use the &amp; operator to access the address of a variable.   
+  <li>Declare a variable that is a <em>pointer</em>, whose purpose is to hold a memory address.
+  <li>Assign a value (an address) to  a pointer 
+  <li><em>Dereference</em> (access the &quot;contents of&quot;) a pointer using the &quot;star&quot; operator, * 
+  <li>Define a function that has a <em>parameter</em> that is a pointer, and how to call such a function
+  <li>Define a function that <em>returns</em> a pointer, and how to use such a return value
+  <li>Use pointers of various <em>types</em> (int *, double *, boolean *, char *, struct person *, Person *, ..)
+  <li>Find the cause of a &quot;segmentation violation&quot; by looking for code that attempts to read/write an invalid address (e.g. *p where the value of p isn't a valid address) or attempts to write more data to a valid memory address than can fit.  </li>
+</ul>
+
+<h3>NULL and Null Pointers</h3>
+<ul>
+   <li>NULL is a macro defined to be 0. If you #include either stdio.h or stdlib.h, it will be defined for you. (By contrast, recall that Java has a built-in keyword called null.) </li>
+   <li>It is always invalid to read/write address 0.</li>
+   <li>By convention, functions that return a pointer return NULL to indicate failure.</li>
+   <li>Likewise, a pointer variable is assigned   NULL to indicate &quot;no address&quot;. Such a pointer is called a <em>null pointer</em>. </li>
+   <li>An  attempt to dereference a null pointer causes a program to CRASH
+     <ul>
+      <li>In Java, you get  a <em>null pointer exception</em> with an expression such as &quot;null.method()&quot;. </li>
+      <li>C doesn't have exceptions. In C, you get a <em>segmentation violation</em> with an expression such as &quot;*p&quot; if p's value is NULL. </li>
+   </ul>
+</ul>
+<h3>Exercises</h3>
+Note: If you have trouble doing these, go over the Longer Discussion below.
+<ol>
+  <li>Download <a href="Supplied/demo.c">demo.c</a> and play with it until you understand it. 
+  <li>Download <a href="Supplied/debug.c">debug.c</a> and debug it. <br>
+  <li>Download <a href="Supplied/pointers.c">pointers.c</a>. Read the comments and write code for the the missing functions.
+  </li>
+</ol>
+<hr>
+<h3>Background</h3>
+    A <em>segmentation violation</em> or <em>segmentation fault</em> occurs if you
+    <ul>
+      <li>try to write to an invalid memory address </li>
+      <li>try to write more data to a valid memory address than can fit  </li>
+    </ul>
+    <br>
+    If you get a "seg fault", check your code to see if you:
+    <ul>
+      <li>used scanf but forgot to give it an address corresponding to each formatting character. For example: 
+        <pre>
+       int x;
+       scanf("%d", &x);   // good
+       scanf("%d",  x);   // bad </pre>
+      </li>
+      <li>Assigned a bogus address to a pointer and then try to dereference the pointer with the * operator.
+        <pre>
+       // Assign to y the value of x (5) by using a pointer p.
+       int x = 5;
+       int y;
+       int *p;
+       p = &amp;x;  // good; p is assigned the address of x
+       y = *p;  // good; y is assigned *p (&quot;the contents of p&quot;, or &quot;star p&quot;), which is 5
+
+       p = x;   // bad; p should be assigned the address of an int.
+                // instead it's assigned 5 and who knows what is stored there.
+       y = *p;  // bad; C tries to assign y the value stored at address 5. This will either 
+                // causes a seg fault, or else y is assigned some meaningless value 
+                // (whatever happens to be at address 5)</pre>
+      </li>
+  </ul>
+</ol>
+<hr>
+The image was found 
+<a href="http://www.autoblog.com/media/2006/04/antas00002.jpg">here</a>
+</html>

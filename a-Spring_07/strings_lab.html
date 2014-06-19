@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>C Language: String Exercises</title>
+
+
+
+
+
+<style type="text/css">
+<!--
+body {
+	max-width: 120ex;
+}
+code {
+	white-space: pre;
+}
+//-->
+</style></head><body>
+<h1>ESE 113/116 Lab: String Exercise</h1>
+<p>The purpose of this lab is to create a simple program that parses input from 
+  STDIN, breaks up the input into words, deletes repeated words, and prints out 
+  the words and their sizes to STDOUT</p>
+<h2>Goals:</h2>
+<ul>
+  <li>Writing a program to read from STDIN and write to STDOUT</li>
+  <li>Using strlen, strcmp, strcpy from the string library, as well as constructing 
+    strings from characters</li>
+  <li>Using getchar(), a simple function that reads one byte (one character) from 
+    STDIN at a time</li>
+</ul>
+<h2>Reference:</h2>
+<ul>
+  <li><a href="./strings.html">C Strings: Background</a></li>
+  <li><a href="http://www.opengroup.org/onlinepubs/009695399/functions/getchar.html">getchar() 
+    man page</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Stdin">Standard Streams in Wikipedia</a></li>
+</ul>
+<h2>Exercise: String Data Printer</h2>
+<p><em>Please read the <a href="./strings.html">C Strings: Background</a> page 
+  before starting this exercise. Unless you fully grasp the concepts presented 
+  in the background page, this exercise cannot be completed correctly.</em></p>
+<p>Download and complete <a href="strings.c">strings.c</a>. Extended instructions 
+  for completion are included in comments in the file. Once completed, this program 
+  will read a stream from STDIN, break up the stream into words, delete repeated 
+  words, and print out the words and their sizes to stdout.</p>
+<p>Specific sections of code have been left blank for you to fill in. See the 
+  instructions in the file.</p>
+<p>For reading from STDIN it is sufficient to use only getchar() and not scanf.</p>
+<p><font color="#FF0000"><strong>The purpose of the getWord() function is to write 
+  a single word from STDIN to newString. The word should have no spaces or newlines 
+  preceeding it or following it. Please keep this overarching purpose in mind 
+  when constructing your code.</strong></font></p>
+<p>An example run and interaction might look like this:</p>
+<code class="block"></code>
+<pre>$ ./strings
+hello
+'hello', size: 5
+hello
+goodbye
+'goodbye', size: 7
+fox
+'fox', size: 3 
+</pre>
+<p>To facilitate testing, a text file <a href="./test.txt">test.txt</a> has been 
+  provided that covers all of the corner cases. To run your strings program with 
+  the test.txt file, you must redirect the test.txt file into the program. You 
+  do this with the '&lt;' on the command line:</p>
+<p>./strings &lt; test.txt</p>
+<p><strong><font color="#FF0000">COMMON POINT OF CONFUSION: The getWord() function 
+  should always return 1 as long as a word was found. GetWord() should return 
+  0 if and only if getchar() returned EOF and NO WORD WAS FOUND BEFOREHAND.</font></strong></p>
+<p><font color="#FF0000"><strong>In other words, if a word was found, and the 
+  word was immediately followed with an EOF, getWord() should still return 1. 
+  The NEXT call to getWord() will then return 0.</strong></font></p>
+</body></html>

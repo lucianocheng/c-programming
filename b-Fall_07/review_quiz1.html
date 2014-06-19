@@ -1,0 +1,273 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Review Sheet for ESE 116 Quiz 1</title>
+ <style type="text/css">
+<!--
+.style1 {color: #38A136}
+-->
+ </style>
+</head>
+<body>
+
+<center>
+  <h2>Review Sheet for ESE 116 Quiz 1</h2>
+  </center>
+
+<h3>Important General Information About the Quiz:</h3>
+<ul>
+  <li> The quiz will be on <strong>Thursday, September 20th</strong> in <strong>Bennet 
+    Hall 201</strong></li>
+  <li> It will be on UNIX topics only, no C</li>
+  <li>There will be no piping or redirection questions on the quiz</li>
+  <li>Unless otherwise stated above, any material from labs, homeworks, or lectures 
+    is free game.</li>
+</ul>
+<h3>General Material on the Quiz</h3>
+<ul>
+  <li><strong>Unix shell - using the command line and the terminal </strong> 
+    <ul>
+      <li>The UNIX terminal is the basis of all UNIX interaction. Learn it. Love 
+        it. </li>
+    </ul>
+  </li>
+  <li><strong>Common unix commands: </strong> 
+    <ul>
+      <li>date, whoami, hostname, ping...</li>
+    </ul>
+  <li><strong>Unix file system concepts </strong> 
+    <ul>
+      <li>tree, root, node, directory 
+        <ul>
+          <li>Unix File system is shaped like a tree. Root is the base of the 
+            tree, all other files / directories spring from the root</li>
+        </ul>
+      </li>
+      <li>Absolute (Full) vs Relative pathnames 
+        <ul>
+          <li>Absolute pathnames always start with &quot;/&quot;, and begin at 
+            the root </li>
+          <li>Relative pathnames never start with &quot;/&quot;, and begin at 
+            the current working directory</li>
+          <li>&quot;..&quot; is the parent of the directory. 
+            <ul>
+              <li>For example, /home1/l is the same thing as /home1/l/lcheng/..</li>
+            </ul>
+          </li>
+          <li>&quot;.&quot; is the current directory 
+            <ul>
+              <li>For example, /home1/l/lcheng is the same thing as /home1/l/lcheng/.</li>
+            </ul>
+          </li>
+          <li>&quot;~&quot; is your home directory</li>
+        </ul>
+      </li>
+      <li>Current working directory 
+        <ul>
+          <li>The directory where all relative commands and pathnames are &quot;based&quot; 
+            from. Used for relative paths.</li>
+        </ul>
+      </li>
+      <li>File ownership, Permissions 
+        <ul>
+          <li>User, Group, Other each have their own Read, Write and Execute permissions. 
+            9 permissions total</li>
+          <li>When using ls -l, the first character in the permissions column 
+            is a &quot;d&quot; if it is a directory, and is a &quot;-&quot; if 
+            it is not 
+            <ul>
+              <li>Example, &quot;drwxr-xr--&quot; means the file is a directory, 
+                with read/write/execute (rwx) true for the user, read/execute 
+                (r-x) true for it's group, and read (r--) true for others.</li>
+            </ul>
+          </li>
+          <li>Every user has a primary group. Every file has a group. When a file 
+            or directory is created, it's group is set to be the primary group 
+            of the user that created it. This group can be seen by using ls with 
+            the -l option. To read more about groups, see this <a href="http://www.dartmouth.edu/%7Erc/help/faq/permissions.html">tutorial</a>.</li>
+          <li>For directories: 
+            <ul>
+              <li>Read permission means you can see the files inside that directory, 
+                but you cannot change the directory OR open any files within that 
+                directory OR read the metadata (owner, etc) of those files. This 
+                is true even if the files inside that directory have read / write 
+                / execute permissions turned on. 
+                <ul>
+                  <li>This also inherently means you cannot &quot;cd&quot; into 
+                    such a directory</li>
+                </ul>
+              </li>
+              <li>Execute permission means you can &quot;cd&quot; to that directory. 
+                You can read or write to any file inside that directory, assuming 
+                that the file's permissions allow you to do so. 
+                <ul>
+                  <li>You CANNOT, delete, move, or rename any files within that 
+                    directory, no matter the permissions of the file, unless the 
+                    &quot;write&quot; permission is also set for the directory.</li>
+                  <li>You also CANNOT list the files in that directory, unless 
+                    the &quot;read&quot; permission for that directory is also 
+                    set.</li>
+                </ul>
+              </li>
+              <li>Write permission means you can modify filenames in the directory, 
+                delete files in the directory, or add files in the directory. 
+                However, this is not very useful unless you can first read the 
+                directory with the &quot;read&quot; permission, or open the directory 
+                with &quot;execute&quot; permission.</li>
+            </ul>
+          </li>
+        </ul>
+      <li>Wildcard Usage 
+        <ul>
+          <li>* means any number of characters as a wildcard. 
+            <ul>
+              <li>&quot;ls *.c&quot; will list every file in the current working 
+                directory that ends in &quot;.c&quot;</li>
+            </ul>
+          <li>? means a single character wildcard 
+            <ul>
+              <li>&quot;ls h?.txt&quot; will list every file in the cwd that starts 
+                with an h, has any character single character following that, 
+                then ends in &quot;.txt&quot;</li>
+            </ul>
+          </li>
+          <li>[] means a single character wildcard, where the wildcard can only 
+            be the characters inside the [] 
+            <ul>
+              <li>&quot;ls h[io].txt&quot; will list every file in the cwd that 
+                starts with an 'h', has either an 'i' or an 'o', then ends with 
+                a &quot;.txt&quot;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <li><strong>Related Commands</strong></li>
+  <ul>
+    <li> Controlling Files 
+      <ul>
+        <li> pwd - Print Working Directory: Prints the working directory to the 
+          terminal</li>
+        <li>ls - List files: Lists the files and directories in the working directory 
+          or specified directory 
+          <ul>
+            <li>USAGE: ls &lt;tags&gt; &lt;optional directory / file pattern other 
+              than CWD&gt; </li>
+            <li>Important tag: -l, lists details of files</li>
+          </ul>
+        </li>
+        <li>cd - Change Directory: Changes the working directory 
+          <ul>
+            <li>USAGE: cd &lt;new location&gt;</li>
+          </ul>
+        </li>
+        <li>cat - Concatinate: Prints one or more files to the terminal pushed 
+          together 
+          <ul>
+            <li>USAGE: cat &lt;file1&gt; &lt;file2&gt; ...</li>
+          </ul>
+        </li>
+        <li>less - Opens up a file for reading, only the first 20 lines or so 
+          <ul>
+            <li>USAGE: less &lt;file&gt;</li>
+          </ul>
+        </li>
+        <li>more - Opens up a file for reading, opens up more lines than &quot;less&quot; 
+          does 
+          <ul>
+            <li>USAGE: more &lt;file&gt;</li>
+          </ul>
+        </li>
+        <li>grep - Used to search for patterns in the text inside files. 
+          <ul>
+            <li>USAGE: grep &lt;pattern&gt; &lt;files&gt;</li>
+            <li>Note, this is not used to search for files of a certain name. 
+              The &quot;find&quot; command does that.</li>
+          </ul>
+        </li>
+        <li>cp - Copy a file. 
+          <ul>
+            <li>USAGE: cp &lt;source&gt; &lt;destination&gt;</li>
+          </ul>
+        </li>
+        <li>mv - Move or rename a file. 
+          <ul>
+            <li>USAGE: mv &lt;source&gt; &lt;destination&gt;</li>
+            <li>If destination is a directory, it will copy the source into that 
+              directory</li>
+            <li>Renaming a file simply means changing the destination name: 
+              <ul>
+                <li>&quot;mv hello.txt ../goodbye.txt&quot; moves &quot;hello.txt&quot; 
+                  to it's parent directory, and renames it &quot;goodbye.txt&quot;</li>
+                <li>mv by default WILL NOT make a non-existant directory to move 
+                  a file into 
+                  <ul>
+                    <li>Example: &quot;mv hello.txt ./html/hello.txt&quot; will 
+                      produce an error if the directory &quot;html&quot; does 
+                      not exist</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>rm - Remove a file. Deletes it forever. 
+          <ul>
+            <li>USAGE: rm &lt;tags&gt; &lt;source&gt; </li>
+            <li>Important tag: -r, recursive, removes all subdirectories and subdirectories 
+              of those directories</li>
+          </ul>
+        </li>
+        <li>mkdir - Creates a directory. 
+          <ul>
+            <li>USAGE: mkdir &lt;new name&gt;</li>
+          </ul>
+        </li>
+        <li>rmdir - Removes a directory. Deletes it forever. Directory must be 
+          empty. 
+          <ul>
+            <li>USAGE: rmdir &lt;name&gt;</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li> Controlling File Ownership 
+      <ul>
+        <li> chmod - Change the permissions on a file 
+          <ul>
+            <li>USAGE: chmod (person) (+/-/=) (permissions) 
+              <ul>
+                <li>chmod u+r (Give user reading ability)</li>
+                <li>chmod o-x (Take execute ability away from other)</li>
+                <li>chmod a+x (Give execute ability to all (other, user, group)</li>
+                <li>chmod ug=rw (Remove all previous permissions, give user and 
+                  group read and write permissions)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li> chown - Change the owner of a file 
+          <ul>
+            <li>USAGE: chown &lt;file&gt; &lt;new user&gt;</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li> Controlling Processes 
+      <ul>
+        <li> ps - List running processes</li>
+        <li>top - List the running processes taking up the most memory</li>
+      </ul>
+    </li>
+    <li> Advanced Editors 
+      <ul>
+        <li> emacs</li>
+      </ul>
+    </li>
+  </ul>
+</ul>
+</li>
+</ul>
+
+</html>

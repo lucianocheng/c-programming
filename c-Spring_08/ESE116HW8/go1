@@ -1,0 +1,4 @@
+echo "embed input.txt clean.bmp dirty.bmp"
+rm dirty.bmp
+gcc -ansi -pedantic -o embed embed.c
+./embed input.txt clean.bmp dirty.bmp

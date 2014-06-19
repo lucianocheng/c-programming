@@ -1,0 +1,661 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+<title>Review Sheet for ESE 116 Quiz 3</title></head></html>
+:
+<html>
+<head>
+</head>
+<body> 
+<h1 align="center">Review Sheet for ESE 116, Spring 2008: Quiz 3</h1>
+
+<h2 align="center"><font color="black">C Pointers, Strings, Structs, and Stack Memory</font><br>
+Version 2.1</h2>
+<p align="center"><a href="http://xkcd.com/138/"><img src="http://imgs.xkcd.com/comics/pointers.png" alt="XKCD: Pointers" width="360" height="299" border="0"></a><br>
+<a href="http://www.xkcd.com" target="_blank">XKCD - A web comic of romance, sarcasm, math and language </a></p>
+<h2><font color="black">Important Notes</font></h2>
+<ul>
+
+
+  <li> The quiz will be on <strong>Thursday, April 10th @ 10:30 AM</strong>, in<strong> Moore 216</strong></li>
+  <li> All material up to and including last Thursday's lab is covered; <strong>Struct Pointers are not on this quiz</strong></li>
+  <li>The TAs who wrote this review sheet have not seen the test, so this sheet 
+    gives no unfair advantage.</li>
+  <li>No books, notes, or extra material will be allowed on the test.</li>
+  <li>Unless otherwise stated above, any material from labs, homeworks, or lectures 
+    is free game.</li>
+  <li>If you need additional review of C , please glance over the <a href="./review_quiz2.html">Quiz 2 Review Sheet </a></li>
+  <li>This Review Sheet is <strong>extensive but not exhaustive</strong>. Please remember to review the notes, readings, homeworks and labs.</li>
+  <li>This review sheet may be extended after it is posted. If this occurs, a different version number will appear at the top of the page.</li>
+</ul>
+<h2>Pointers, Addresses, and Arrays:</h2>
+<ul>
+<li>In C, you are given free range to (attempt to) <span>access (read or write) </span>any memory address you can imagine.
+<ul>
+<li>&quot;With great power, comes great responsibility&quot; - Spiderman</li>
+<li>Remember, the program is only as smart <span>and safe</span> as the programmer. </li>
+</ul>
+</li>
+<li><strong>Addresses: </strong>
+<ul>
+<li>At the machine level, the memory the program runs in is accessed by <strong>address numbers</strong></li>
+<li>The address of any variable can be retrieved using the &amp; operator:
+  <pre>int x = 5;
+printf(&quot;The address %d halds the value %d in it\n&quot;, &amp;x, x); // address as int which may be negative
+printf(&quot;The address %u halds the value %d in it\n&quot;, &amp;x, x); // address as unsigned (positive) int
+printf(&quot;The address %x holds the value %d in it\n&quot;, &amp;x, x); // address in hex (base 16) </pre>
+  </li>
+</ul>
+</li>
+<li><strong>Pointers:</strong>
+    <ul>
+      <li>A C pointer is a variable designed to <strong>hold a memory address of a particular data type. </strong></li>
+        <li>We say that a pointer <em>points to</em> an
+          address in memory (whereas C arrays <em><strong>are </strong></em>addresses in memory)</li>
+        <li>Pointers are declared using the * operator and the data type you want to point to, e.g.:
+          <pre>char *x; // x is a pointer to char; its type is char *
+int *y; // y is a pointer to int; its type is int * </pre>
+      </li>
+        <li>Pointers can be assigned values just like any other variable, except they hold addresses:
+          <pre> char *myPointer;
+ char myChar = &#39;a&#39;;
+ myPointer = &amp;myChar;            </pre>
+      </li>
+        <li>Pointers are <strong>dereferenced</strong> with the * operator <span>(and in some cases with the [] operator, discussed below)</span></li>
+        <ul>
+          <li>Dereferencing means &quot;getting the value <strong>at</strong> the address I am pointing to&quot;</li>
+          <li>The * operator takes the address stored in the pointer, and gets the value at that address. Example:
+            <pre>char *myPointer;
+char myChar = &#39;b&#39;;
+myPointer = &amp;myChar;
+printf(&quot;myPointer dereferenced is %c\n&quot;, *myPointer); // prints &quot;myPointer dereferenced is b&quot;
+</pre>
+          </li>
+          <li>You can also use <span> the dereference operator to assign a value to a pointer </span>
+            <pre>char a;
+char *myPointer = &amp;a;
+*myPointer = &#39;b&#39;; </pre>
+          </li>
+        </ul>
+        <li>C pointers <em><strong>point </strong></em>to an address in memory (whereas C arrays <em><strong>are </strong></em>addresses in memory)
+          
+          <ul>
+            <li>For engineering purposes, and to distinguish address values from other values, we typically use <a href="http://en.wikipedia.org/wiki/Hexidecimal" target="_blank">hexadecimal</a> (base 16) values when expressing addresses</li>
+            <li>In
+              C, hexadecimal values are expressed with a &#39;0x&#39; in front. So the
+              hexadecimal value of 1, expressed in 32 bits, is 0x00000001. Each digit
+              represents 4 bits (16 possibilities), with values <span>0-9 and A-F</span></li>
+          </ul>
+      <li>Pointer arithmetic
+            <ul>
+              <li>You can do calculatons (&quot;pointer arithmetic&quot;) with pointers, typically to walk them through arrays.
+                <ul>
+                  <li>You can use an array to calculate an address:<br>
+                  <pre>char my_array[3];
+char* my_pointer;
+my_pointer = my_array + 3;</pre>
+                  </li>
+                  <li><strong>BUT, You CAN NOT do pointer arithmatic that changes the address of an array</strong><br>
+                  <pre>char my_array[3];
+my_array = my_array + 3; // This will fail; you cannot change the address of an array EVER!</pre>
+                  </li>
+                </ul>
+              </li>
+              <li>A pointer to <span>data type T is incremented by the number of bytes in T</span>
+                <ul>
+                  <li>For example, the following code would increment myPointer by <span>the number of bytes in an int (machine dependent).<br>
+                  </span>int a[3] = {0, 1, 2};
+int *myPointer = a;
+myPointer++;
+printf(&quot;myPointer dereferenced is %d\n&quot;, *myPointer); // prints &quot;myPointer dereferenced is 1&quot;              </pre>
+                  </li>
+                </ul>
+              </li>
+              <li>Other valid operations:<br>
+              <pre>   myPointer--;
+   myPointer + 1;
+   myPointer + i;           </pre>
+              </li>
+              <li>Can be used to loop through arrays:
+                <ul>
+                  <li>Example of an array traversed with pointer notation<br>
+                    <pre>char word[] = &quot;hello&quot;<br>
+char *p;
+for(p = word; *p != &#39;\0&#39;; p++){
+   printf(&quot;%c&quot;, *p);
+} </pre>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+      </li>
+        <li>Pointers and the [] operator. <br>
+          <ul>
+            <li><span>The
+            [] operator may be used in conjuction with a pointer. </span></li>
+            <li><span>This works
+            if the pointer is pointing to </span>
+              <ul>
+                <li><span>an array</span></li>
+                <li><span>a sequence of data
+                  items in contiguous memory, that all have the same type. </span></li>
+              </ul>
+            </li>
+            <li><span>For a pointer p to type T, the
+              expression p[num] accesses the value at address (p + num*(sizeof T in
+              bytes)) </span>            </li>
+          </ul>
+      </li>
+      <ul>
+        <li>myPointer[3] is equivalent to *(myPointer + 3)
+          <pre>int intArray[5] = {0, 5, 10, 15, 20};
+int *myPointer;
+myPointer = intArray;
+printf(&quot;(myPointer+3) dereferenced is %d\n&quot;, myPointer[3]); // prints &quot;(myPointer + 3) dereferenced is 15&quot;</pre>
+        </li>
+      </ul>
+        <li>Pointers with functions
+          <ul>
+            <li>A pointer can be passed to a function as an argument. </li>
+            <li>A function can then use the pointer to change the value <strong>at the address the pointer has stored</strong>.
+              <ul>
+                <li>The following example would modify the variable &#39;myChar&#39; inside main():
+                  <pre>int main(int argc, char* argv[]){
+   char myChar;
+   foo(&amp;myChar);
+} 
+                      
+void foo(char* myCharPointer){
+   *myCharPointer = &#39;a&#39;;
+}               </pre>
+                </li>
+                <li>As demonstrated above, typically the &amp; operator and functions with pointer arguments are used to <em>mimic </em>passing values by reference, <strong>by passing pointers by value</strong>.</li>
+              </ul>
+            </li>
+            <li>Functions can also return pointers
+              <ul>
+                <li>The following function returns a pointer to the second element in an array:<br>
+                  <pre>char* foo(char* myArray){
+   return myArray+1;
+}</pre>
+                </li>
+                <li><strong>Don&#39;t return pointers to local variables declared within the function! They &quot;disappear&quot; when the function exits! </strong> 
+                  <ul>
+                    <li><span>Local
+                      variables are stored on the stack</span></li>
+                    <li><span>O</span><span>nce a function returns, the local
+                      variables are no longer valid. </span></li>
+                    <li><span>Moreover, the area on the stack where
+                      they were stored may be overwritten by stack frames for subsequent
+                      function calls.</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+        <li>Pointers to NULL:
+          <ul>
+            <li>Typically, if we don&#39;t want the pointer pointing out into never-never land, we set the pointer equal to NULL.
+              <ul>
+                <li><span>NULL is</span> #defined in stdlib.h and stdio.h to be &#39;\0&#39;</li>
+                <li>NULL
+                  is of value 0x00000000, no variable in our program will ever get
+                  allocated at this address, so a pointer will only point there if we
+                  explicitly tell it to.</li>
+                <li>We can then compare our pointer to NULL:<br>
+                <pre>if(myPointer == NULL) { do something }</pre> </li>
+                <li>Pointers can also be compared to one another, to see if they point to the same thing:<br>
+                  <pre>if(myPointer == yourPointer) printf(&quot;We&#39;re pointing to the same thing!\n&quot;);</pre>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+        <li>Overloading:
+          <ul>
+            <li>The * operator is overloaded; it can mean a number of different things based on the context
+              <ul>
+                <li>Multiplication:<br>
+                <pre>int a = 8 * 5; </pre>
+                </li>
+                <li>Pointer Declaration<br> 
+                <pre>char *a; </pre>
+                </li>
+                <li>Pointer Dereferencing<br>
+                <pre>*a = &#39;c&#39;; // where a is a pointer to a char</pre>
+                </li>
+                <li>All of these uses are <strong>completely different</strong>, they just all happen to use the same character. <strong>Do not confuse them</strong>. </li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+        <li>sizeof()
+          <ul>
+            <li>sizeof() returns the size of a datatype in bytes
+              <ul>
+                <li>sizeof(int) will return 4 on a 32 bit machine (where the size of an int is 4 bytes), </li>
+                <li>sizeof(int) would return 2 on a 16 bit machine, 8 on a 64 bit machine..</li>
+              </ul>
+            </li>
+            <li>The size of a struct is machine and compiler dependent.</li>
+          </ul>
+      </li>
+    </ul>
+  </li>
+  </li>
+<li><strong>Arrays: </strong>
+<ul>
+<li>C arrays are <strong>contiguous blocks of memory, </strong>where the array name <strong>is the address of the beginning of the block</strong>
+<ul>
+<li><span>Allocating an array of ten chars called temp, starting at memory space 0x00000050 would: </span><ul><li><span>occupy addresses 0x00000050 to 0x00000059 (assuming (sizeof char) is 1)</span><span></span>
+</li>
+<li><span>cause the value of temp to be 0x00000050 </span></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li>Arrays are declared <strong>using the []</strong> notation and the name of the element datatype
+<ul>
+<li>The Code <span>char hello[5]</span>;
+  <ul>
+<li>Allocates 5x(the byte size of char) memory spaces</li>
+<li>Points &#39;hello&#39; to the first space </li>
+</ul>
+</li>
+<li>The &amp; operator can be used in conjunction with the [] operator, to return an address at a offset:
+<ul>
+<li><span>&amp;hello[2]</span> will return the address at hello offset by 2</li>
+<li> Same thing as <span>hello + 2 </span></li>
+</ul>
+</li>
+<li>A array name in C <strong>is</strong> <strong>similar but not exactly the same as</strong> a pointer in C.
+
+<ul>
+<li>In particular, Arrays automatically allocate space, but can&#39;t be relocated.</li>
+<li>Eg, the following would be <strong>invalid</strong>:<br>
+  <pre>   char a[50] = &quot;hello&quot;;
+   a++;
+</pre>
+</li>
+<li>For more information about the differences between pointers and array names, read <a href="http://www.lysator.liu.se/c/c-faq/c-2.html" target="_blank">this fantastic FAQ </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li> Array names point to <strong>the first address</strong> in a set of contiguous memory addresses, pointers point to <strong>a memory address</strong>...
+<ul>
+<li>Therefore, <strong>a pointer can be assigned to the address the first element in an array</strong>, or any element if you use pointer arithmetic
+  <pre>char* myPointer;
+char[50] myString = &quot;hello&quot;;
+myPointer = myString;</pre>
+</li>
+</ul>
+</li>
+<li><strong>2D arrays</strong> can be declared and accessed using 2 sets of []&#39;s:<br>
+  <pre>    int myMatrix[4][4];
+    myMatrix[0][0] = 1;</pre>
+  </li>
+</ul>
+</li>
+</ul>
+<h2>Strings, string.h and NULL termination:</h2>
+<ul>
+<li><strong>Definition:
+</strong>
+<ul>
+<li>A string in C is a <strong>NULL terminated</strong> sequence of characters
+<ul>
+<li>
+  NULL is represented as &#39;\0&#39;, ASCII number 0, or &#39;NULL&#39; which is #defined in stdio.h
+</li>
+</ul>
+</li>
+<li>In C, strings are stored in arrays of chars</li>
+<li>If a character array is to hold a string, it must be at least of size (string length + 1) to handle the NULL character at the end.</li>
+</ul>
+</li>
+<li><strong>Declaring a string:
+</strong>
+<ul>
+<li>
+  If you use the double quotes when you declare, C will NULL terminate the declared string automatically. Otherwise, you must do it yourself.
+  <pre>
+   char myString[80] = &quot;I am a string yay!&quot;;
+   char myString[] = &quot;I am a string yay!&quot;;
+   char myString[] = {&#39;I&#39;, &#39; &#39;, &#39;a&#39;, &#39;m&#39;, &#39; &#39;, &#39;a&#39;, &#39; &#39;, &#39;s&#39;, &#39;t&#39;, &#39;r&#39;, &#39;i&#39;, &#39;n&#39;, &#39;g&#39;, &#39; &#39;, &#39;y&#39;, &#39;a&#39;, &#39;y&#39;, &#39;!&#39;, &#39;\0&#39;};</pre>
+</li>
+<li>Using the * method of string declaration will declare allocate the string in the static / stoic data area.
+<ul>
+<li>It will not get reallocated every time the function is called.</li>
+<li>The string values cannot be changed:
+  <pre>char *myString = &quot;I am a unchangeable string yay!&quot;;</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Constructing a string from chars:
+</strong>
+<ul>
+<li>A string is just a sequence of chars that is NULL terminated
+<ul>
+<li> You can construct a string from chars by storing them correctly in a char array </li>
+<li>You must remember to NULL terminate!<br>
+<pre>
+  char myString[5];
+  myString[0] = &#39;H&#39;;
+  myString[1] = &#39;i&#39;;
+  myString[2] = &#39;\0&#39;;
+</pre>  
+</li>
+</ul>
+</li>
+<li>Any data stored after the NULL in the string is in the array, but not considered part of the string.
+<ul>
+<li>For C strings, the &#39;\0&#39; is where the sidewalk ends </li>
+</ul>
+</li>
+<li>Other useful chars / #defines:
+  <ul>
+<li>&#39;\n&#39; is a newline</li>
+<li>&#39;\t&#39; is a tab</li>
+<li>EOF means End of File, which is #define'd as -1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>string.h library: </strong>
+<ul>
+<li>string.h is a library filled with useful functions that operate on strings.</li>
+<li>All functions in string.h require NULL terminated string parameters.
+<ul>
+<li>Non NULL-terminated parameters will cause the function to run off the edge of the array looking for the NULL, causing <strong>segmentation faults</strong></li>
+<li>You must pass the string.h functions <strong>a character array or a pointer to a character array
+</strong>
+<ul>
+<li>You cannot pass a char ... it will crash</li>
+
+<li>You <strong>cannot pass NULL</strong> ... it will crash</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>You cannot use the &#39;==&#39; operator when comparing strings
+<ul>
+<li>The &#39;==&#39; compares the addresses of the arrays / pointers, not their contents</li>
+</ul>
+</li>
+<li><strong>Functions that we expect you to know, code, and debug:</strong>
+<ul>
+<li>strlen()
+<ul>
+<li>
+Format: <strong>int strlen(char* str)</strong>
+<pre>
+int result = 0;
+char test[10] = &quot;hello&quot;;
+result = strlen(test); </pre>
+</li>
+
+<li>Returns the length of the string</li>
+<li>Does not include the NULL character in the length</li>
+</ul>
+</li>
+<li>strcmp()
+<ul>
+<li>Format: <strong>int strcmp(char* str1, char* str2)</strong>
+  <pre>int result = 0;
+char test1[10] = &quot;hello&quot;;
+result = strcmp(test1, &quot;goodbye&quot;);</pre>
+</li>
+<li>Returns 0 if the strings are equal</li>
+<li>Returns &gt; 0 if first non-matching char in str1 &gt; first non-matching char in str2
+<ul>
+<li>Meaning, returns &gt; 0 if str1 &gt; str2 in ASCII order</li>
+
+<li><strong>Meaning, returns &gt; 0 if str2 is alphanumerically before str1</strong></li>
+</ul>
+</li>
+<li>Otherwise, returns &lt; 0 </li>
+</ul>
+</li>
+<li>strncmp()
+<ul>
+<li>Format: <strong>int strncmp(char* str1, char* str2, size_t num);</strong><br>
+  <pre>int result = 0;
+char test1[10] = &quot;good&quot;;
+result = strcmp(test1, &quot;goodbye&quot;, 4);</pre>
+</li>
+<li>Same as strcmp, except only compares it for the first n characters </li>
+<li>size_t is the same as unsigned int</li>
+</ul>
+</li>
+<li>strcpy()
+
+<ul>
+<li>Format: <strong>char* strcpy(char* dest, char* src); </strong><br>
+  <pre>
+char source[10] = &quot;mytest&quot;;
+char destination[10];
+char* ptr_to_dest;
+ptr_to_dest = strcpy(destination, source);</pre>
+</li>
+<li>Returns dest</li>
+<li>Copies the string in src to dest.</li>
+
+<li>dest must be large enough to hold the string in src + the NULL </li>
+</ul>
+</li>
+<li>strncpy()
+<ul>
+<li>Format: <strong>char* strncpy(char* dest, char* src, size_t num); </strong><br>
+  <pre>
+char source[10] = &quot;mytest&quot;;
+char destination[10];
+char* ptr_to_dest;
+ptr_to_dest = strncpy(destination, source, 3);</pre>
+</li>
+<li>Returns dest</li>
+<li>Copies the string in src to dest for the first num characters, then NULL terminates the string in dest</li>
+<li>dest must be large enough to hold the string up to num characters + the NULL</li>
+<li>size_t is the same as unsigned int </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<ul>
+
+<li><strong>Functions that we expect you to recognize and understand, but not code:</strong>
+  <ul>
+    <li>strcat()
+      <ul>
+        <li>Format: <strong>char* strcat(char* dest, char* src)</strong>;<strong> </strong><br>
+              <pre>
+char str1[20] = &quot;hello &quot;;
+char str2[20] = &quot;world&quot;;
+char* ptr_to_dest;
+ptr_to_dest = strcat(str1, str2);</pre>
+          </li>
+        <li>Returns dest </li>
+        <li>Concatenates src onto dest</li>
+        <li>src must be big enough to hold src + dest + NULL</li>
+      </ul>
+    </li>
+    <li>strrchr()
+      <ul>
+        <li>Format: <strong>char* strrchr(char* str, char c)</strong>;<strong> </strong>
+              <br>
+              <pre>
+char str1[20] = &quot;abcdefg&quot;;
+char* ptr_to_found_char;
+ptr_to_dest = strcat(str1, &#39;c&#39;);</pre>
+        </li>
+        <li>Returns a pointer to the last occurrence of the char c in str </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</ul>
+<h2>Structs</h2>
+<ul>
+<li><strong>Definition</strong>:
+<ul>
+<li>Structs are the grandfather of Java Objects
+<ul>
+<li><strong>Similarities</strong> with Java Objects:
+<ul>
+<li>Structs are first declared, then used to create instances. Similarly, Classes are first declared, then used to create objects.</li>
+<li>Sructs can have member variables.</li>
+
+<li>Structs exhibit variable scope so that you can access and modify their member variables.
+<ul>
+<li>Like in Java, the &quot;.&quot; operator is used to change scope</li>
+</ul>
+</li>
+<li>Structs can have other structs as member variables.</li>
+<li>Structs can include arrays as member variables</li>
+<li>You can create arrays of structs</li>
+</ul>
+</li>
+
+<li><strong>Differences</strong> with Java Objects:
+<ul>
+<li>Structs have <strong>no member functions whatsoever</strong>, including constructors, accessors, and modifiers. You cannot, for example, write a member function called &quot;bendGurder()&quot; for a struct type called Robot and call &quot;myRobot.bendGurder()&quot;.
+<ul>
+<li> Function pointers (which we will discuss later) can mimic member functions in some ways, but do not have the same functionality.</li>
+</ul>
+</li>
+<li>All variables in a struct are public, while Java classes can have private members.
+<ul>
+<li>structs have no inherit encapsulation.</li>
+</ul>
+</li>
+<li>Struct member variables cannot have initial values; the initial values of member variables will be whatever garbage happens to be in memory.
+<ul>
+<li><strong>You must assign values to struct member variables before using them</strong>. </li>
+</ul>
+</li>
+<li>The entire contents of a struct can be coped to another struct using the &quot;=&quot; operator.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Basically, create your own variable by combining other variables </li>
+<li>Stucts can have arrays of variables in them
+<ul>
+<li>They can have character arrays, which means they can hold strings </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Declaration</strong>:
+<ul>
+
+<li>We use typedef to simplify our struct declaration.
+<ul>
+<li>Otherwise, we&#39;d have to write &quot;struct &lt;struct name&gt; &lt;instance name&gt;&quot; every time we declared a new instance of our struct</li>
+<li>A typedef is similar to a #define, except it happens in the compiler rather than the preprocessor</li>
+</ul>
+</li>
+<li>
+ Definition Format (in .h file):
+ 
+ <pre>
+ typedef struct{ 
+    int age; 
+    char firstName[80]; 
+    char lastName[80]; 
+    double gpa; 
+ } Student;
+</pre>
+</li>
+<li>Instance declaration syntax:
+<ul>
+<li>Just like a normal variable<br>
+  <pre>Student myStudent;</pre>
+  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Assignment</strong>
+<ul>
+<li>A entire struct can be set equal to the values of another struct that is the same type
+  <pre>Student lukeStudent;
+Student alexStudent;
+lukeStudent = alexStudent;
+</pre>
+  <span></span></li>
+<li>Comparison operators do not work on structs
+<ul>
+<li>==, &lt;, &gt;, &lt;=, &gt;=, etc, are <strong>not valid</strong> for structs </li>
+</ul>
+</li>
+<li>Member variables are accessed using the &quot;.&quot; operator
+<ul>
+<li>Once you access the variable using the &quot;.&quot; operator, can be treated just like a variable of that type.
+<ul>
+<li>ints can be added to / increased, etc</li>
+<li>char arrays can hold strings, and be passed to string.h functions</li>
+<li>arrays can be accessed using the [] operator</li>
+
+<li>pointers can move, etc</li>
+<li>Example (data may be altered from reality):
+<pre>Student lukeStudent;
+lukeStudent.gpa = 4.0;
+lukeStudent.age = 22;
+strcpy(lukeStudent.firstName, &quot;Love&quot;);
+strcpy(lukeStudent.lastName, &quot;Machine&quot;);
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Read <a href="http://www.seas.upenn.edu/~cis1xx/projects/CandC++/Structs/GettingStarted/" target="_blank">The Struct Tutorial</a> for a complete review </li>
+</ul>
+<h2>The Memory / Stack Model</h2>
+<ul>
+
+<li> C gives you free access to memory, whereas Java tends to keep you in
+a safe sandbox. However, with great power comes great responsibility:
+<ul>
+<li> In C, you are free to access the address of any variable using the
+&amp; operator. This includes system space and other things you should
+not be accessing.</li>
+<li><strong>You must be careful in writing your code to
+  make sure your memory accesses are accurate, there is no throwing of
+  exceptions in C.</strong> </li>
+<li><strong>C is not type safe:</strong> The C compiler will allow
+you to assign any other variable to any other variable, no matter
+the type, with little more than a warning. It assumes you know what
+you are doing. You must be careful</li>
+</ul>
+</li>
+<li>Dynamic variables are created using the malloc() operator, like the
+&quot;new&quot; operator in Java</li>
+<li>Memory is freed with the &quot;free()&quot; function. In Java this
+is handled automatically</li>
+<li> When a C program is first started, through the magic of Virtual Memory,
+the OS gives the program a contiguous address space on which to run. </li>
+<li> The DATA is initially stored in the memory space. This contains all
+the information relating to the instructions in the functions, and the
+amount of memory each function requires on the stack</li>
+
+<li> The HEAP grows downward. The heap contains all the memory you allocate
+using the malloc() call</li>
+<li>The STACK grows upward. The stack contains all the memory you allocate
+with your function calls.</li>
+<li><a href="https://www.seas.upenn.edu/~ese116/content/ReviewMaterial/visual_stack.jpg" target="_blank">This diagram is extremely helpful in
+explaining this topic</a></li>
+</ul>
+</html>
+

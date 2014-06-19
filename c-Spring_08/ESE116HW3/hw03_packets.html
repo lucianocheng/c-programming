@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>ESE 116 Spring 2008, Homework 3: Packets</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="file:///Macintosh HD/Users/jeaniacgriffin/Documents/Sites/cis110/content/style.css" type="text/css">
+<style type="text/css">
+<!--
+.style2 {font-size: 60px}
+.style4 {color: #FF0000}
+.style7 {color: #000000}
+.style8 {font-size: 24px}
+.style10 {color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<table width="100%">
+  <tr>
+    <td width="24%" align="center" valign="bottom"><h1 class="style2">Packets: </h1></td>
+    <td width="76%" align="left" valign="top">
+		<span class="style8">The ESE116 Packet-Based Network Simulator <br>
+    <strong>ESE 116 Spring 2008, Homework 3 </strong></span></td>
+  </tr>
+</table>
+<strong>Due 10:15am Thursday 2/28/2008 (Late date is always 24 hrs later)</strong>
+<p>
+Extra office hours will be held on <strong>Wednesday, Feb 27 2008 </strong> in Moore 207<br>
+The official time will be <strong>7:00-9:00pm</strong> but we will try to stay as long as possible based on demand<p>
+
+<span class="style10">Important Note</span>: The maximum number of times that you can call <strong>receive_packet()</strong> for a single message is <strong>32760 times</strong>.  <br>
+For almost everyone this should not be a problem, however if your algorithm is exorbantly inefficient, you must respect this condition.
+<h3> Files:</h3>
+<ul>
+  <li><strong>Required</strong>:
+    <ul>
+      <li><a href="./packets.c">packets.c</a> (to be completed / submitted)</li>
+      <li><a href="./packets.h">packets.h</a> (needed for packets.c to compile)<br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Optional</strong>:
+    <ul>
+      <li><a href="./sample_output.txt">sample_output.txt</a> (sample output of a working program)</li>
+    </ul>
+  </li>
+</ul>
+<h3>Purposes of this assignment:</h3>
+To practice:
+<ul>
+  <li>Working with <a href="https://www.seas.upenn.edu/~cis1xx/projects/CandC++/Arrays/GettingStarted/background.html">arrays</a> and <a href="http://en.wikipedia.org/wiki/Segmentation_fault">seg faults</a> when you go out of bounds </li>
+  <li><a href="http://www.cplusplus.com/doc/tutorial/typecasting.html">Casting</a>, relative to data type sizes</li>
+  <li>Working with <a href="http://www.mkssoftware.com/docs/man3/getchar.3.asp">getchar() </a></li>
+  <li>Dealing with  reconstructing data that has been received out of order.</li>
+  <li>Understanding some fundemental networking concepts, particularly relating to <a href="http://en.wikipedia.org/wiki/Internet_Protocol">IP</a> and <a href="http://www.erg.abdn.ac.uk/users/gorry/course/inet-pages/ip-packet.html">IP Packets </a></li>
+</ul>
+<h3>Required Reading:</h3>
+<p>The following tutorials and labs are <em>required reading</em> before starting this hw assignment. <br>
+Without first understanding this material, this homework will make little sense. </p>
+<ul>
+  <li>The <a href="https://www.seas.upenn.edu/~cis1xx/projects/CandC++/Arrays/GettingStarted/background.html">Array Tutorial</a> </li>
+  <li>The <a href="http://www.mkssoftware.com/docs/man3/getchar.3.asp">getchar() man page</a> </li>
+  <li>The syntax of <a href="http://www.fredosaurus.com/notes-cpp/arrayptr/23two-dim-array-memory-layout.html">two dimensional Arrays in C</a>. In this hw we will be using rectangular sequential arrays.</li>
+</ul>
+<p>Also, although not required, the following is highly recmmended: </p>
+<ul>
+  <li>The <a href="http://www.seas.upenn.edu/~cis1xx/projects/CandC++/GDB/GettingStarted/">GDB debugger quick-start guide</a> to seg faults and bus errors. </li>
+</ul>
+<h3>Important Notes:</h3>
+<ul>
+  <li><span class="style4">START THIS HOMEWORK NOW </span> ... it is significantly more subtle and complex than HW 2 <br>
+  </li>
+  <li>Homework assignments should be done alone. Help is available via the <a href="https://alliance.seas.upenn.edu/~cis1xx/cgi-bin/cis1xxBB/index.php">bulletin board</a> and <a href="http://www.seas.upenn.edu/~ese116/schedule.shtml">office hours</a>.</li>
+  <li>Please be respectful of the TAs' time and refrain from emailing them individually. Please ask questions on the bulletin board or bring them to office hours.</li>
+  <li>Read the posted <a href="https://www.seas.upenn.edu/~cis1xx/resources/homeworkPolicy.shtml">Homework Submission and Policy Information</a> 
+  <li>At the top of the <a href="https://www.seas.upenn.edu/~ese116/content/content.shtml">Content page</a>, see the link to use for submitting homework. 
+  <li>We highly recommend that you <strong>test your program on Eniac before turning it in</strong>. There can sometimes be differences between your home setup and the Eniac cluster that can cause errors in your code while grading. 
+  <li>There are special preprocessor directives in your code, <strong>#ifndef</strong> and <strong>#endif</strong>, that surround the functions that we have provided. These are necessary for grading purposes, please do not modify them. 
+  <li>You are <strong>not allowed to use malloc()</strong> or any dynamic memory allocation techniques for this HW
+  <li>You are <strong>not allowed to directly modify or access any of the global variables</strong> in the code. These are for simulation and grading purposes only. All global variables in this homework have names that end in '_global' 
+</ul>
+<h3>Editing Hints:</h3>
+<ul>
+  <li>Tab your code correctly. Doing this makes errors more obvious and easier to debug.
+    <ul>
+      <li>By hitting 'tab' on any line of code, EMACS does this automatically</li>
+      <li>TA's highly appreciate properly tabbed code </li>
+    </ul>
+  </li>
+  <li>Turn on Syntax Highlighting in EMACS. This is under the options menu.  </li>
+  <li>At the command line, by typing part of a file name and hitting tab, the shell will auto-complete as much as the filename as possible</li>
+  <li>At the command line, you can use the up and down arrow keys to get your recently executed commands  </li>
+</ul>
+<h3>Overview:</h3>
+<p>In computer networking, a <strong>packet</strong> is a formatted block of data carried by a packet based computer network. Computer communications links such as traditional Point-to-point telecommunications links, simply transmit data as a series of bytes, characters, or bits alone.. However, when data is formatted into a packet, the network can transmit long messages more efficiently and reliably, while simultaneously sharing the network with other connections. </p>
+<p>In this assignment you will be creating a packet encoder and corresponding decoder. The encoder will take a message stored as an array of characters, and encode it into a series of packets. The decoder will receive these packets, and reconstruct the message. Instead of using an actual network, we will be simulating a network by randomizing the packet order and creating packet duplicates between when the encoder and decoder is called.</p>
+<p>We will be using char arrays of size 16 as our packets. Detailed formatting information is included in the README portion of the packets.c source file. <br>
+  <span class="style4"><strong>Make sure you read the README at the top of the packets.c file</strong></span> before beginning this assignment </p>
+<p><span class="style4"><strong>Detailed function descriptions are in the function headers in packets.c</strong></span>, ple<span class="style7">ase fill out the functions according to the specifications. </span><br>
+The file <strong>packets.c</strong> contains three functions that you will have to complete:</p>
+<ul>
+  <li>The<strong> get_data_from_user() </strong>function
+    <ul>
+        <li> This function reads in the message to send across the network.</li>
+        <li>It MUST use getchar() and only getchar() to read information from the keyboard</li>
+    </ul>
+  </li>
+  <li>The <strong>pack_message()</strong> function.
+    <ul>
+        <li>The purpose of pack_message() is that it must cut up the message and store it in the 16 character &quot;packets&quot; in packet_array.  </li>
+        <li>It must make each packet follow the format as specified in the source file packets.c.</li>
+    </ul>
+  </li>
+  <li>The <strong>receive_message()</strong> function.
+    <ul>
+        <li>The purpose of this function is to retrieve the packets put on the 'network' by pack_message(), and use those packets to <br>
+      reconstruct the message that was sent across the 'network'.<br>
+      <br>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p><span class="style4"><strong>Important Note:</strong></span> In the function <strong>receive_message()</strong>, you will have to make several calls to the receive_packet() function, which has a return type of
+  <strong>char*</strong>. A char* 
+
+is a pointer, or a variable that contains the address of another variable. For the purposes of this homework, a char* will never 'point' to anything but a character array, a char[].  Therefore, the char* returned by receive_message() can itself be accessed like an array.</p>
+<p>Eg, the following piece of code would be valid, since receive_packet() returns a char* that points to an array of type char[] </p>
+<pre>	char* result = receive_packet();
+  	char test_char;
+   
+	result[0] = 'a';
+	result[1] = 'b';
+  	test_char = result[0]; 
+	result[2] = test_char;</pre>
+<h3>Diagram:</h3>
+<img src="packets_visual.png" alt="Packet Model" name="Packet Model" width="800" height="601" align="middle">
+<p>&nbsp;</p>
+<p>To open your code in emacs after downloading it, use the '&amp;' to keep the terminal running while running EMACS</p>
+<pre>    emacs packets.c &amp; </pre>
+<p>To compile your code to a binary executable called 'skynet', type in the following at the command line, assuming your skynet.c and skynet.h files are in your current working directory:</p>
+<pre>    gcc -Wall packets.c -o packets</pre>
+<p>The '-Wall' flag will print out all warnings that the compilation generates. It is highly recommended that you eliminate warnings in your coding, as warnings can often lead to undefined behavior in your programs.</p>
+<p>After executing the code above, the following line can be used to execute your program:</p>
+<pre>   ./packets</pre>
+<p>We have also included some sample output from a working version of the program to demonstrate how your program should operate once completed. <br>
+To kill the foreground process in the terminal, hit (CTRL+C).  This might come in handy if you need to kill a program you are testing.</p>
+<p>&nbsp;</p>
+<hr>
+<h3>&nbsp;</h3>
+</body>
+</html>
+

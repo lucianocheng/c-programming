@@ -1,0 +1,129 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Pointers Assignment - ESE 116</title>
+ 
+<link rel="stylesheet" type="text/css" href="http://www.seas.upenn.edu/~cis1xx/projects/assignmentstyle.css" />
+<style type="text/css">
+<!--
+.style2 {font-size: 60px}
+.style3 {font-size: 20px}
+.style4 {color: #FF0000}
+-->
+</style>
+</head>
+<body>
+
+  <table width="750px" border="1">
+    <tr>
+      <td class="style2">Pointers:</td>
+      <td width="81%"><div align="left" class="style3">
+        <p>Getting Started With Pointers<br>
+          Lab &amp; Homework Assignment<br>
+        </p>
+        </div></td>
+    </tr>
+  </table>
+
+<a href="#speedcar"><img src="speedCar.jpg" height="160" /></a>
+<h3>Goals</h3>
+Learn how to
+<ul>
+  <li>Write FAST programs by mastering pointers   
+  <li>Use the &amp; operator to access the address of a variable.   
+  <li>Declare a variable that is a <em>pointer</em>, whose purpose is to hold a memory address.
+  <li>Assign a value (an address) to  a pointer 
+  <li><em>Dereference</em> (access the &quot;contents of&quot;) a pointer using the &quot;star&quot; operator, * 
+  <li>Define a function that has a <em>parameter</em> that is a pointer, and how to call such a function
+  <li>Define a function that <em>returns</em> a pointer, and how to use such a return value
+  <li>Use pointers of various <em>types</em> (int *, double *, boolean *, char *, etc.)
+  <li>Find the cause of a &quot;segmentation violation&quot; by looking for code that attempts to read/write an invalid address (e.g. *p where the value of p is not a valid address) or attempts to write more data to a valid memory address than can fit.  </li>
+</ul>
+
+<h3>NULL and Null Pointers</h3>
+<ul>
+   <li>NULL is a macro defined to be 0. If you #include either stdio.h or stdlib.h, it will be defined for you. (By contrast, recall that Java has a built-in keyword called null) </li>
+  <li>It is always invalid to read or write to address 0.</li>
+   <li>By convention, functions that return a pointer return NULL to indicate failure, or &quot;not found&quot;, or &quot;no data&quot;. </li>
+   <li>Likewise, a pointer variable is assigned   NULL to indicate that it doesn't point to anything. Such a pointer is called a <em>null pointer</em>. </li>
+  <li>An  attempt to dereference a null pointer causes a program to CRASH!!!
+     
+     <ul>
+      <li>In Java, you get  a <em>null pointer exception.</em></li>
+      <li>C doesn't have exceptions. In C, you get a <em>segmentation violation</em> (e.g. an expression such as &quot;*p&quot; if p's value is NULL). </li>
+   </ul>
+</ul>
+<h3>Exercises (Do these before the homework, or the homework will be qute hard)</h3>
+<ol>
+  <li>Download <a href="Supplied/demo.c">demo.c</a> and play with it until you understand it COMPLETELY. 
+    <ul>
+      <li><em>Take your time to get the basics down solid.</em><br>
+        </li>
+    </ul>
+  <li>Download <a href="Supplied/pointers_lab.c">pointers_lab.c</a>.
+    <ul>
+      <li>Read the comments and write code for the two missing functions.</li>
+    </ul>
+  </li>
+</ol>
+<h3>Homework</h3>
+<p>For this homework assignment, you will be writing three functions in <strong>pointers.c</strong> that deal with pointers and basic strings. </p>
+<p>You will also be writing functionality to test your functions in pointers_main.c. You will not turn this in, however it is HIGHLY recommended that you test your code before turning it in. To write tests for your code, use the same method as pointers_lab.c above.</p>
+<ul>
+  <li><strong>Required Files:  
+    </strong>
+    <ol>
+      <li><a href="Supplied/pointers.c">pointers.c</a> - Fill this in</li>
+      <li><a href="Supplied/pointers_main.c">pointers_main.c</a> - Write your test functions here</li>
+      <li><a href="Supplied/pointers.h">pointers.h</a> - Needed for the above to compile</li>
+    </ol>
+  <li><strong>Complete pointers.c and turn it in for homework.
+    </strong>
+    <ul>
+      <li>Detailed instructions are in the code.</li>
+    </ul>
+  </ul>
+<p><span class="style4">Important note 1:</span> For pointerToVowel(), we want you to return the pointer to the first vowel, <strong>any vowel</strong>, from left to right.</p>
+<p>For example, if pointerToVowel() is passed pointers to characters 'e', 'a', '4', 'w', you should return a pointer to 'e'.</p>
+<p>Also, to emphasize this problem that happens every year, you must return one of the addresses that is passed to you; you cannot declare a local variable with a vowel and return a pointer to that.</p>
+<p>To drive this point home, if your pointerToVowel() function does not pass this test, it's wrong:</p>
+<pre>char param1 = 'w';
+char param2 = 'e';
+char param3 = '5';
+char param4 = 'a';
+
+char* result;
+
+result = pointerToVowel(&amp;param1, &amp;param2, &amp;param3, &amp;param4);
+
+if(result == &amp;param2) printf(&quot;CORRECT!\n&quot;);
+else printf(&quot;WRONG!\n&quot;);</pre>
+<p><span class="style4">Important note 2:</span> To test the reverse() function, you cannot do something like this:</p>
+<pre>reverse(&quot;Hello&quot;);</pre>
+<p>because reverse() reverses in place, and &quot;Hello&quot; in this case can't be changed by your function.</p>
+<p>Instead, use one of the following ways to test your function:</p>
+<pre>// Method 1
+char test[] = &quot;Hello&quot;;
+reverse(test);
+// Check value of test here
+
+// Method 2
+char test[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+reverse(test);
+// Check value of test here
+
+// Method 3;
+char test[6];
+test[0] = 'H';
+test[1] = 'e';
+test[2] = 'l';
+test[3] = 'l';
+test[4] = 'o';
+test[5] = '\0';
+reverse(test);
+// Check value of test here</pre>
+<p>Compile your homework with the following command line (assuming all of the above are in your cwd):</p>
+<pre>     gcc -Wall pointers_main.c pointers.c -o pointers</pre>
+<hr>
+</html>

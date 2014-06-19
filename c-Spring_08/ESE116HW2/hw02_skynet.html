@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>ESE 116 Spring 2008, Homework 2: Skynet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="file:///Macintosh HD/Users/jeaniacgriffin/Documents/Sites/cis110/content/style.css" type="text/css">
+<style type="text/css">
+<!--
+.style2 {font-size: 60px}
+.style3 {font-size: 20px}
+.style4 {color: #FF0000}
+.style5 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<table width="100%">
+  <tr>
+    <td width="9%" align="center" valign="bottom"><h1 class="style2">SkyNet: </h1></td>
+    <td width="91%" align="left" valign="top">
+		<span class="style3">The DARPA Skynet Initiative - Funded by Microsoft <br>
+    <strong>ESE 116 Spring 2008, Homework 2 </strong></span></td>
+  </tr>
+</table>
+<strong>Due 10:45am Tuesday 2/19/2008 (Late date is always 24 hrs later)</strong>
+<h3> Files:</h3>
+<ul>
+  <li><strong>Required</strong>:
+    <ul>
+      <li><a href="./skynet.c">skynet.c</a> (to be completed / submitted)</li>
+      <li><a href="./skynet.h">skynet.h</a> (needed for skynet.c to compile)<br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Optional</strong>:
+    <ul>
+      <li><a href="./sample_output.txt">sample_output.txt</a> (sample output of a working program)</li>
+    </ul>
+  </li>
+</ul>
+<h3>Purposes of this assignment:</h3>
+To practice:
+<ul>
+  <li>Working with C <a href="http://computer.howstuffworks.com/c12.htm">functions</a>, function calls, and return values </li>
+  <li>Working with C <a href="http://www.space.unibe.ch/comp_doc/c_manual/C/CONCEPT/data_types.html">floats and doubles </a></li>
+  <li>Using the <a href="http://linux.die.net/man/3/printf">printf</a> function </li>
+  <li>Using <a href="http://www.geocities.com/learnprogramming123/Clesson8Beginner.htm">for and while</a> loops</li>
+  <li>Using C Implicit &amp; Explicit <a href="http://www.cplusplus.com/doc/tutorial/typecasting.html">type casting</a> </li>
+</ul>
+<h3>Important Notes:</h3>
+<ul>
+  <li><span class="style4">START THIS HOMEWORK EARLY</span> ... it is significantly longer than the last one. <br>
+  </li>
+  <li>Homework assignments should be done alone. Help is available via the <a href="https://alliance.seas.upenn.edu/~cis1xx/cgi-bin/cis1xxBB/index.php">bulletin board</a> and <a href="http://www.seas.upenn.edu/~ese116/schedule.shtml">office hours</a>.</li>
+  <li>Please be respectful of the TAs' time and refrain from emailing them individually. Please ask questions on the bulletin board or bring them to office hours.</li>
+  <li>Read the posted <a href="https://www.seas.upenn.edu/~cis1xx/resources/homeworkPolicy.shtml">Homework Submission and Policy Information</a> 
+  <li>At the top of the <a href="https://www.seas.upenn.edu/~ese116/content/content.shtml">Content page</a>, see the link to use for submitting homework. 
+  <li>We highly recommend that you <strong>test your program on Eniac before turning it in</strong>. There can sometimes be differences between your home setup and the Eniac cluster that can cause errors in your code while grading. 
+  <li>There are special preprocessor directives in your code, <strong>#ifndef</strong> and <strong>#endif</strong>, that surround the functions that we have provided. These are necessary for grading purposes, please do not modify them. 
+</ul>
+<h3>Editing Hints:</h3>
+<ul>
+  <li>Tab your code correctly. Doing this makes errors more obvious and easier to debug.
+    <ul>
+      <li>By hitting 'tab' on any line of code, EMACS does this automatically</li>
+      <li>TA's &lt;3 properly tabbed code </li>
+    </ul>
+  </li>
+  <li>Turn on Syntax Highlighting in EMACS. This is under the options menu.  </li>
+</ul>
+<h3>Overview:</h3>
+<p>As promised in the <a href="http://www.seas.upenn.edu/~cis1xx/projects/CandC++/GettingStarted/HalCalculator/hw01_hal.html">previous lab</a>, you will now be building <a href="http://en.wikipedia.org/wiki/Skynet_(fictional)">SkyNet</a>. Commissioned by <a href="http://www.darpa.mil/">DARPA</a> and overseen by <a href="http://mshiltonj.com/software_wars/current/">Microsoft</a>, SkyNet is a comprehensive computer-based defense system. It is designed to remove the possibility of human error and slowness of reaction time to guarantee fast, efficient response to enemy attack.</p>
+<p><span class="style4"><strong>Detailed function descriptions are in the function headers in skynet.c</strong></span><span class="style5">, pl</span><span class="style4"><strong>ease fill out the functions according to the specifications</strong>. </span><br>
+The file <strong>skynet.c</strong> contains five functions that you will have to complete:</p>
+<ul>
+  <li>The <strong>count_down() </strong>function
+    <ul>
+      <li>The purpose of this function is to begin the countdown of the SkyNet initiation protocol</li>
+    </ul>
+  </li>
+  <li>The <strong>get_human_max_age()</strong> function.
+    <ul>
+      <li>The purpose of this function is to calculate the maximum age of a human, as inputted by the user</li>
+    </ul>
+  </li>
+  <li>The <strong>get_human_average_age()</strong> function.
+    <ul>
+      <li>The purpose of this function is to calculate the average age of the human ages inputted by the user</li>
+    </ul>
+  </li>
+  <li>The <strong>calculate_resistance()</strong> function.
+    <ul>
+      <li>The purpose of this function is to calculate the expected human resistance, and the response the humans will send. </li>
+    </ul>
+  </li>
+  <li>The <strong>query_user()</strong> function.
+    <ul>
+      <li>The purpose of this function is to query the user for a menu option</li>
+      <li>You are required to use a <a href="http://en.wikipedia.org/wiki/Switch_statement">switch statement</a> to complete this function. </li>
+    </ul>
+  </li>
+</ul>
+<p>To open your code in emacs after downloading it, use the '&amp;' to keep the terminal running while running EMACS</p>
+<pre>    emacs skynet.c &amp; </pre>
+<p>To compile your code to a binary executable called 'skynet', type in the following at the command line, assuming your skynet.c and skynet.h files are in your current working directory:</p>
+<pre>    gcc -Wall skynet.c -o skynet</pre>
+<p>The '-Wall' flag will print out all warnings that the compilation generates. It is highly recommended that you eliminate warnings in your coding, as warnings can often lead to undefined behavior in your programs.</p>
+<p>After executing the code above, the following line can be used to execute your program:</p>
+<pre>   ./skynet</pre>
+<p>We have also included some sample output from a working version of the program to demonstrate how your program should operate once completed. <br>
+  To kill the foreground process in the terminal, hit (CTRL+C).  This might come in handy if you need to kill a program you are testing.</p>
+<h3>Printf Example:</h3>
+<p>The following example usage of the printf statement: </p>
+<pre>   printf(&quot;Color %s, number1 %d, number2 %05d, hex %x, float %.2f, unsigned value %u.\n&quot;,&quot;red&quot;, 123456, 89, 255, 3.141, 250);</pre>
+<p>will print following line (including new-line character, \n):</p>
+<pre>   Color red, number1 123456, number2 00089, hex ff, float  3.14, unsigned value 250.</pre>
+<p>&nbsp;</p>
+<hr>
+<h3>&nbsp;</h3>
+</body>
+</html>
+

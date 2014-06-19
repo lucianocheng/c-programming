@@ -1,0 +1,91 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Lego Mindstorms NXT Robot Intro</title>
+</head>
+<body>
+
+<center>
+<h2>Lego Mindstorms NXT Robot Intro</h2>
+</center>
+<center><img src="lego_robot_pic.jpg"></center>
+
+<br><font size = "5px"><b>What is the Lego NXT robot?</b></font>
+
+<p><font size = "2px"> <i> from Wikipedia:</i> </font><br></p>
+Lego Mindstorms NXT is a programmable robotics kit released by Lego in July 2006. Its main component is the brick shaped computer, which can
+take input from up to four sensors and control up to three motors. The brick has a 100x64 pixel monochrome LCD display and four buttons that can be used to navigate a user interface using hierarchical menus. 
+It also has a speaker and can play sound files. Its power comes from 6 AA batteries therfore please <font color = "red">keep the brick turned off</font> when you are not running programs on it.
+<br>
+<br><font size = "5px"><b>Goals for This Lab</b></font><br>
+
+<ul>
+<li>Learn how to write a simple program in NotExactlyC(NXC), which is the language used by lego robots </li>
+<li>Learn how to interact with actual hardware from a computer program</li>
+<li>Download the program on the brick and run it</li>
+</ul>
+
+<br><font size = "5px"><b>Your bricks are made up of:</b></font><br>
+<ul>
+<li>One central unit with an lcd display, buttons, 7 sensor ports and one USB port</li>
+<li>Two wheels, one connected to port A and the second to port C</li>
+<li>One motor with no tire</li>
+<li>One touch sensor</li>
+</ul>
+<br><font size = "5px"><b>Files you will need for this lab</b></font><br>
+Make sure you download all of them and set the appropriate permission before you continue with the lab:
+<ul>
+<li><a href="NeXTTool">NeXTTool</a></li>
+<li><a href="t2n">t2n</a></li>
+<li><a href="nbc">nbc</a></li>
+<li><a href="lab1.nxc">lab1.nxc</a></li>
+</ul>
+To set the right executable permission run:
+<pre> chmod +x NexTTool t2n nbc </pre>
+
+<br><font size = "5px"><b>Writing your first program in NXC</b></font><br>
+Open up the file <b>lab1.nxc</b>. Inside you will see some sample code which moves the robot forward.<br>
+<font color = "blue">Your task is to add to that code in order to bring the robot back to the position you started.</font><br>
+<font size = "2px">(Note: your code has to spin the robot first so that it faces you and then comes back, you can't just have it spin its wheels in reverse)</font><br>
+To do this you can use the following functions:
+<ul>
+<li><b>OnFwd(</b><i>Wheel Identifier</i><b>,</b><i> Power(Hz)</i><b>)</b> - Makes the wheel spin forwards with the given power. Typically the power ranges between 0 and 75</li>
+<li><b>OnRev(</b><i>Wheel Identifier</i><b>,</b><i> Power(Hz)</i><b>)</b> - Makes the wheel spin backwards with the given power.</li>
+<li><b>Off(</b><i>Wheel Identifier</i><b>)</b> - Makes the wheel stop spinning.</li>
+<li><b>Wait(</b><i>Time in milliseconds</i><b>)</b> - Makes the program wait for the given time. You can use this between the On and Off statements to have the wheels move for a given period of time</li>
+<li>The wheel identifiers are: 
+    <ul>
+    <li><font color = "blue"> OUT_A </font> - to make the right wheel spin</li>
+    <li><font color = "blue"> OUT_C </font> - to make the left wheel spin</li>
+    <li><font color = "blue"> OUT_AC </font> - to make both wheels spin at the same time</li>
+    </ul>
+</li>
+</ul>
+<br><font size = "5px"><b>Instruction for compiling and running your program</b></font><br>
+<ol>
+<li><b>Tell eniac that you want to connect your brick to the lab machine</b></li>
+After logging into the computer open up a terminal and type: <pre>usb-perms</pre> Hit Enter to run the command.
+<li><b>Plug in the usb cord from the brick and turn it on by pressing the orange button</b></li>
+<font size = "2px">Note: Make sure you plug it into your computer and not your neighbor's</font>
+<li><b>Lookup your brick</b></li>
+<pre>./NeXTTool -listbricks > nxt.dat</pre>
+<font size = "2px">Note: run "cat nxt.dat" and look at the output. If it is missing or it has weird characters(ascii characters that are not numbers, letters or colons) then notify a TA</font>
+<li><b>Compile your program</b></li>
+<pre>./nbc lab1.nxc -O=lab1.rxe</pre>  
+<font size = "2px">Note: this is a "-capital letter Oh" not "-Zero" (or "-0")</font>
+<li><b>Download your program to the brick</b></li>
+<pre>./t2n -put lab1.rxe </pre>
+<li><b>Run your program</b></li>
+On the brick use the menu to navigate to "Software files". Then choose your program (in this case lab1) and choose run.
+<br>To choose something you press the <font color="orange">orange button</font>.
+<br>To go back from a menu press the smaller <font color="grey">grey button</font> .
+<li><b>Re-compiling and re-running your program:</b></li>
+*<font color="red">Erase the program from the brick first</font> using the navigation menus.(you will see a trash icon in the same menu with the run option)<br>
+*Run commands <b>4 and 5</b> from above for compiling and downloading to the brick.<br>
+*If you get a message asking if you want to overwrite the program, say 'y', hit Enter and then run the t2n command again.<br>
+<ol>
+
+
+</body>
+</html>

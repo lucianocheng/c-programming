@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<title>Homework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+<!--
+.highlight {
+	font-style: normal;
+	color: #0F0;
+}
+//.style1 {color: #FF0000}
+.style1 {
+	font-size: 24px
+}
+.style2 {font-size: 16px}
+.style3 {font-size: 36px}
+.style4 {font-size: 14px}
+-->
+</style>
+</head><body>
+<table width="100%" border="1">
+  <tr border="1">
+    <th width="136" scope="row" border="1" style="text-align:left"><p class="style1">Lab 1<br>
+        <span class="style2">ESE 116: Fall 2008</span></p>
+    </th>
+    <td style="vertical-align:middle"><span class="style3">Getting Started with Unix and Emacs</span></td>
+  </tr>
+</table>
+<br>
+<center>
+  <p><img src="http://imgs.xkcd.com/comics/real_programmers.png" width="592" height="325">
+  <br><a href="http://xkcd.com/378/"><span class="style4">XKCD: A webcomic of romance, sarcasm, math, and language.</span> </a></p>
+</center>
+<ol>
+  <li><strong>Get set up:</strong>
+    <ul>
+  <li>If you haven't already, read the <a href="http://www.seas.upenn.edu/~cis1xx/projects/GettingStarted/LabIntro/labIntro.html">Introduction to SEAS labs</a> (unix labs, SEAS account, course bulletin board, webmail).  </li>
+  <li>Go to the cis1xx <a href="https://alliance.seas.upenn.edu/~cis1xx/cgi-bin/cis1xxBB/index.php">bulletin board</a>.
+    <ul>
+      <li>Register for the bulletin board if you haven't already (link at the top left of the page).</li>
+      <li>On the
+        ese116 practice forum on the BB (scroll down it's there), post a message and reply to a message. </li>
+    </ul>
+  </li>
+  <ul>
+  </ul>
+  <li>If you want to work from your laptop / home, you will need to read the <a href="http://www.seas.upenn.edu/~cis1xx/resources/remoteAccess/remoteAccess.shtml">remote connection directions</a> outside of lab.
+     <p></p>
+  </li>
+  </ul>    
+  </li>
+  <li><strong>Unix Tutorials:</strong>
+  <br><br>
+  In this class  you will be using Unix to code and compile  C programs. Unix is extremely popular in engineering and academia and will be used extensively in class, so it is especially important that you finish and understand these tutorials.<br>
+    <br>
+    <ul>
+      <li>To start, launch a Unix terminal by clicking on the little monitor on the bottom left corner of your screen.
+        <ul>
+          <li>On some machines, the link may not be there. If you don't see it flag down a TA or mentor.</li>
+        </ul>
+      </li>
+      <li>The terminal will automatically launch the <a href="http://en.wikipedia.org/wiki/Bash">bash shell</a>, which will give you a prompt
+        <br>
+      <pre> student@computername:~&gt; </pre> 
+      </li>
+      <li>Read and complete the following lessons in the <a href="http://www.seas.upenn.edu/~cis1xx/projects/UnixTutorial/">Unix Tutorial</a>, be sure to try<strong> all the recommended commands</strong>:
+        <ul>
+          <li>Lessons 1-3, if you didn't get a chance to finish them for homework.</li>
+          <li>Lessons 4-8 and 12.
+            <ul>
+              <li>If you need additional unix command reference, the <a href="http://www.seas.upenn.edu/~cis1xx/projects/UnixSampler/">Unix Sampler</a> we passed out in class is available on the <a href="http://www.seas.upenn.edu//~cis1xx/resources.shtml">Resources Page</a>.</li>
+            </ul>
+          </li>
+          <li>Advanced Lesson 4: File Permissions</li>
+        </ul>
+      </li>
+      <li>Read <a href="http://www.seas.upenn.edu/cets/answers/chmod.html">"How to change file permissions with chmod"</a> from the <a href="http://www.seas.upenn.edu//~cis1xx/resources.shtml">Resources Page</a></li>
+      <li>Visual depictions of the unix filesystem are available <a href="./unixfilesystem.jpg">here</a> and the <a href="http://www.seas.upenn.edu/~cis1xx/projects/UnixSampler/typicalFileSystem.htm">content page</a></li>
+      <li>A timeline of Unix distributions and flavors is available <a href="./unixlinuxtimeline.jpg">here</a><a href="./unixlinuxtimeline.jpg"><br>
+        </a></li>
+    </ul>
+  </li>
+  <p></p>
+  <li><strong>Getting Started with Emacs</strong>:<br>
+    <br>
+    <a href="http://en.wikipedia.org/wiki/GNU_Emacs">Emacs</a> is a powerful and popular program that we will be using to code C. Although Emacs has many functions, we will be using it as an editor.<br>
+        <br>
+    There won't be any questions about the emacs editor on the quiz.
+    However, we will use emacs to write C programs during lab for the
+    remainder of the semester.<br>
+    <br>
+    To those who use vi / vim as an editor, we recommend that you to take this
+    opportunity to become familiar with emacs. If you stay in enginnering,
+    it is highly likely that you'll need to emacs on the job, in a research
+    lab, and/or in upper level classes. <br>
+    <br>
+    
+    <ul>
+      <li>To start Emacs, open a terminal (if you haven't already) and type &quot;emacs &amp;&quot; at the prompt:<br>
+        <pre>student@computername:~&gt; emacs &amp;</pre>
+        <ul>
+          <li>The &quot;&amp;&quot; tells the shell to launch emacs and let the shell continue to accept commands. Without &quot;&amp;&quot;, the shell waits for emacs to quit.</li>
+        </ul>
+      </li>
+      <li>To open a new file in emacs:
+        <ul>
+          <li>Go to (File-&gt;Visit New File), or hold down the Control key and hit 'x' then 'f'</li>
+          <li>At the bottom of the window, it will ask you for a new file name (it might say &quot;find file&quot;, this is normal). 
+            <ul>
+              <li>Type &quot;hello.c&quot;
+              and hit Enter.</li>
+              <li>If you get stuck at this stage, hit Escape three times to start over</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Copy the following code and paste it into your new hello.c document (or buffer, as it is referred to in Emacs):<br>
+          <pre>
+      #include &lt;stdio.h&gt;
+      
+      int main(int argc, char** argv){
+         printf("Hello World!");
+      }
+            </pre>
+          <ul>
+            <li>You can use (Edit-&gt;Paste) to paste the code, or hold down the Control key and hit 'y'</li>
+          </ul>
+      </li>
+      <li>Save the file by using (File-&gt;Save), or hold down the Control key and hit 'x' then 's'
+        <ul>
+            <li>When coding, remember to save frequently to avoid loss of data</li>
+        </ul>
+      </li>
+      <li>The code should show up as different colors. If it is not, go to (Options-&gt;Show Syntax Highlighting)</li>
+      <li>Exit emacs by going to (File-&gt;Exit), or hold down the Control key and hit 'x' then 'c'</li>
+      <li>Open up the file again by typing the following at the command prompt:<br>
+        <br>
+        <pre>student@computername:~&gt; emacs hello.c &amp;</pre>
+      The &quot;hello.c&quot; tells emacs to open up your file.</li>
+      <li>Exit Emacs to finish up</li>
+    </ul>
+    <br>
+    On the <a href="http://www.seas.upenn.edu//~cis1xx/resources.shtml">Resources</a> page linked to from the <a href="http://www.seas.upenn.edu/~ese116/">course website</a>, there are a number of useful emacs resources:<br>
+    <br>
+    <ul>
+    <li><a href="http://www.seas.upenn.edu/~cis1xx/projects/Emacs/emacsCheatSheet.htm">Cheat Sheet</a> of keyboard shortcuts</li>
+    <li><a href="http://www.seas.upenn.edu//~cis1xx/resources/remoteAccess/remoteAccess.shtml">Directions</a> for running unix/emacs from your home computer<br>
+  </li>
+    </ul>
+  </li>
+</ol>
+<div align="center"><em>Reminder: If you have questions about the material, post them on the ese116 section of the Bulletin Board</em>
+</div>
+<hr>
+</body></html>

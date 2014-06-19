@@ -1,0 +1,89 @@
+<head>
+<title>
+Intro to C++
+</title>
+</head>
+
+<h1>Intro to C++ Lab</h1>
+<h3>Demo code:</h3>
+<ul>
+  <li><a href="DemoCode/hello.c">hello.c </a></li>
+  <li><a href="DemoCode/hello.cpp">hello.cpp</a></li>  
+  <li><a href="DemoCode/IntCell.cpp">IntCell.cpp</a></li>
+  
+</ul>
+<h3>Reference</h3>
+<a href="infoAboutC++.shtml"> Essential Differences between C & C++</a>
+
+<h3>Exercise 0 (Optional)</h3>
+<li>Checkout this Tutorial: <a href="http://www.4p8.com/eric.brasseur/cppcen.html">C++ tutorial for C users</a> for more info</li> 
+<ul>Visit
+    <li> 30 -- Encapsulation
+    <li> 16 -- new and delete
+    <li> 18 -- constructor and destructor (Instance variables should be private; It's okay to overload constructors)
+    <li> 24 -- statics
+    <li> 26 -- Inheritance
+    <li> 28 -- Multiple Inheritance
+</ul>
+
+<h3>Exercise 1</h3>
+<ol>
+<li> Download <a href="DemoCode/IntCell.cpp"><tt>IntCell.cpp</tt></a> 
+<li> Add a main method in which you 
+    <ul>
+        <li>Create an instance of an IntCell
+<pre>       IntCell num(5);   </pre>
+        <li>test functions using <tt>cout</tt>
+    </ul>
+<li> Add a void function <tt>inc</tt> to increment the number by 1
+    <ul>
+        <li> test this function using your main method
+    </ul>
+<li> Add a void function <tt>reset</tt> to set the number to 0
+    <ul>
+        <li> test this function using your main method
+    </ul>
+<li> Use <tt>g++</tt> (instead of gcc) to compile your program and <tt>a.out</tt> to run the program
+</ol>    
+
+    
+<h3>Exercise 2</h3>
+
+
+<ol>
+<li>Building off the Struct Lab, create a <tt>Student</tt> class* with member variables** to store         the following data:
+<pre></pre>
+    <ul>
+        <li> Name
+        <li> Gender
+        <li> Number of classes taken
+        <li> Grades (for each class taken) 
+    </ul>
+<pre>
+*  Use "The Big Three": Destructor, Copy Constructor, and operator= in your program
+** Use a pointer for at least one member variable 
+</pre>
+
+<li>Add a member function <tt>getAvg</tt> which returns the average grade of a student as a double
+<pre></pre>
+<li>Create a main method which populates an array of three students with user input and prints the names and grade averages of these students.
+<pre></pre>
+</ol>
+<h3>Exercise 3</h3>
+<li><a href="Sltn/">Solution </a></li>
+<ol>
+<li>
+Implement a one-directional linked list. Define a class <tt>IntLinkedList</tt> that provides public member functions:     
+<pre></pre>
+    <ul>
+        <li> <tt>addLast</tt> to add a node to the end of the list
+        <li> <tt>add</tt> to add a node to the end of the list
+        <li> <tt>delete</tt> to delete a specified element from the list
+        <li> <tt>get</tt> that returns an element at a specified positon
+        <li> <tt>length</tt> that returns a length of the list
+        <li> constructors, destructor, copy constructor, operator=
+    </ul>
+<pre></pre>    
+    The data contained in each node will be just one integer.
+</li>
+</ol>

@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>ESE 116 Homework 1: HAL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="file:///Macintosh HD/Users/jeaniacgriffin/Documents/Sites/cis110/content/style.css" type="text/css">
+<style type="text/css">
+<!--
+.style2 {font-size: 60px}
+.style3 {font-size: 20px}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<table width="750px" border="1">
+  <tr>
+    <td><span class="style2">HAL:</span></td>
+    <td width="81%"><div align="left"><span class="style3">The Innocent Calculator, that someday evolves to rule humanity<br>
+      <strong>ESE 116: Homework 1</strong></span></div></td>
+  </tr>
+</table>
+<p>Due<strong> 10:45am </strong>(before class)<strong> Tuesday 9/23/2008 </strong>(Late date is always 24 hrs later)</p>
+<p>You will be able to turn in your homework via the content page starting on Sunday, 9/21/2008.</p>
+<h3>Files:</h3>
+<ul>
+  <li>Needed to <em>code</em> your program:
+    <ul>
+      <li><a href="./hal.c">hal.c</a> (to be completed / submitted)</li>
+      <li><a href="./hal_main.c">hal_main.c</a> (needed to compile, has functions you will use) </li>
+      <li><a href="./hal.h">hal.h</a> (needed to compile, has constants and function prototypes)</li>
+    </ul>
+  </li>
+  <li>Suggested for <em>testing</em> your program
+    <ul>
+      <li><a href="./sample_output.txt">sample_output.txt</a> (sample output of a working program)</li>
+    </ul>
+  </li>
+</ul>
+<h3>Purposes of this assignment:</h3>
+To practice:
+<ul>
+  <li>Working with C functions, function calls, and return values </li>
+  <li>Working with C integers and characters </li>
+  <li>Using the <a href="http://linux.die.net/man/3/printf">printf</a> function </li>
+  <li>Using if and <a href="http://en.wikipedia.org/wiki/Switch_statement#C">switch</a> statements </li>
+  <li>Using the necessary tools to write <a href="http://en.wikipedia.org/wiki/Skynet_%28fictional%29">Skynet</a> someday</li>
+</ul>
+<h3>Important Notes:</h3>
+<ul>
+  <li>Homework assignments should be <strong>done alone</strong>.
+    <ul>
+      <li>Help is available via the <a href="https://alliance.seas.upenn.edu/~cis1xx/cgi-bin/cis1xxBB/index.php">bulletin board</a> and office hours.</li>
+    </ul>
+  </li>
+  <li>Please be respectful of the TAs' time and refrain from emailing them individually.
+    <ul>
+      <li> The TA's take turns answering questions on the bulletin board. </li>
+      <li>Please ask questions on the bulletin board or bring them to office hours.</li>
+    </ul>
+  </li>
+  <li>At the top of the <a href="https://www.seas.upenn.edu/~ese116/content/content.shtml">Content page</a>  
+    <ul>
+      <li>Read the  <a href="https://www.seas.upenn.edu/~cis1xx/resources/homeworkPolicy.shtml">Homework Submission and Policy Information</a>        </li>
+      <li>See the link to use for submitting homework.  </li>
+  </ul>
+  <li>We highly recommend that you <strong>test your program in the lab or on the Eniac server before turning it in</strong>.
+    <ul>
+      <li>There can sometimes be differences between your home setup and the lab / Eniac cluster that can cause errors in your code while grading. </li>
+  </ul>
+  <li>Do <strong>not</strong> modify hal.h or hal_main.c for your program
+    <ul>
+      <li>We will be using the given versions when we grade your code.      </li>
+  </ul>  
+</ul>
+<h3><strong>Academic Honesty Reminder:</strong></h3>
+<ul>
+  <li><strong>DO NOT turn in someone else's code
+    </strong>
+    <ul>
+      <li>We have systems that check for this</li>
+    </ul>
+  </li>
+  <li><strong>DO NOT turn in code from past years
+    </strong>
+    <ul>
+      <li>We have that code too, and have systems that check for it</li>
+    </ul>
+  </li>
+  <li><strong>DO NOT turn in code from Google (or other internet sources)</strong>
+    <ul>
+      <li>We can google too</li>
+    </ul>
+  </li>
+  <li>If you have a situation that you feel is ambiguous, <strong>ASK</strong>, don't risk it.</li>
+</ul>
+<h3>Overview:</h3>
+<p>In this first assignment, you will contribute to the development of HAL, the innocent calculator that someday evolves to rule humanity. Your contribution to the project will exercise your skills in basic C function construction, C integers and characters, the use of if statements, function return values, and switch/case statements. </p>
+<p>The file <strong>hal.c</strong> contains two functions that you will have to complete and turn in. These functions are currently blank:</p>
+<ul>
+  <li><strong>int get_user_input()</strong>
+    <ul>
+      <li>Prompts a user for the operands and operators necessary to run a calculation
+        <ul>
+          <li>The documentation above the get_user_input() function in the hal.c file contains detailed instructions on the input format we expect. </li>
+          <li>In order for the program to loop properly, the function must return correct values. Please fill out the function as specified. </li>
+          <li>You will not be dealing with terminal input directly, we have wrapped the terminal input into the functions get_integer_from_terminal() and get_character_from_terminal() which we have provided for you.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>int calc_result(int, int, char)</strong> 
+    <ul>
+      <li> Takes two operands and an operator, and calculates the result accordingly
+        <ul>
+          <li>Documentation for the expected output of calc_result() is included in the hal.c file, above the calc_result() function. Please fill out the function as specified.</li>
+          <li>You are required to use a <a href="http://en.wikipedia.org/wiki/Switch_statement#C">switch statement</a> to complete this function. </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>The file <strong>hal_main.c</strong> contains  four functions you must utilize to write the hal.c functions. <strong>Do not </strong>modify these functions, you must use them in their current form:</p>
+<ul>
+  <li><strong>int main(int argc, char* argv[])</strong>
+    <ul>
+      <li>The main function does the following:
+        <ul>
+          <li>Prints a welcome message to the terminal</li>
+          <li>Loops, and calls your get_user_input() function for each loop, until get_user_input() returns USER_EXIT</li>
+          <li>Prints a goodbye message</li>
+          <li>Exits</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>void print_result(int, int, char, int)</strong>
+    <ul>
+      <li>The print_result() function gets called by your get_user_input() function.</li>
+      <li>It prints the calculation using printf()</li>
+    </ul>
+  </li>
+  <li><strong>int get_integer_from_terminal()
+    </strong>
+    <ul>
+      <li>The get_integer_from_terminal() function gets called by your get_user_input() function.</li>
+      <li>It retrieves one integer value from the terminal, and returns this integer</li>
+    </ul>
+  </li>
+  <li><strong>char get_character_from_terminal()</strong>
+    <ul>
+      
+      <li>The get_character_from_terminal() function gets called by your get_user_input() function.</li>
+      <li>It retrieves one character value from the terminal, and returns this character</li>
+    </ul>
+  </li>
+</ul>
+<p>The following definitions are in hal.h:</p>
+<ul>
+  <li><strong>USER_EXIT</strong> is defined as 0
+    <ul>
+      <li>Use USER_EXIT when asked in the function description</li>
+      <li>Do not use 0 directly</li>
+    </ul>
+  </li>
+  <li><strong>USER_CONTINUE</strong> is defined as 1
+    <ul>
+      <li>Use USER_CONTINUE when asked in the function description</li>
+      <li>Do not use 1 directly</li>
+    </ul>
+  </li>
+</ul>
+<p>To compile your code to a binary executable called 'hal', type in the following at the command line, assuming your hal.c, hal_main.c, and hal.h files are in your current working directory:</p>
+<pre>   gcc -Wall hal_main.c hal.c -o hal</pre>
+<p>The '-Wall' flag will print out all warnings that the compilation generates. It is highly recommended that you eliminate warnings in your coding, as warnings can often lead to undefined behavior (bugs) in your programs when you run them.</p>
+<p>After executing the code above, the following line can be used to execute your program:</p>
+<pre>   ./hal</pre>
+<p>We have also included some sample output from a working version of the program to demonstrate how your program should operate once completed. Please note these sample outputs are <em>extensive but not exhaustive</em>, you should still test your program on your own<br>
+  <br>
+Hint: To kill the foreground process in the terminal, hit (CTRL+C).  This might come in handy if you need to kill a program you are testing. </p>
+<hr>
+<h3>&nbsp;</h3>
+</body>
+</html>
+

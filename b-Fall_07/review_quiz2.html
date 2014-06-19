@@ -1,0 +1,374 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Review Sheet for ESE 116 Quiz 1</title>
+ <style type="text/css">
+<!--
+.style1 {color: #38A136}
+-->
+ </style>
+</head>
+<body>
+
+<center>
+  <h2>Review Sheet for ESE 116 Quiz 2 (Version 2)</h2>
+  <p><a href="./programmer_hierarchy2.jpg">(The Programmer Hierarchy)</a></p>
+</center>
+
+<h3>Important General Information About the Quiz:</h3>
+<ul>
+  <li> The quiz will be on <strong>Thursday, October 18th</strong> in <strong>Bennet 
+    Hall 201</strong></li>
+  <li> All material up to and including last Thursday's Lab exercises is covered</li>
+  <li>The TA's who wrote this review sheet have not seen the test, so this sheet 
+    gives no unfair advantage.</li>
+  <li>No books, notes, or extra material will be allowed on the test.</li>
+  <li>Unless otherwise stated above, any material from labs, homeworks, or lectures 
+    is free game.</li>
+</ul>
+<h3>General Material on the Quiz</h3>
+<ul>
+  <li><strong>Similarities between C and Java:</strong> 
+    <ul>
+      <li>Both C and Java start from a main() function</li>
+      <li>Both procedural languages (function / procedure based)</li>
+      <li>All of the flow statements are the same (if, while, etc)</li>
+      <li>Code blocking with {} is the same</li>
+      <li>The math and logic operators are the same (*, /, %, &lt;, &lt;=, ++, 
+        --, (cast), &amp;&amp;, |, etc)</li>
+      <li>The Java primitive data types are matched in C (byte, int, long, etc)</li>
+    </ul>
+  </li>
+  <li><strong>Differences between C and Java:</strong> 
+    <ul>
+      <li>C is compiled into a binary executable, then run on the metal of the 
+        machine. Java is compiled into bytecode, then run by the Java Runtime 
+        Environment. Because Java requires a special environment to run whereas 
+        C is compiled to an executable, C is inherently faster than Java.</li>
+      <li>C has no &quot;final&quot; operator. &quot;const&quot; or #define is 
+        used </li>
+      <li>In Java, everything that is a primitive is a non-pointer, and everything 
+        that is not a primitive is a pointer. In C, you can use the * operator 
+        to make any data type a pointer, and the &amp; operator to get the address 
+        of any variable</li>
+      <li>C has no boolean. Ints are used instead. 
+        <ul>
+          <li>Consequently, test expressions inside of if statements are considered 
+            false if 0, true otherwise.</li>
+        </ul>
+      </li>
+      <li>For() loops cannot have variables declared inside the for conditional 
+        <ul>
+          <li>for(int i = 0; i &lt; 100; i++) is not allowed</li>
+        </ul>
+      </li>
+      <li>C has no garbage collector. Everything created by malloc must be freed 
+        explicitly by free()</li>
+      <li>C has no function overloading. 
+        <ul>
+          <li>Function overloading is when two functions have the same name, but 
+            different parameters. The compiler chooses the function to call based 
+            on the parameters passed to it.</li>
+          <li>In C, all functions must have different names.</li>
+        </ul>
+      </li>
+      <li>In general, the C compiler is less strict at compile time then the Java 
+        compiler, and the running C program is not forgiving at all: 
+        <ul>
+          <li>Accessing a piece of data off of the end of an array will not show 
+            up at compile time, and will result in a crash at runtime, with no 
+            indication that it was an arrayOutOfBounds</li>
+        </ul>
+      </li>
+      <li>C has no objects. On the other hand, all code in Java must be included 
+        inside objects. This has many consequences: 
+        <ul>
+          <li>There are no constructors, member functions, or instance variables 
+            in C. </li>
+          <li>C has no function scope</li>
+          <li>C has no instanceof, or equivalent</li>
+          <li>C has no &quot;static&quot;, as everything is static</li>
+          <li>In Java, all arrays are classes. In C, arrays are pointers to contiguous 
+            spots in memory.</li>
+        </ul>
+      </li>
+    </ul>
+  <li><strong>Basic C concepts</strong> 
+    <ul>
+      <li>C was created by Dennis Ritchie 1969-1973</li>
+      <li>C data types: 
+        <ul>
+          <li><strong>int</strong>: A Integer. 
+            <ul>
+              <li>In the original C specification, a int was 16 bits wide and 
+                could hold numbers from -32,768 to +32,767. </li>
+              <li>However, bit width is now compiler specific. </li>
+              <li>The gcc compiler uses 32 bits for a int, so the range is from 
+                -2,147,483,648 to +2,147,483,647.</li>
+            </ul>
+          </li>
+          <li><strong>long</strong>: A long Integer. 
+            <ul>
+              <li>In the original C specification, this was 32 bits wide. However 
+                in gcc, it is the same as a normal int.</li>
+            </ul>
+          </li>
+          <li><strong>float</strong>: A floating point number 
+            <ul>
+              <li>A decimal number with a width of 32bits</li>
+            </ul>
+          </li>
+          <li><strong>double</strong>: A floating point number with double the 
+            width as a float 
+            <ul>
+              <li>A decimal number with a width of 64 bits.</li>
+            </ul>
+          </li>
+          <li><strong>char: </strong>A single ASCII character 
+            <ul>
+              <li>8 bits wide, holds a single character.</li>
+              <li>An array of characters that is null terminated ('\0') is a string.</li>
+            </ul>
+          </li>
+          <li><strong> short:</strong> A short Integer. 
+            <ul>
+              <li>A signed integer with a width of 16 bits. Holds -32768 to +32767</li>
+            </ul>
+          </li>
+          <li><strong>byte</strong>: A byte of general data 
+            <ul>
+              <li>A general data type that holds a single byte of data</li>
+              <li>Other data types can be cast as a byte and stored in a byte 
+                data type. The cast data must be only 8 bits wide. Most common 
+                example is a char: 
+                <ul>
+                  <li>byte my_byte;<br>
+                    char my_char = '0';<br>
+                    my_char = (my_byte)my_char;</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>unsigned int</strong>: A positive integer. 
+            <ul>
+              <li>In unsigned ints we don't store negative numbers, so the 32 
+                bit range is from 0 to +4,294,967,295</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Macro Usage 
+        <ul>
+          <li><a href="./compiler_overview.jpg">Where is the preprocessor?</a></li>
+          <li><strong>#include:</strong> 
+            <ul>
+              <li>Usage: #include (either &lt;filename&gt; or &quot;filename&quot;) 
+                <ul>
+                  <li>Use &quot;&quot;<strong> </strong>when the file you are 
+                    including is in the same directory as the C file</li>
+                  <li>Use &lt;&gt; when the file you are including is in the default 
+                    C library directory</li>
+                  <li>Typically, use &lt;&gt; for C / ANSI / system libraries, 
+                    and &quot;&quot; for your own h files</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>#define</strong> 
+            <ul>
+              <li>Usage: #define (thing to replace) (thing to replace it with) 
+                <ul>
+                  <li>Searches through the C file before it is compiled, replaces 
+                    every instance of the thing to replace with the thing to replace 
+                    it with. The thing to replace must not have spaces. It will 
+                    replace it with everything that is between the following space 
+                    and the end of the line</li>
+                </ul>
+              </li>
+              <li>Example: 
+                <ul>
+                  <li>#define FALSE 0 
+                    <ul>
+                      <li>Replaces all FALSE statements with 0's before compiling</li>
+                    </ul>
+                  </li>
+                  <li>#define TRUE 1 
+                    <ul>
+                      <li>Replaces all TRUE statements with 1's before compiling</li>
+                    </ul>
+                  </li>
+                  <li>#define MYNAME Luciano Cheng 
+                    <ul>
+                      <li>Replaces all MYNAME statements with &quot;Luciano Cheng&quot; 
+                        before compiling</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>#ifndef / #endif</strong> 
+            <ul>
+              <li>Usage: 
+                <ul>
+                  <li>#ifndef _MY_H_FILE_<br>
+                    #define _MY_H_FILE_ 1<br>
+                    (put h file code here)<br>
+                    #endif </li>
+                </ul>
+              </li>
+              <li>#ifndef means &quot;if not defined&quot;</li>
+              <li>#endif means &quot;end if block&quot;</li>
+              <li>The above example you can put in an h file. Then, it makes it 
+                impossible to include the h file twice in one program, since if 
+                _MY_H_FILE_ becomes defined, it won't do anything inside the #ifndef 
+                / #endif block</li>
+              <li>See <a href="http://www.fredosaurus.com/notes-cpp/preprocessor/ifdef.html">this 
+                webpage</a> for a more detailed explanation</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The main() function</strong>: 
+        <ul>
+          <li>Returns an int. The return value can be used to indicate to the 
+            OS whether the program completed successfully or not.</li>
+          <li>Can either take no parameters or two parameters: 
+            <ul>
+              <li>int main(): No parameters</li>
+              <li>int main(int argc, char* argv[]): Two parameters. argv is a 
+                array of strings, where a string is an array of characters. argc 
+                is the size of the argv array.</li>
+            </ul>
+          </li>
+          <li>The main function should return EXIT_SUCCESS or EXIT_FAILURE under 
+            all cases. </li>
+        </ul>
+      </li>
+      <li><strong>The printf() function </strong> 
+        <ul>
+          <li>Format: <strong>printf(char* printed_string, &lt;variable for type 
+            1&gt;, &lt;variable for type 2&gt;, ...);</strong></li>
+          <li>printf takes a string as the first argument. This string may or 
+            may not have %?'s in them, where the ? denotes a certain variable 
+            type to be replaced by a variable following the string 
+            <ul>
+              <li>Example: printf(&quot;Hello, my name is %s and I am %d\n&quot;, 
+                &quot;Luke&quot;, 22);</li>
+            </ul>
+          </li>
+          <li>There are a number of parameters that printf can take for arguments: 
+            <ul>
+              <li>%d; decimal: either long, short, or int</li>
+              <li>%s; string: A array of characters or a literal string with &quot;&quot;</li>
+              <li>%f; A float: NOT THE SAME AS A DOUBLE, if you want to print 
+                a double you must cast it as a float first</li>
+              <li>%c; A single character</li>
+              <li>There are others, you can look up the printf() man page for 
+                more informatio</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong> The switch() call </strong> 
+        <ul>
+          <li>The switch call works very similar to the way it works in Java. 
+            <ul>
+              <li>Each switch call starts with a switch(variable), then an open 
+                bracket &quot;{&quot;</li>
+              <li>Inside the bracket are a series of cases, where each case is 
+                followed by a literal and then a &quot;:&quot; 
+                <ul>
+                  <li>case 1:</li>
+                </ul>
+              </li>
+              <li>A case cannot use any sort of comparison (&lt;, &gt;, etc), 
+                the variable being switched on is compared against the literal, 
+                and if they are equal the case is taken.</li>
+              <li>The case statements FALL THROUGH, so if there is no &quot;break&quot; 
+                call, execution will continue into the next case statement until 
+                the end of the switch statement is reached.</li>
+              <li>The &quot;default&quot; case is taken if no other cases are 
+                taken. </li>
+              <li>See HW 1 for more information :)</li>
+            </ul>
+          </li>
+        </ul>
+      <li><strong>The scanf() function </strong> 
+        <ul>
+          <li>Same parameters as the printf() call, except it reads in data from 
+            stdin (or the terminal, in our case).</li>
+          <li>Addresses are passed instead of variables. For normal (non-pointer) 
+            variables, the &amp; operator must be used: 
+            <ul>
+              <li>int i;<br>
+                scanf(&quot;%d\n&quot;, &amp;i);</li>
+            </ul>
+          </li>
+        </ul>
+      <li><strong>Arrays: </strong> 
+        <ul>
+          <li>Accessed using the [] operator</li>
+          <li>Declared using the type: 
+            <ul>
+              <li>int hello[SIZE];</li>
+            </ul>
+          </li>
+          <li>Strings (arrays of chars) are null '\0' terminated, meaning that 
+            the last character of the string in the array is followed by a '\0' 
+            character. </li>
+        </ul>
+      <li><strong>Compiling: </strong> 
+        <ul>
+          <li>gcc: 
+            <ul>
+              <li>USAGE: gcc &lt;files&gt; -o &lt;destination output binary&gt;</li>
+              <li>Add the -Wall flag to get warnings</li>
+            </ul>
+          
+        </ul>
+    </ul>
+  <li><strong>The Memory / Stack Model</strong></li>
+  <ul>
+    <li> C gives you free access to memory, whereas Java tends to keep you in 
+      a safe sandbox. However, with great power comes great responsibility: 
+      <ul>
+        <li> In C, you are free to access the address of any variable using the 
+          &amp; operator. This includes system space and other things you should 
+          not be accessing. <strong>You must be careful in writing your code to 
+          make sure your memory accesses are accurate, there is no throwing of 
+          exceptions in C.</strong> 
+          <ul>
+            <li><strong>C is not type safe:</strong> The C compiler will allow 
+              you to assign any other variable to any other variable, no matter 
+              the type, with little more than a warning. It assumes you know what 
+              you are doing. You must be careful.</li>
+          </ul>
+        </li>
+        <li>Dynamic variables are created using the malloc() operator, like the 
+          &quot;new&quot; operator in Java</li>
+        <li>Memory is freed with the &quot;free()&quot; function. In Java this 
+          is handled automatically</li>
+      </ul>
+    </li>
+    <li> When a C program is first started, through the magic of Virtual Memory, 
+      the OS gives the program a contiguous address space on which to run. 
+      <ul>
+        <li> The DATA is initially stored in the memory space. This contains all 
+          the information relating to the instructions in the functions, and the 
+          amount of memory each function requires on the stack</li>
+        <li> The HEAP grows downward. The heap contains all the memory you allocate 
+          using the malloc() call</li>
+        <li>The STACK grows upward. The stack contains all the memory you allocate 
+          with your function calls.</li>
+        <li><a href="./visual_stack.jpg">This diagram is extremely helpful in 
+          explaining this topic</a></li>
+      </ul>
+    </li>
+  </ul>
+</ul>
+</li>
+</ul>
+
+</html>

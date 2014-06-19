@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE tester SYSTEM "/home2/c/cse1xx/misc/tester.dtd">
+<testlist problem_set_type="homework" problem_set_number="11601" file_suffix="">
+<student username="lcheng">
+ <problem problem_number="1" late-timestamp="0" max_score="50.0" max_ec_score="0.0">
+  <desc>get_user_input</desc>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>test_get_user_input_ADD</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "test_get_user_input_ADD":
+	Incorrect value: Calculate 5 + 10: Return Value - Expected &lt;1&gt;, but was &lt;0&gt;
+</error>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>test_get_user_input_SUB</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "test_get_user_input_SUB":
+	Incorrect value: Calculate 10 - 5: Return Value - Expected &lt;1&gt;, but was &lt;0&gt;
+</error>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>test_get_user_input_MUL</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "test_get_user_input_MUL":
+	Incorrect value: Calculate 10 * 20: Return Value - Expected &lt;1&gt;, but was &lt;0&gt;
+</error>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>test_get_user_input_DIV</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "test_get_user_input_DIV":
+	Incorrect value: Calculate 5 * 10: Return Value - Expected &lt;1&gt;, but was &lt;0&gt;
+</error>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>test_get_user_input_ERR</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>test_get_user_input_EXIT</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+ <problem problem_number="2" late-timestamp="0" max_score="40.0" max_ec_score="0.0">
+  <desc>calc_result</desc>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>calc_result_ADD</desc>
+   <score>10.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>calc_result_SUB</desc>
+   <score>10.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>calc_result_MUL</desc>
+   <score>10.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>calc_result_DIV</desc>
+   <score>10.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+ <problem problem_number="3" late-timestamp="0" max_score="10.0" max_ec_score="0.0">
+  <desc>use switch statements</desc>
+  <test max_score="10.0" max_ec_score="0.0">
+   <desc>Switch Statement Used in calc_result()</desc>
+   <score>10.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+</student></testlist>

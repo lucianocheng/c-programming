@@ -1,0 +1,119 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Pointers Assignment - ESE 116</title>
+ 
+<link rel="stylesheet" type="text/css" href="http://www.seas.upenn.edu/~cis1xx/projects/assignmentstyle.css" />
+<style type="text/css">
+<!--
+.style2 {font-size: 60px}
+.style3 {font-size: 20px}
+-->
+</style>
+</head>
+<body>
+
+  <table width="750px" border="1">
+    <tr>
+      <td class="style2">Pointers:</td>
+      <td width="81%"><div align="left" class="style3">
+        <p>Getting Started With Pointers<br>
+          Lab Assignment<br>
+        </p>
+        </div></td>
+    </tr>
+  </table>
+
+<a href="#speedcar"><img src="speedCar.jpg" height="160" /></a>
+<h3>Goals</h3>
+Learn how to
+<ul>
+  <li>Write FAST programs by mastering pointers   
+  <li>Use the &amp; operator to access the address of a variable.   
+  <li>Declare a variable that is a <em>pointer</em>, whose purpose is to hold a memory address.
+  <li>Assign a value (an address) to  a pointer 
+  <li><em>Dereference</em> (access the &quot;contents of&quot;) a pointer using the &quot;star&quot; operator, * 
+  <li>Define a function that has a <em>parameter</em> that is a pointer, and how to call such a function
+  <li>Define a function that <em>returns</em> a pointer, and how to use such a return value
+  <li>Use pointers of various <em>types</em> (int *, double *, boolean *, char *, etc.)
+  <li>Find the cause of a &quot;segmentation violation&quot; by looking for code that attempts to read/write an invalid address (e.g. *p where the value of p is not a valid address) or attempts to write more data to a valid memory address than can fit.  </li>
+</ul>
+
+<h3>NULL and Null Pointers</h3>
+<ul>
+   <li>NULL is a macro defined to be 0. If you #include either stdio.h or stdlib.h, it will be defined for you. (By contrast, recall that Java has a built-in keyword called null) </li>
+  <li>It is always invalid to read or write to address 0.</li>
+   <li>By convention, functions that return a pointer return NULL to indicate failure, or &quot;not found&quot;, or &quot;no data&quot;. </li>
+   <li>Likewise, a pointer variable is assigned   NULL to indicate that it doesn't point to anything. Such a pointer is called a <em>null pointer</em>. </li>
+  <li>An  attempt to dereference a null pointer causes a program to crash (typically via segmentation fault)
+     
+     <ul>
+      <li>In Java, you get  a <em>null pointer exception.</em></li>
+      <li>C doesn't have exceptions. In C, you get a <em>segmentation violation</em> (e.g. an expression such as &quot;*p&quot; if p's value is NULL).</li>
+    </ul>
+  </ul>
+<p><strong>A coule of reminders for the lab:</strong></p>
+<ul>
+  <li>'*' is the dereference operator, when used with pointers.
+    <ul>
+      <li>It gets the value at the address the pointer is pointing t</li>
+    </ul>
+  </li>
+  <li>'&amp;' is the address operator
+    <ul>
+      <li>Gets the address of the variable</li>
+    </ul>
+  </li>
+  <li>We like to assign pointers the initial value of NULL when creating them
+    <ul>
+      <li>Saves us chasing funny errors later on</li>
+    </ul>
+  </li>
+</ul>
+<p>The conocal example:</p>
+<pre>	// Create a int pointer, initially point it to NULL 
+	int* myPointer = NULL;
+
+
+	// Create a normal int variable, assign it the value of 500
+	int myValue = 500;
+
+
+	// Point myPoiner to myValue, by making the value of myPointer the address of myValue
+	myPointer = &amp;myValue;
+
+	// Demonstrate the result, by printing out the value of myValue, by dereferencing myPointer
+	printf(&quot;myPointer points to myValue, and the value at myValue is %d\n&quot;, *myPointer);</pre>
+<br>
+<h3>Exercises</h3>
+<ol>
+  <li>Download <a href="Supplied/demo.c">demo.c</a> and play with it until you understand it COMPLETELY. 
+    <ul>
+      <li><em>Take your time to get the basics down solid.</em></li>
+      <li>Read the comments and the explanation</li>
+      <li>Try to picture what is happening in memory. What is actually getting passed to these functions?
+        <ul>
+          <li>Note: '%u' in printf means unsigned integer. 
+            <ul>
+              <li>Addresses use all 32 bits as a positive number, whereas ints use leftmost bit to represent negativity</li>
+              <li>Addresses must be interpreted as unsigned, or else large address = funny negative numbers</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <li>Download <a href="Supplied/pointers_lab.c">pointers_lab.c</a>.
+    <ul>
+      <li>Read the completed functions
+        <ul>
+          <li>Notice the syntax for copying, assigning, and declaring pointers</li>
+          <li>The functions are simple for a reason. Understand what they do and how they do it using pointers and addresses.</li>
+        </ul>
+      </li>
+      <li>Read the comments and write code for the<strong> two missing functions</strong></li>
+    </ul>
+  </li>
+</ol>
+<hr>
+</html>

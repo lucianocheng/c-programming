@@ -1,0 +1,11 @@
+CC=gcc
+OPTIONS=-Wall -g -O0 -D_GNU_SOURCE -DTEST_1xx -DTEST_1XX -DTESTER_1XX
+LIBS=-lctester
+LIBDIR= -L~cis1xx/lib/ctester/ctester_v3/ -L../../src/
+INCLUDEDIR= -I~cis1xx/lib/ctester/ctester_v3/src/ -I~ese116/submit/supple/ -I../../src/
+
+all:
+	$(CC) $(OPTIONS) $(LIBDIR) $(INCLUDEDIR) hw03-tester.c packets_main.c packets.c ${LIBS} -o hw03-tester
+
+clean:
+	rm -f *.o hw03-tester

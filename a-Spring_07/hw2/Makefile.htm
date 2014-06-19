@@ -1,0 +1,13 @@
+all: weather
+
+weather: weather.c weather.h
+	cc -g -Wall weather.c -o weather
+
+debug: weather.c weather.h
+	cc -g -Wall -D DEBUG weather.c -o weather
+
+run: weather
+	./weather
+
+clean:
+	rm -f weather

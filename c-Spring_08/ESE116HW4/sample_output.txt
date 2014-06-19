@@ -1,0 +1,87 @@
+bash$ gcc -Wall tokenizer.c -o tokenizer
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this is a test this is only a test and do not confuse it with anything else
+
+Inputted Words (unsorted):
+Count: 17
+'this'(4), 'is'(2), 'a'(1), 'test'(4), 'this'(4), 'is'(2), 'only'(4), 'a'(1), 'test'(4), 'and'(3), 'do'(2), 'not'(3), 'confuse'(7), 'it'(2), 'with'(4), 'anything'(8), 'else'(4), 
+Inputted Words (sorted with duplicates deleted):
+Count: 13
+'a'(1), 'and'(3), 'anything'(8), 'confuse'(7), 'do'(2), 'else'(4), 'is'(2), 'it'(2), 'not'(3), 'only'(4), 'test'(4), 'this'(4), 'with'(4), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this is 1 a 2 test 3 with 5474 number 123 in 234 it 234432 do 123 you 3 see 1234 them 2
+Inputted Words (unsorted):
+Count: 23
+'this'(4), 'is'(2), '1'(1), 'a'(1), '2'(1), 'test'(4), '3'(1), 'with'(4), '5474'(4), 'number'(6), '123'(3), 'in'(2), '234'(3), 'it'(2), '234432'(6), 'do'(2), '123'(3), 'you'(3), '3'(1), 'see'(3), '1234'(4), 'them'(4), '2'(1), 
+Inputted Words (sorted with duplicates deleted):
+Count: 20
+'1'(1), '123'(3), '1234'(4), '2'(1), '234'(3), '234432'(6), '3'(1), '5474'(4), 'a'(1), 'do'(2), 'in'(2), 'is'(2), 'it'(2), 'number'(6), 'see'(3), 'test'(4), 'them'(4), 'this'(4), 'with'(4), 'you'(3), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this is a test with newlines it it
+
+
+do you see the newlines
+
+
+
+Inputted Words (unsorted):
+Count: 13
+'this'(4), 'is'(2), 'a'(1), 'test'(4), 'with'(4), 'newlines'(8), 'it'(2), 'it'(2), 'do'(2), 'you'(3), 'see'(3), 'the'(3), 'newlines'(8), 
+Inputted Words (sorted with duplicates deleted):
+Count: 11
+'a'(1), 'do'(2), 'is'(2), 'it'(2), 'newlines'(8), 'see'(3), 'test'(4), 'the'(3), 'this'(4), 'with'(4), 'you'(3), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this is a test with spaces at the end               
+Inputted Words (unsorted):
+Count: 9
+'this'(4), 'is'(2), 'a'(1), 'test'(4), 'with'(4), 'spaces'(6), 'at'(2), 'the'(3), 'end'(3), 
+Inputted Words (sorted with duplicates deleted):
+Count: 9
+'a'(1), 'at'(2), 'end'(3), 'is'(2), 'spaces'(6), 'test'(4), 'the'(3), 'this'(4), 'with'(4), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop):           this is a test with spaces at the beginning
+Inputted Words (unsorted):
+Count: 9
+'this'(4), 'is'(2), 'a'(1), 'test'(4), 'with'(4), 'spaces'(6), 'at'(2), 'the'(3), 'beginning'(9), 
+Inputted Words (sorted with duplicates deleted):
+Count: 9
+'a'(1), 'at'(2), 'beginning'(9), 'is'(2), 'spaces'(6), 'test'(4), 'the'(3), 'this'(4), 'with'(4), 
+bash$ ./tokenizerExecuting Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this this is is a test test with a lot of lot of lot of duplicates that must must be eliminated by by your your program
+
+Inputted Words (unsorted):
+Count: 26
+'this'(4), 'this'(4), 'is'(2), 'is'(2), 'a'(1), 'test'(4), 'test'(4), 'with'(4), 'a'(1), 'lot'(3), 'of'(2), 'lot'(3), 'of'(2), 'lot'(3), 'of'(2), 'duplicates'(10), 'that'(4), 'must'(4), 'must'(4), 'be'(2), 'eliminated'(10), 'by'(2), 'by'(2), 'your'(4), 'your'(4), 'program'(7), 
+Inputted Words (sorted with duplicates deleted):
+Count: 15
+'a'(1), 'be'(2), 'by'(2), 'duplicates'(10), 'eliminated'(10), 'is'(2), 'lot'(3), 'must'(4), 'of'(2), 'program'(7), 'test'(4), 'that'(4), 'this'(4), 'with'(4), 'your'(4), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): word
+Inputted Words (unsorted):
+Count: 1
+'word'(4), 
+Inputted Words (sorted with duplicates deleted):
+Count: 1
+'word'(4), 
+bash$ ./tokenizer
+Executing Tokenizer Program (./tokenizer)...
+Input data to be tokenized (Ctrl+D to send EOF and stop): this is a longer test with lots of words that you will in fact be able to sort oh wow do you see how long this sentence is going for
+
+its like way to long and super long
+
+omg it also has newlines in it and spaces at the end how weird huh
+
+ahhahahahahaha   
+Inputted Words (unsorted):
+Count: 54
+'this'(4), 'is'(2), 'a'(1), 'longer'(6), 'test'(4), 'with'(4), 'lots'(4), 'of'(2), 'words'(5), 'that'(4), 'you'(3), 'will'(4), 'in'(2), 'fact'(4), 'be'(2), 'able'(4), 'to'(2), 'sort'(4), 'oh'(2), 'wow'(3), 'do'(2), 'you'(3), 'see'(3), 'how'(3), 'long'(4), 'this'(4), 'sentence'(8), 'is'(2), 'going'(5), 'for'(3), 'its'(3), 'like'(4), 'way'(3), 'to'(2), 'long'(4), 'and'(3), 'super'(5), 'long'(4), 'omg'(3), 'it'(2), 'also'(4), 'has'(3), 'newlines'(8), 'in'(2), 'it'(2), 'and'(3), 'spaces'(6), 'at'(2), 'the'(3), 'end'(3), 'how'(3), 'weird'(5), 'huh'(3), 'ahhahahahahaha'(14), 
+Inputted Words (sorted with duplicates deleted):
+Count: 44
+'a'(1), 'able'(4), 'ahhahahahahaha'(14), 'also'(4), 'and'(3), 'at'(2), 'be'(2), 'do'(2), 'end'(3), 'fact'(4), 'for'(3), 'going'(5), 'has'(3), 'how'(3), 'huh'(3), 'in'(2), 'is'(2), 'it'(2), 'its'(3), 'like'(4), 'long'(4), 'longer'(6), 'lots'(4), 'newlines'(8), 'of'(2), 'oh'(2), 'omg'(3), 'see'(3), 'sentence'(8), 'sort'(4), 'spaces'(6), 'super'(5), 'test'(4), 'that'(4), 'the'(3), 'this'(4), 'to'(2), 'way'(3), 'weird'(5), 'will'(4), 'with'(4), 'words'(5), 'wow'(3), 'you'(3), 
+bash$ 

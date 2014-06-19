@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head><title>Review Sheet for ESE 116 Quiz 1</title>
+
+<style type="text/css">
+<!--
+.style1 {color: #38A136}
+-->
+</style></head>
+<body>
+<center>
+<h1>Review Sheet for ESE 116, Spring 2008: Quiz 2</h1>
+<p><a href="https://www.seas.upenn.edu/%7Ecis1xx/resources/studyguides/programmer_hierarchy2.jpg"><img style="border: 0px solid ; width: 413px; height: 360px;" alt="XKCD - A webcomic of romance, sarcasm, math and language" src="http://imgs.xkcd.com/comics/compiling.png"></a></p>
+<a href="http://www.xkcd.com">
+XKCD - A webcomic of romance, sarcasm, math and language</a>
+</center>
+<h3>Important General Information About the Quiz:</h3>
+<ul>
+<li> The quiz will be on <strong>Tuesday, March 4th, in
+Moore 216</strong><strong></strong></li>
+<li> All material up to and including last Tuesday's lecture
+will be covered, the focus will be on C and C related material.</li>
+<li>The TA's who wrote this review sheet have not seen the
+test, so this sheet gives no unfair advantage.</li>
+<li>No books, notes, or extra material will be allowed on the
+test.</li>
+<li>Unless otherwise stated above, any material from labs,
+homeworks, or lectures is free game.</li>
+<li>This review sheet is extensive, but not exhaustive.
+&nbsp;Just because it is not on this review sheet, does not mean it
+is not on the test.</li>
+</ul>
+<h3>General Material on the Quiz</h3>
+<ul>
+<li><strong>Similarities between C and Java:</strong>
+<ul>
+<li>Both C and Java start from a main() function</li>
+<li>Both procedural languages (function / method based)</li>
+<li>All of the flow statements are the same (if, while, etc)</li>
+<li>Code blocking with {} is the same</li>
+<li>The math and logic operators are the same (*, /, %,
+&lt;, &lt;=, ++, --, (cast), &amp;&amp;, |, etc)</li>
+<li>The Java primitive data types are matched in C (char,
+int, long, etc)</li><ul><li>Casting of primitive types works in the same way, with the same syntax</li><li>Additional information about type casting can be found <a href="http://www.cplusplus.com/doc/tutorial/typecasting.html">here</a>, as linked to from the packets hw</li></ul>
+</ul>
+</li>
+<li><strong>Differences between C and Java:</strong>
+<ul>
+<li>C is compiled into a binary executable, then run on the
+metal of the machine.&nbsp;</li>
+<li>Java is compiled into bytecode, then run by the
+Java Runtime Environment.&nbsp;</li>
+<ul>
+<li>Because Java requires a special environment
+to run whereas C is compiled to an executable, C is inherently faster
+than Java.</li>
+<li>This is also true because of the Java <a href="http://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29">Garbage
+Collector</a></li>
+</ul>
+<li>C has no "final" operator. "const" or #define is used </li>
+<li>In Java, everything that is a 'primitive' is a
+non-pointer, and everything that is not a primitive is a
+'pointer'.&nbsp;</li>
+<ul>
+<li>In C,
+you can use the * operator to make any data type a pointer, and the
+&amp; operator to get the address of any variable</li>
+</ul>
+<li>C has no boolean. 'ints' are used instead.
+<ul>
+<li>Consequently, test expressions inside of if
+statements are considered false if 0, true otherwise.</li>
+</ul>
+</li>
+<li>for() loops cannot have variables declared inside the
+for conditional
+<ul>
+<li>for(int i = 0; i &lt; 100; i++) is <span style="font-weight: bold;">not allowed</span></li>
+<li>The above code causes a C99 error, variables must
+be declared outside the for loop</li>
+</ul>
+</li>
+<li>C has no garbage collector. Everything created by
+dynamic memory allocation
+(malloc) must be freed explicitly by free()</li>
+<li>In C, function parameters are passed by value</li>
+<ul>
+<li>For example, if a function called foo() is defined as<br>
+<pre>void foo(int param){<br> param = 5;<br>}</pre>
+and it is called like
+<pre>int x = 0;<br>foo(x);</pre><span style="font-weight: bold;">
+the value of x is still 0</span>, because when foo() was called, the value was
+copied into a local variable called param</li>
+</ul><li>When arrays are passed as parameters, a local copy is not made. &nbsp;</li><ul><li>Instead, the<span style="font-weight: bold;"> location of the array in memory is passed</span></li><li>Therefore, when you modify the array in the called function, it is the same array as the calling function</li><li>More on arrays to follow...</li></ul>
+<li>C has no function overloading.
+<ul>
+<li>Function overloading is when two functions have the
+same name, but different parameters. The compiler chooses the function
+to call based on the parameters passed to it.</li>
+<li>In C, all functions must have different names.</li>
+</ul>
+</li>
+<li>In general, the C compiler is less strict at compile
+time then the Java compiler &amp; the running C program is not
+forgiving
+at all:
+<ul>
+<li>Accessing a piece of data off of the end of an
+array will not show up at compile time, and will result in a crash at
+runtime, with no indication that it was an arrayOutOfBounds</li>
+<li>C allows you to get away with stuff like this with
+no errors or warnings (DO NOT DO THIS):</li>
+<ul>
+<li>
+<pre>if(x = 1){}</pre>
+</li>
+</ul>
+</ul>
+</li>
+<li>C has no objects. On the other hand, all code in Java
+must be included inside objects. This has many consequences:
+<ul>
+<li>There are no constructors, member functions, or
+instance variables in C.</li>
+<li>C has no encapsulation</li>
+<li>C has no function scope</li>
+<li>C has no instanceof, or equivalent</li>
+<li>C has no "static", as everything is static</li>
+<li>In Java, all arrays are classes. In C, arrays are
+pointers to contiguous spots in memory.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Basic C concepts</strong>
+<ul>
+<li>C was created by Dennis Ritchie 1969-1973</li>
+<li>C data types:
+<ul>
+<li><strong>int</strong>: A Integer.
+<ul>
+<li>In the original C specification, a int was 16
+bits wide and could hold numbers from -32,768 to +32,767. </li>
+<li>However, bit width is now compiler specific. </li>
+<li>The gcc compiler uses 32 bits for a int, so the
+range is from -2,147,483,648 to +2,147,483,647.</li>
+</ul>
+</li>
+<li><strong>long</strong>: A long Integer.
+<ul>
+<li>In the original C specification, this was 32
+bits wide. However in gcc, it is the same as a normal int.</li>
+</ul>
+</li>
+<li><strong>float</strong>: A floating
+point number
+<ul>
+<li>A decimal number with a width of 32bits</li>
+</ul>
+</li>
+<li><strong>double</strong>: A floating
+point number with double the width as a float
+<ul>
+<li>A decimal number with a width of 64 bits.</li>
+</ul>
+</li>
+<li><strong>char: </strong>A single ASCII
+character
+<ul>
+<li>8 bits wide in gcc, holds a single character.</li>
+<li>An array of characters that is null terminated
+('\0') is a string.</li>
+</ul>
+</li>
+<li><strong> short:</strong> A short
+Integer.
+<ul>
+<li>A signed integer with a width of 16 bits. Holds
+-32768 to +32767</li>
+</ul>
+</li>
+<li><strong>unsigned int</strong>: A
+positive integer (&gt;= 0).
+<ul>
+<li>In unsigned ints we don't store negative
+numbers, so the 32 bit range is from 0 to +4,294,967,295</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Macro Usage
+<ul>
+<li><a href="./compiler_overview.jpg">Where
+is the preprocessor?</a></li>
+<li><strong>#include:</strong>
+<ul>
+<li>Usage: #include (either
+&lt;filename&gt; or "filename")
+<ul>
+<li>Use ""<strong> </strong>when
+the file you are including is in the same directory as the C file</li>
+<li>Use &lt;&gt; when the file you are
+including is in the default C library directory</li>
+<li>Typically, use &lt;&gt; for C /
+ANSI / system libraries, and "" for your own h files</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>#define</strong>
+<ul>
+<li>Usage: #define (thing to replace) (thing to
+replace it with)
+<ul>
+<li>Searches through the C file before it is
+compiled, replaces every instance of the thing to replace with the
+thing to replace it with. The thing to replace must not have spaces. It
+will replace it with everything that is between the following space and
+the end of the line</li>
+</ul>
+</li>
+<li>Example:
+<ul>
+<li>#define FALSE 0
+<ul>
+<li>Replaces all FALSE statements with 0's
+before compiling</li>
+</ul>
+</li>
+<li>#define TRUE 1
+<ul>
+<li>Replaces all TRUE statements with 1's
+before compiling</li>
+</ul>
+</li>
+<li>#define MYNAME Luciano Cheng
+<ul>
+<li>Replaces all MYNAME statements with
+"Luciano Cheng" before compiling</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><strong>The main() function</strong>:
+<ul>
+<li>Returns an int. The return value can be used to
+indicate to the OS whether the program completed successfully or not.</li>
+<li>Can either take no parameters or two parameters:
+<ul>
+<li>int main(): No parameters</li>
+<li>int main(int argc, char* argv[]): Two
+parameters. argv is a array of strings, where a string is an array of
+characters. argc is the size of the argv array.</li>
+</ul>
+</li>
+<li>The main function should return EXIT_SUCCESS or
+EXIT_FAILURE under all cases.</li>
+<ul>
+<li>These are defined in stdlib.h</li>
+</ul>
+</ul>
+</li>
+<li><strong>The printf() function </strong>
+<ul>
+<li>Format: <strong>printf(char* printed_string,
+&lt;variable for type 1&gt;, &lt;variable for type
+2&gt;, ...);</strong></li>
+<li>printf takes a string as the first argument.&nbsp;</li><li>This
+string may or may not have %?'s in themwhere the ? denotes a certain
+variable type to be replaced by a variable following the string
+<ul>
+<li>
+<pre>printf("Hello, my name is %s and I am %d\n", "Luke", 18);</pre>
+</li>
+</ul>
+</li>
+<li>There are a number of parameters that printf can
+take for arguments:
+<ul>
+<li>%d; decimal: either long, short, or int</li>
+<li>%s; string: A array of characters or a literal
+string with ""</li>
+<li>%f; A float: NOT THE SAME AS A DOUBLE, if you
+want to print a double you must cast it as a float first</li>
+<li>%c; A single character</li>
+<li>%x; A hexadecimal number</li>
+<li>There are others, you can look up the <a href="http://linux.die.net/man/3/printf">printf()
+man page</a> for more information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong> The switch() call </strong>
+<ul>
+<li>The switch call works very similar to the way it
+works in Java.
+<ul>
+<li>Each switch call starts with a
+switch(variable), then an open bracket "{"</li>
+<li>Inside the bracket are a series of cases, where
+each case is followed by a literal and then a ":"
+<ul>
+<li>
+<pre>case 1:</pre>
+</li>
+</ul>
+</li>
+<li>A case cannot use any sort of comparison
+(&lt;, &gt;, etc), and <span style="font-weight: bold;">must
+be a literal</span></li>
+<ul>
+<li>Literals are values that are not variables
+(1, 3, 6, 'x', 'j', 4.434)<span style="font-weight: bold;"><br>
+</span></li>
+</ul>
+<li>The variable being switched on is compared
+against each literal in order.&nbsp;</li>
+<ul>
+<li>If the variable equals the literal, the case
+is taken.</li>
+</ul>
+<li>The case statements <span style="font-weight: bold;">fall through</span>, so if
+there
+is no "break" call, execution will continue into the next case
+statement until the end of the switch statement is reached.</li>
+<li>The "default" case is taken if no other cases
+are taken.</li>
+<li>Detailed C switch format can be found in the <a href="http://en.wikipedia.org/wiki/Switch_statement">wikipedia
+entry</a>, as linked to from the first homework.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="font-weight: bold;">The getchar() function</li><ul><li>returns a single byte of data read in from stdin, which for our purposes is the keyboard</li><li>blocks until the user inputs a character into the keyboard</li><ul><li>'blocking' means the program waits for the user to respond</li></ul><li>returns an int, not a char. &nbsp;To treat this value as a char, you have to either</li><ul><li>assign it to a char variable, which will cast it automatically</li><li>cast it explicitly</li></ul><li>If the user hits (CTRL+D) it sends an EOF to getchar(). &nbsp;A<a href="http://en.wikipedia.org/wiki/End-of-file"> EOF is #define'd as -1</a> on most systems, including<br>eniac.</li><li>More information about getchar() can be found on the <a href="http://www.hmug.org/man/3/getchar.php">getchar() man page</a></li></ul><li><strong>The scanf() function </strong>
+<ul>
+<li>Same parameters as the printf() call, except it
+reads in data from stdin (or the terminal, in our case).</li>
+<li>Addresses are passed instead of variables. For
+normal (non-pointer) variables, the &amp; operator must be used:
+<ul>
+<li>
+<pre>int i;<br>scanf("%d\n", &amp;i);</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Arrays: </strong>
+<ul>
+<li>Collections of the same datatype, stored
+contiguously in memory</li>
+<ul>
+<li>No mixed types (chars and ints in the same array)</li>
+<li>Memory addresses where data is stored are next to
+each other.</li>
+</ul>
+<li>Accessed using the [] operator</li>
+<ul>
+<li>
+<pre>int x = 0;<br>x = my_array[3];</pre>
+</li>
+</ul>
+<li>Declared using the following format:
+<ul>
+<li>
+<pre>int hello[SIZE];</pre></li>
+</ul></li><li>Or the following format:</li><ul><li>data = {18, 33, 14, 5, 2}</li></ul>
+<li>C arrays have no '.length' option, you must keep
+track of the array size yourself</li><li>C will let you go out of bounds on an array, with undefined behavior</li><ul><li>undefined behavior means it may crash, it may not ... which is bad and best avoided</li></ul>
+<li>Strings (arrays of chars) are null '\0'
+terminated.&nbsp;</li>
+<ul>
+<li>The last character of the string in the array is
+followed
+by a '\0' character.</li>
+</ul>
+<li><a href="https://www.seas.upenn.edu/%7Ecis1xx/projects/CandC++/Arrays/GettingStarted/background.html">The
+Array Tutorial</a> (as linked to from the packets homework) is
+extremely detailed and helpful</li>
+</ul>
+</li>
+<li><strong>Compiling: </strong>
+<ul>
+<li>gcc:
+<ul>
+<li>USAGE: gcc &lt;files&gt; -o
+&lt;destination output binary&gt;</li>
+<li>Add the -Wall flag to get warnings</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>The Memory / Stack Model</strong></li>
+<ul>
+<li> C gives you free access to memory, whereas Java tends to
+keep you in a safe sandbox. However, with great power comes great
+responsibility:
+<ul>
+<li> In C, you are free to access the address of any
+variable using the &amp; operator. This includes system space and
+other things you should not be accessing.&nbsp;<strong></strong></li>
+<li><strong>You must be
+careful in writing your code to make sure your memory accesses are
+accurate, there is no throwing of exceptions in C.</strong>
+<ul>
+<li><strong>C is not type safe:</strong>
+The C compiler will allow you to assign any other variable to any other
+variable, no matter the type, with little more than a warning. It
+assumes you know what you are doing. You must be careful.</li>
+</ul>
+</li>
+<li>Dynamic variables are created using the malloc()
+operator, like the "new" operator in Java</li>
+<li>Memory is freed with the "free()" function. In Java
+this is handled automatically</li>
+</ul>
+</li>
+<li> When a C program is first started, through the magic of
+Virtual Memory, the OS gives the program a contiguous address space on
+which to run.
+<ul>
+<li> The DATA is initially stored in the memory space.
+This contains all the information relating to the instructions in the
+functions, and the amount of memory each function requires on the stack</li>
+<li> The HEAP grows downward. The heap contains all the
+memory you allocate using the malloc() call</li>
+<li>The STACK grows upward. The stack contains all the
+memory you allocate with your function calls.</li>
+<li><a href="./visual_stack.jpg">This
+diagram is extremely helpful in explaining this topic</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</body></html>

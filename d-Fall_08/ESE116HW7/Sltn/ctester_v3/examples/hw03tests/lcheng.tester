@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE tester SYSTEM "/home2/c/cse1xx/misc/tester.dtd">
+<testlist problem_set_type="homework" problem_set_number="11603" file_suffix="">
+<student username="lcheng">
+ <problem problem_number="1" late-timestamp="0" max_score="25.0" max_ec_score="0.0">
+  <desc>get_data_from_user</desc>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Get data from user (length)</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "Get data from user (length)":
+	Incorrect value: Get data from user: Length - Expected &lt;18&gt;, but was &lt;1&gt;
+</error>
+  </test>
+  <test max_score="7.0" max_ec_score="0.0">
+   <desc>Get data from user</desc>
+   <score>7.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="6.0" max_ec_score="0.0">
+   <desc>Get data from user that is too long (length)</desc>
+   <score>0.0</score>
+   <ec_score>0.0</ec_score>
+   <error>* Detailed results for "Get data from user that is too long (length)":
+	Incorrect value: Test get data that is too big - Expected &lt;479&gt;, but was &lt;1&gt;
+</error>
+  </test>
+  <test max_score="7.0" max_ec_score="0.0">
+   <desc>Get data from user that is too long</desc>
+   <score>7.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+ <problem problem_number="2" late-timestamp="0" max_score="35.0" max_ec_score="0.0">
+  <desc>pack_message</desc>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data (length)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data (length) (normal)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data (length) (oversized)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data (short)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data (normal)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data header (short)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="5.0" max_ec_score="0.0">
+   <desc>Pack data header (normal)</desc>
+   <score>5.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+ <problem problem_number="3" late-timestamp="0" max_score="40.0" max_ec_score="0.0">
+  <desc>receive_message</desc>
+  <test max_score="8.0" max_ec_score="0.0">
+   <desc>Receive data (length) (short)</desc>
+   <score>8.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="12.0" max_ec_score="0.0">
+   <desc>Receive data (length) (normal)</desc>
+   <score>12.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="8.0" max_ec_score="0.0">
+   <desc>Receive data content (short)</desc>
+   <score>8.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+  <test max_score="12.0" max_ec_score="0.0">
+   <desc>Receive data content (long)</desc>
+   <score>12.0</score>
+   <ec_score>0.0</ec_score>
+  </test>
+ </problem>
+</student></testlist>

@@ -1,0 +1,15 @@
+task main()
+{
+	//This code makes the robot go forward
+	OnFwd(OUT_AB,60); Wait(2000);
+	Off(OUT_AC);
+
+	//write code here to make the robot spin around on its axis until it faces the direction it came from 
+	//HINT: think of how you would want the wheels to spin to achieve this
+
+
+
+	//write code here to return the robot to the initial spot
+	
+
+}

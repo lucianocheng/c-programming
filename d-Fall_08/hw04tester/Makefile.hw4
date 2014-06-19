@@ -1,0 +1,11 @@
+CC=gcc
+OPTIONS=-Wall -g -O0 -D_GNU_SOURCE -DTEST_1xx -DTEST_1XX -DTESTER_1XX
+LIBS=-lctester
+LIBDIR=-L ~cis1xx/lib/ctester/ctester_v3/lib/
+INCLUDEDIR=-I ~cis1xx/lib/ctester/ctester_v3/include/
+
+all:
+	$(CC) $(OPTIONS) $(LIBDIR) $(INCLUDEDIR) hw04-tester.c pointers.c testPointerToVowel.c testPointerToLastWord.c testReverse.c ${LIBS} -o hw04-tester
+
+clean:
+	rm -f *.o hw04-tester

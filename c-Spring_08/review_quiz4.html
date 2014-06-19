@@ -1,0 +1,448 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+<title>Review Sheet for ESE 116 Quiz 3</title></head></html>
+:
+<html>
+<head>
+</head>
+<body> 
+<h1 align="center">Review Sheet for ESE 116, Spring 2008: Quiz 4</h1>
+
+<h2 align="center"><font color="black">C Structs &amp; Struct Pointers, Malloc, Bitwise Operators</font></h2>
+<p align="center"><a href="http://www.xkcd.com/292/"><img src="http://imgs.xkcd.com/comics/goto.png" alt="XKCD: Goto" width="740" height="201" border="0"></a><br>
+<a href="http://www.xkcd.com" target="_blank">XKCD - A web comic of romance, sarcasm, math and language </a></p>
+<h2><font color="black">Important Notes</font></h2>
+<ul>
+
+
+  <li> The quiz will be on <strong>Tuesday, April 28th @ 10:30 AM</strong>, in<strong> Moore 216</strong></li>
+  <li> All material up to and including last Thursday's lab is covered</li>
+  <li>The TAs who wrote this review sheet have not seen the test, so this sheet 
+    gives no unfair advantage.</li>
+  <li>No books, notes, or extra material will be allowed on the test.</li>
+  <li>Unless otherwise stated above, any material from labs, homeworks, or lectures 
+    is free game.</li>
+  <li>If you need additional review of C please see the Quiz 2 and Quiz 3 review sheets</li>
+  <li>This Review Sheet is <strong>extensive but not exhaustive</strong>. Please remember to review the notes, readings, homeworks and labs.</li>
+  <li>This review sheet may be extended after it is posted. If this occurs, a different version number will appear at the top of the page.</li>
+</ul>
+<h2>Structs</h2>
+<ul>
+  <li><strong>Definition</strong>:
+    <ul>
+      <li>Structs are <strong>custom C data types</strong>, created by grouping together a bunch of other data types.
+        <ul>
+          <li>... useful because not all programs are easily described in by chars, ints, and doubles.</li>
+        </ul>
+      </li>
+      <li>Structs are the grandfather of Java Objects
+        <ul>
+          <li><strong>Similarities</strong> with Java Objects:
+            <ul>
+              <li>Structs are first declared, then used to create instances. Similarly, Classes are first declared, then used to create objects.</li>
+              <li>Sructs can have member variables.</li>
+              <li>Structs exhibit variable scope so that you can access and modify their member variables.
+                <ul>
+                  <li>Like in Java, the &quot;.&quot; operator is used to change scope</li>
+                </ul>
+              </li>
+              <li>Structs can have other structs as member variables.</li>
+              <li>Structs can include arrays as member variables</li>
+              <li>You can create arrays of structs</li>
+            </ul>
+          </li>
+          <li><strong>Differences</strong> with Java Objects:
+            <ul>
+              <li>Structs have <strong>no member functions whatsoever</strong>, including constructors, accessors, and modifiers. You cannot, for example, write a member function called &quot;bendGurder()&quot; for a struct type called Robot and call &quot;myRobot.bendGurder()&quot;.
+                <ul>
+                  <li> Function pointers (which we will discuss later) can mimic member functions in some ways, but do not have the same functionality.</li>
+                </ul>
+              </li>
+              <li>All variables in a struct are public, while Java classes can have private members.
+                <ul>
+                    <li>structs have no inherit encapsulation.</li>
+                </ul>
+              </li>
+              <li>Struct member variables cannot have initial values; the initial values of member variables will be whatever garbage happens to be in memory.
+                <ul>
+                    <li><strong>You must assign values to struct member variables before using them</strong>. </li>
+                </ul>
+              </li>
+              <li>The entire contents of a struct can be coped to another struct using the &quot;=&quot; operator.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Basically, create your own variable by combining other variables </li>
+      <li>Stucts can have arrays of variables in them
+        <ul>
+          <li>They can have character arrays, which means they can hold strings <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>    Declaration</strong>:
+    <ul>
+        <li>We use typedef to simplify our struct declaration.
+          <ul>
+              <li>Otherwise, we&#39;d have to write &quot;struct &lt;struct name&gt; &lt;instance name&gt;&quot; every time we declared a new instance of our struct</li>
+            <li>A typedef is similar to a #define, except it happens in the compiler rather than the preprocessor</li>
+          </ul>
+        </li>
+      <li> Definition Format (in .h file):
+        <pre>
+ typedef struct{ 
+    int age; 
+    char firstName[80]; 
+    char lastName[80]; 
+    double gpa; 
+ } Student;
+</pre>
+      </li>
+      <li>Instance declaration syntax:
+        <ul>
+              <li>Just like a normal variable<br>
+                  <pre>Student myStudent;</pre>
+              </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Assignment</strong>
+      <ul>
+        <li>A entire struct can be set equal to the values of another struct that is the same type
+          <pre>Student lukeStudent;
+Student alexStudent;
+lukeStudent = alexStudent;
+</pre>
+            <span></span></li>
+        <li>Comparison operators do not work on structs
+          <ul>
+              <li>==, &lt;, &gt;, &lt;=, &gt;=, etc, are <strong>not valid</strong> for structs </li>
+          </ul>
+        </li>
+        <li>Member variables are accessed using the &quot;.&quot; operator
+          <ul>
+              <li>Once you access the variable using the &quot;.&quot; operator, can be treated just like a variable of that type.
+                <ul>
+                    <li>ints can be added to / increased, etc</li>
+                  <li>char arrays can hold strings, and be passed to string.h functions</li>
+                  <li>arrays can be accessed using the [] operator</li>
+                  <li>pointers can move, etc</li>
+                  <li>Example (data may be altered from reality):
+                    <pre>Student lukeStudent;
+lukeStudent.gpa = 4.0;
+lukeStudent.age = 22;
+strcpy(lukeStudent.firstName, &quot;Love&quot;);
+strcpy(lukeStudent.lastName, &quot;Machine&quot;); </pre>
+                  </li>
+                </ul>
+              </li>
+          </ul>
+        </li>
+      </ul>
+  </li>
+  <li>Read <a href="http://www.seas.upenn.edu/~cis1xx/projects/CandC++/Structs/GettingStarted/" target="_blank">The Struct Tutorial</a> for a complete review </li>
+</ul>
+<h2>Struct Pointers</h2>
+<ul>
+  <li>
+    Pointers are variables that hold the addresses (locations) of other variables
+<pre>
+int* my_pointer;
+int my_variable;
+my_pointer = &amp;my_variable // point my_pointer to my_variable</pre>
+  </li>
+  <li>
+    Struct pointers are created the same way
+
+    <pre>typedef struct{      
+    int age;
+    double gpa;   
+} Student;
+
+
+Student my_student;
+Student* my_student_ptr;
+
+
+my_student.age = 21;
+my_student.gpa = 3.9;
+my_student_ptr = &amp;my_student;
+</pre>
+  </li>
+  <li>However structs have multiple elements in they
+    <ul>
+      <li> They require another level of access</li>
+      <li> Dereferencing a struct pointer will get you the struct itself, but not the variables inside it.
+        <pre>
+Student my_student;
+Student my_student_copy; 
+Student* ptr;
+
+
+// Give my_student values
+my_student.age = 21;
+my_student.gpa = 3.9;
+
+
+// Point ptr to my_student
+ptr = &amp;my_student;
+
+// Copy my_student using ptr
+my_student_copy = *ptr;        </pre>
+        <ul>
+          <li>
+            In order to get the variables inside the struct from a pointer, you have to use the . operator with it
+            <pre>
+Student my_student;
+Student* ptr;
+int orig_age;
+
+
+// Give my_student values
+my_student.age = 21;
+my_student.gpa = 3.9;
+
+
+// Point ptr to my_student
+ptr = &amp;my_student;
+
+// Get the age from my_student using ptr
+orig_age = (*ptr).age;
+
+// Set a new age
+(*ptr).age = 22;     </pre>
+          </li>
+          <li>
+            However the above operation is so obnoxious and so common, the designers of C created a shortcut for it
+            <pre> orig_age = ptr->age; //means the same as orig_age = (*ptr).age;
+ ptr->age = 22;       //means the same as (*ptr).age = 22;
+</pre>
+          </li>
+          <li> The "->" operator is a shortcut for the <strong>combined use of '*' and '.'<br>
+            </strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+      <li> Using standard pointer notation, and the -> operator, you can easily pull data out of an array of structs
+        <pre>
+// Example taken from the slides
+#include “person.h”   // Assume Person and MAX_DATA are defined here 
+
+int main() { 
+    Person data[MAX_DATA]; 
+    Person *p;    
+   
+    // Assume array gets filled with data 
+    int i = 0; 
+    for (p = data; i < MAX_DATA; i++, p++) 
+       printf(“name: %c, id: %d\n”, p->name, p->id); 
+}       </pre>
+      </li>
+  <li>
+Finally, you can use functions, combined with struct pointers, to modify structs using pointers
+<pre>
+// Example taken from the slides
+#include “person.h”   // Assume Person is defined here 
+
+int main() { 
+    
+    // Here we declare and intialize one struct person 
+    Person person1 = {‘a’, 25};   
+    process(&person1);        
+    printf(“name is %c, id is %d\n”, person1.name, person2.id);  // What is printed? 
+}
+
+
+void process(Person * p){ 
+    p->id = 500; 
+}</pre>
+</li>
+</ul>
+
+<h2>Bitwise Operators</h2>
+<ul>
+  <li>There is more than one way of representing a number
+    <ul>
+      <li>A decimal
+        <ul>
+          <li>Eg, 998</li>
+          <li>As humans we like this because is base 10 and we have 10 fingers</li>
+        </ul>
+      </li>
+      <li>Binary
+        <ul>
+          <li>Eg, 0000100</li>
+          <li>Computers use this, so would we if we only had 2 fingers</li>
+        </ul>
+      </li>
+      <li>Hexidecimal
+        <ul>
+          <li>Eg, F2</li>
+          <li>In C, literal hex values are always prepended with a '0x', so above would be 0xF2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>At the most basic level, all values in C are stored as a collection of bits
+    <ul>
+      <li>In gcc, char is 8 bits (1 byte), an int is 32 bits (4 bytes), etc</li>
+    </ul>
+  </li>
+  <li>Currently, we have tons of operations to manipulate the entire value
+    <ul>
+      <li>+, -, /, %, *, =, etc</li>
+      <li>But none of these allow us to fiddle with the individual bits in a value</li>
+    </ul>
+  </li>
+  <li>In order to manipulate values at the bit level, we need a new set of operators, <strong>bitwise operators</strong>
+    <ul>
+      <li>Bitwise operators ignore datatypes (char, int, etc), and treat all values as bit collections
+        <ul>
+          <li>&amp; - Bitwise AND</li>
+          <li>| - Bitwise OR</li>
+          <li>^ - Bitwise XOR (Exclusive Or)</li>
+          <li>~ - Bitwise NOT</li>
+          <li>&lt;&lt; - Bitwise SHIFT LEFT</li>
+          <li>&gt;&gt; - Bitwise SHIFT RIGHT</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Bit Masks
+    <ul>
+      <li>Used to toggle the individual bits in a C variable</li>
+      <li>
+        Eg, 01110000 to 01010000, and back
+         <pre>#define READY 1    // Binary 0000 0000 0000 0001
+#define WAITING 2  // Binary 0000 0000 0000 0010
+#define RUNNING 4  // Binary 0000 0000 0000 0100
+
+
+int status;
+
+
+// Turn status&rsquo; READY bit on (leaving other bits unchanged) 
+status = status | READY;
+
+
+// Toggle the READY bit. 
+// If it&rsquo;s on, turn it off. If it&rsquo;s off, turn it on.
+status = status ^ READY;
+
+// Clear all bits except the READY bit; leave READY bit unchanged. 
+status = status &amp; READY;</pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+  Bit Shifting
+    <ul>
+      <li>Shift bits to the left or to the right within the variable
+        <ul>
+          <li>When left shifting, empty space is filled with a 0</li>
+          <li>When right shifting, empty space is filled with whatever value was just there</li>
+        </ul>
+      </li>
+      <li>Format is
+        <ul>
+          <li>Left Shift: (variable to shift) &lt;&lt; (number of shifts to make)</li>
+          <li>Right Shift: (variable to shift) &gt;&gt; (number of shifts to make)</li>
+        </ul>
+      </li>
+      <li>Example:
+        <ul>
+          <li>8 &gt;&gt; 1 // This would equal 4
+            <ul>
+              <li>8 in binary is 0000 0000 0000 0100</li>
+              <li>The above binary value, right shifted one time, is 0000 0000 0000 0010</li>
+              <li>The new binary value represents 4, in decimal</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2>Malloc</h2>
+<ul>
+
+<li>In the past, we have focused on using heap memory
+  <ul>
+    <li>Heap memory is filled with function calls</li>
+    <li>In heap memory, you cannot allocate a block of memory based on a variable size:
+      <ul>
+        <li>Eg, the following is invalid<br>
+        int my_array[x];</li>
+        </ul>
+    </li>
+    </ul>
+</li>
+<li>To get around this, we use heap memory (see below) that is dynamically allocated
+  <ul>
+    <li>IE, allocated on-the-fly specifically by you, of any size that doesn't exceed the computer's memory capacity</li>
+    </ul>
+</li>
+<li>In C, dynamic memory is allocated by malloc, or some function that calls malloc()
+  <ul>
+    <li>When you call malloc(), it takes the value you pass it, and allocates that many bytes on the heap</li>
+    <li>It then returns to you a pointer that points to this newly allocated memory
+      <ul>
+        <li>The returned pointer is type void*, aka a pointer that is not associated with a particular data type</li>
+        </ul>
+    </li>
+    <li>
+      This memory stays until you free it, it does not dissappear when the function ends.
+<pre>
+char* my_mem;
+my_mem = (char*)malloc(sizeof(char) * 70);
+free(my_mem);
+</pre>
+<li>
+The sizeof() function is a system call that returns the width, in bytes, of a datatype</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>The Memory / Stack Model</h2>
+<ul>
+
+<li> C gives you free access to memory, whereas Java tends to keep you in
+a safe sandbox. However, with great power comes great responsibility:
+<ul>
+<li> In C, you are free to access the address of any variable using the
+&amp; operator. This includes system space and other things you should
+not be accessing.</li>
+<li><strong>You must be careful in writing your code to
+  make sure your memory accesses are accurate, there is no throwing of
+  exceptions in C.</strong> </li>
+<li><strong>C is not type safe:</strong> The C compiler will allow
+you to assign any other variable to any other variable, no matter
+the type, with little more than a warning. It assumes you know what
+you are doing. You must be careful</li>
+</ul>
+</li>
+<li>Dynamic variables are created using the malloc() operator, like the
+&quot;new&quot; operator in Java</li>
+<li>Memory is freed with the &quot;free()&quot; function. In Java this
+is handled automatically</li>
+<li> When a C program is first started, through the magic of Virtual Memory,
+the OS gives the program a contiguous address space on which to run. </li>
+<li> The DATA is initially stored in the memory space. This contains all
+the information relating to the instructions in the functions, and the
+amount of memory each function requires on the stack</li>
+
+<li> The HEAP grows downward. The heap contains all the memory you allocate
+using the malloc() call</li>
+<li>The STACK grows upward. The stack contains all the memory you allocate
+with your function calls.</li>
+<li><a href="https://www.seas.upenn.edu/~ese116/content/ReviewMaterial/visual_stack.jpg" target="_blank">This diagram is extremely helpful in
+explaining this topic</a></li>
+</ul>
+</html>
+

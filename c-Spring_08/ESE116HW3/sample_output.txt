@@ -1,0 +1,93 @@
+%bash> ./packets
+-----------------------
+Packets Program Started
+-----------------------
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+Hello, this is a message
+
+Message To Send: 'Hello, this is a message'
+Message Size: 24
+Packets Set: 
+  Packet     0: [    0][    0][ TRUE][   12][H][e][l][l][o][,][ ][t][h][i][s][ ]
+  Packet     1: [    0][    1][FALSE][   12][i][s][ ][a][ ][m][e][s][s][a][g][e]
+
+Randomizing Packet Order and Creating Duplicates... Done
+
+Message Received: 'Hello, this is a message'
+Message Size: 24
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+Follow the white rabbit
+
+Message To Send: 'Follow the white rabbit'
+Message Size: 23
+Packets Set: 
+  Packet     0: [    1][    0][ TRUE][   12][F][o][l][l][o][w][ ][t][h][e][ ][w]
+  Packet     1: [    1][    1][FALSE][   11][h][i][t][e][ ][r][a][b][b][i][t][ ]
+
+Randomizing Packet Order and Creating Duplicates... Done
+
+Message Received: 'Follow the white rabbit'
+Message Size: 23
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+The ultimate in the deployment of one's troops is to be formless: For then the best spies cannot pry in, nor the wise lay plans against you.
+
+Message To Send: 'The ultimate in the deployment of one's troops is to be formless: For then the best spies cannot pry in, nor the wise lay plans against you.'
+Message Size: 140
+Packets Set: 
+  Packet     0: [    2][    0][ TRUE][   12][T][h][e][ ][u][l][t][i][m][a][t][e]
+  Packet     1: [    2][    1][ TRUE][   12][ ][i][n][ ][t][h][e][ ][d][e][p][l]
+  Packet     2: [    2][    2][ TRUE][   12][o][y][m][e][n][t][ ][o][f][ ][o][n]
+  Packet     3: [    2][    3][ TRUE][   12][e]['][s][ ][t][r][o][o][p][s][ ][i]
+  Packet     4: [    2][    4][ TRUE][   12][s][ ][t][o][ ][b][e][ ][f][o][r][m]
+  Packet     5: [    2][    5][ TRUE][   12][l][e][s][s][:][ ][F][o][r][ ][t][h]
+  Packet     6: [    2][    6][ TRUE][   12][e][n][ ][t][h][e][ ][b][e][s][t][ ]
+  Packet     7: [    2][    7][ TRUE][   12][s][p][i][e][s][ ][c][a][n][n][o][t]
+  Packet     8: [    2][    8][ TRUE][   12][ ][p][r][y][ ][i][n][,][ ][n][o][r]
+  Packet     9: [    2][    9][ TRUE][   12][ ][t][h][e][ ][w][i][s][e][ ][l][a]
+  Packet    10: [    2][   10][ TRUE][   12][y][ ][p][l][a][n][s][ ][a][g][a][i]
+  Packet    11: [    2][   11][FALSE][    8][n][s][t][ ][y][o][u][.][ ][ ][ ][ ]
+
+Randomizing Packet Order and Creating Duplicates... Done
+
+Message Received: 'The ultimate in the deployment of one's troops is to be formless: For then the best spies cannot pry in, nor the wise lay plans against you.'
+Message Size: 140
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+I
+
+Message To Send: 'I'
+Message Size: 1
+Packets Set: 
+  Packet     0: [    3][    0][FALSE][    1][I][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ]
+
+Randomizing Packet Order and Creating Duplicates... Done
+
+Message Received: 'I'
+Message Size: 1
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+This message is too long to be sent across the network.  The program should spit out an error and not send this message, which is clearly way too long.  Also, buy me a shrubbery and put it right there.  No, not there, next to the white picket fence.  If you don't know what movie this is you really need to see it it's an awesome film.
+Error: Invalid message size: 335
+THE CAKE IS A LIE!  YOU MUST CONSTRUCT ADDITIONAL PYLONS!
+
+Message To Send: 'THE CAKE IS A LIE!  YOU MUST CONSTRUCT ADDITIONAL PYLONS!'
+Message Size: 57
+Packets Set: 
+  Packet     0: [    4][    0][ TRUE][   12][T][H][E][ ][C][A][K][E][ ][I][S][ ]
+  Packet     1: [    4][    1][ TRUE][   12][A][ ][L][I][E][!][ ][ ][Y][O][U][ ]
+  Packet     2: [    4][    2][ TRUE][   12][M][U][S][T][ ][C][O][N][S][T][R][U]
+  Packet     3: [    4][    3][ TRUE][   12][C][T][ ][A][D][D][I][T][I][O][N][A]
+  Packet     4: [    4][    4][FALSE][    9][L][ ][P][Y][L][O][N][S][!][ ][ ][ ]
+
+Randomizing Packet Order and Creating Duplicates... Done
+
+Message Received: 'THE CAKE IS A LIE!  YOU MUST CONSTRUCT ADDITIONAL PYLONS!'
+Message Size: 57
+
+Enter your message then hit ENTER. Hit 'X' then ENTER to exit:
+X
+
+PACKETS program completed

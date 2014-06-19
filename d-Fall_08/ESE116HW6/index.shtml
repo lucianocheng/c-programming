@@ -1,0 +1,73 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>C Language</title>
+ <style type="text/css">
+ <!--
+ .changed {
+    color: green;
+    }
+ //-->
+ </style>
+</head>
+<body>
+
+<center>
+<h2>Weather<br>
+  Using Arrays of Structs and Struct Pointers</h2>
+</center>
+
+<h3>File to Submit: weatherFunctions.c <br>
+Supplementary Files that are not submitted: weatherTest.c, weather.h</h3>
+<h3>Goals</h3>
+<ul>
+  <li>Practice using structs, arrays of structs, and typedefs. NOTE: No struct pointers are used.    
+  <li>See an example of a program whose source code resides in several .c files  
+  <li>See an example of a program with a text-based user interface
+  <li>Learn how to use a Makefile to compile and run a program. Makefiles are VERY commonly used and EXTREMELY helpful when building large software systems.<li>See some reasonable (though not ironclad) ways to do error handling. (Exceptions are much cleaner, but C doesn't have them) 
+  <li>Practice redirecting stdin with &lt;, redirecting stdout with &gt;, and using a pipe with |       
+</ul>
+<h3>Overview</h3>
+We supply most of the code for a simple weather database. Each WeatherRecord (struct) of the
+database contains a rainfall amount and a temperature. We supply code to prompt a user to input a rainfall amount and temperature, code that enters this information in to an array of WeatherRecords, code to print all the records in the database,
+etc..
+
+We ask you to complete certain functions: one that calculates the stats (average rainfall and maximum temperature), and another to give the user the option to view the stats.  Also, there are functions that converts the weather data back and forth between metric and imperial units, and an error correction function.
+<h3>Resources</h3>
+<ul><li>Wikipedia: <a href="http://en.wikipedia.org/wiki/Makefile">Makefile</a></li>
+</ul>
+<h3>Directions</h3>
+<ol>
+  <li>Download: 
+     <ul>
+     <li><a href="Supplied/weatherTest.c">weatherTest.c</a> (Needs no modification. <em>However we recommend that you study this code until you understand it)</em></li>
+     <li><a href="Supplied/weather.h">weather.h</a> (Needs no modification. <em>However we recommend that you study this code until you understand it)</em></li>
+     <li><a href="Supplied/weatherFunctions.c">weatherFunctions.c</a> (To be completed and submitted)</li>
+     <li><a href="Supplied/Makefile">Makefile</a> (for building and running the program)</li>
+     <li><a href="Supplied/sampleInteractions.txt">sampleInteractions.txt</a></li>
+     </ul>
+  <li>At the unix prompt, compile your code using the unix &quot;make&quot; command (which looks in the Makefile for rules to follow):
+    <pre>
+  make        // This should compile your program without error. It's the same as running &quot;make all&quot;.
+              // Look in the Makefile to see what the &quot;all&quot; rule is.  
+              // Note that the executable program is called 'weather' vs. 'a.out'</pre>
+  </li>
+<li>Run the program
+  <pre>
+  make run    
+</pre>
+</li>
+<br>
+  
+  <li>Modify the computeStats() function so that it works correctly, and the promptUserForChoice() function so that the user has the option to enter 's' to see the &quot;stats&quot; - the AVERAGE amount of rainfall and the HIGHEST temperature of all the records in the database.</li>
+<li>Modify the makeMetric() and makeImperial() functions so that they work correctly. Then complete the addOffset() function-ality.</li>
+  <li> Try running your program so that instead of accepting input from the keyboard it takes input from a file. You can download <a href="Supplied/testInput.txt">testInput.txt</a> and try these commands at the unix prompt. (RECOMMENDATION: Type the commands shown below instead of cut & pasting them. Because the "<" and ">" symbols have special meanings in html which complicates things (if you're curious ask your browser to VIEW SOURCE and look at the text below).
+    <pre>
+  $ ./weather &lt; sampleInput.txt
+  $ ./weather &lt; sampleInput.txt | more
+  $ ./weather &lt; sampleInput.txt &gt; output.txt</pre>
+  </li>
+</ol>
+<hr>
+</html>

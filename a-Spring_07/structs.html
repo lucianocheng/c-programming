@@ -1,0 +1,171 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+ <title>Structs in C</title>
+ <style type="text/css">
+<!--
+.style1 {color: #38A136}
+-->
+ </style>
+</head>
+<body>
+
+<center>
+  <h2>structs in C</h2>
+  <p>(The Great-Great-Grandfather of the Java Class)</p>
+</center>
+
+<h3>What is a C struct?</h3>
+<p>In C, a struct (meaning structure) is a way of grouping heterogeneous data 
+  types to create more complex data types. Similar to a Class in Java, a struct 
+  is can be used to create custom data types tailored to the needs of your program.</p>
+<h3>Java Classes vs. C structs:</h3>
+<p>In terms of functionality, a struct can best be thought of as a stripped down 
+  version of a Java Class. Similarities and differences to Java Classes are as 
+  follows: </p>
+<ul>
+  <li>Similarities to Java Classes: 
+    <ul>
+      <li>Structs are first declared, then used to create instances. Similarly, 
+        Classes are first declared, then used to create objects.</li>
+      <li>Sructs can have member variables.</li>
+      <li>Structs exhibit variable scope so that you can access and modify their 
+        member variables. Like in Java, the &quot;.&quot; operator is used to 
+        change scope (example to follow)</li>
+      <li>Structs can have other structs as member variables.</li>
+      <li>Structs can include arrays as member variables</li>
+      <li>You can create arrays of structs</li>
+    </ul>
+  <li>Differences from Java Classes: 
+    <ul>
+      <li>Structs have <strong>no member functions whatsoever</strong>, including 
+        constructors, accessors, and modifiers. You cannot, for example, write 
+        a member function called &quot;bendGurder()&quot; for a struct type called 
+        Robot and call &quot;myRobot.bendGurder()&quot;. Function pointers (which 
+        we will discuss later) can mimic member functions in some ways, but do 
+        not have the same functionality.</li>
+      <li>All variables in a struct are public, while Java classes can have private 
+        members. structs have no inherit encapsulation.</li>
+      <li>Struct member variables cannot have initial values; the initial values 
+        of member variables will be whatever garbage happens to be in memory. 
+        <strong>You must assign values to struct member variables before using 
+        them</strong>. </li>
+      <li>The entire contents of a struct can be coped to another struct using 
+        the &quot;=&quot; operator. For example, the following would make example2 
+        have the exact same values in its member functions as example1: 
+        <pre>
+		struct samplestruct{
+			int value;
+			char name;
+		};
+		
+		struct samplestruct example1, example2;
+		example1.value = 0
+		example1.name = 'H'
+		example2 = example1;
+		</pre>
+		
+	  </li>
+    </ul>
+</ul>
+<h3>Struct Declaration and Usage:</h3>
+<h4>Defining a struct:</h4>
+<p>Unless you are writing a program without any .h files, it is considered good 
+  coding style to define structs inside .h files rather than .c files. Here follows 
+  an example of proper struct declaration:</p>
+<pre>
+	#ifndef ROBOT_H
+	#define ROBOT_H
+
+
+	struct RobotStruct{
+		int armorStrength;
+		char designation;
+		double gasGallons;
+		int weapon[10];
+	};
+	
+	#endif
+</pre>
+<p>The different parts of the struct declaration are as follows:</p>
+<ul>
+  <li>The &quot;struct&quot; call indicates that you are beginning a struct definition.</li>
+  <li>Immediately following the struct call is the name of the struct, in this 
+    case RobotStruct.</li>
+  <li>The curly brackets enclose all the struct's member variables.</li>
+</ul>
+<h4>Declaring a struct:</h4>
+<p>A struct is declared like any other variable, except you need the keyword &quot;struct&quot; 
+  in front</p>
+<pre> 	struct RobotStruct robot1; </pre>
+<p> Arrays of structs can be defined just like arrays of other variables:</p>
+<pre> 	struct RobotStruct robotList[10];</pre>
+<p>Note: Because a struct in memory is a whole memory block, it's good programming 
+  practice not to let your member variables get too large or numerous. E.g. If 
+  your struct design calls for arrays as members, you might want to consider having 
+  array pointers instead of arrays, so the struct will not become too large.</p>
+<p>Remember, structs have no default values; their member variables are filled 
+  with garbage when first declared.</p>
+<h4>Accessing an instance of struct:</h4>
+<p>Once a instance of a struct has been declared, it's member variables can be 
+  accessed just like the variables in a Java object. Like a Java Class, the &quot;.&quot; 
+  operator is used to change scope and access the member variables.</p>
+<pre> 	// Declare Instance
+	struct RobotStruct testBot;
+
+	
+	// Initialize the values
+	testBot.armorStrength = 10;
+	testBot.designation = 'A';
+	testBot.gasGallons = 10.54;
+
+
+	int i = 0;
+	for(i = 0; i &lt; 10; i++){
+		testBot.weapon[i] = 0;
+	}</pre>
+<h4>Using Typedef's, a tool to save you time and sanity:</h4>
+<p>Another way to define a struct is by using a typedef call, like so:</p>
+<pre>
+	#ifndef ROBOT_H
+	#define ROBOT_H
+
+
+	<strong>typedef</strong> struct RobotStruct{
+		int armorStrength;
+		char designation;
+		double gasGallons;
+		int weapon[10];
+	} <strong>Robot</strong>;
+	
+	#endif
+</pre>
+<p>At the beginning of the this struct definition is a <em>typedef</em> keyword. 
+  Typedef is a C keyword that allows you to rename, define, or invent a data type. 
+  For example, the following would create a new variable type called &quot;robotWeapon&quot; 
+  that would have the same properties of an integer:</p>
+<pre>	typedef int robotweapon;</pre>
+<p>I could then create an instance of a robotWeapon variable the same way I would 
+  an integer:</p>
+<pre>	robotweapon myWeapon = 0;</pre>
+<p>Although not required to compile, it is considered good style (and therefore 
+  required for this class) to couple a typedef with a struct declaration for convenience. 
+  The typedef keyword defines your struct type as the name following the closing 
+  curly bracket, in this case &quot;Robot&quot;. This allows you to declare an 
+  instance of your struct like this:</p>
+<pre>	ROBOT robot1; 				// Easy declaration of a struct</pre>
+<p> Rather than like this: </p>
+<pre>	struct RobotStruct robot1; 	// Unnecessarily complicated declaration of a struct</pre>
+<p>Without the typedef keyword, each instance declaration would require the use 
+  of the &quot;struct&quot; command. Using the struct command each time is not 
+  only inconvenient, but is also dangerous since one misusage of &quot;struct&quot; 
+  anywhere in your code could accidentally redefine the struct and produce funny 
+  errors. </p>
+<p>Note: Both the struct name (RobotStruct) and the typedef name (Robot) must 
+  be unique, as they are both compared in the same symbol table at compile time</p>
+<pre>&nbsp;
+</pre>
+<hr>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>C Language: GDB Tutorial</title>
+
+
+
+
+
+<style type="text/css">
+<!--
+body {
+	max-width: 120ex;
+}
+code {
+	white-space: pre;
+}
+//-->
+</style></head><body>
+<h1>ESE 113/116: GDB</h1>
+<p><strong>The purpose of this is to demonstrate GDB, the GNU debugger.</strong></p>
+<h2>Goals:</h2>
+<ul>
+  <li>Explain the purposes of the GNU debugger</li>
+  <li>Use GDB to narrow down a segmentation fault in a simple program</li>
+</ul>
+<h2>Reference:</h2>
+<ul>
+  <li><a href="http://sourceware.org/gdb/documentation/">The GNU Debugger: Complete 
+    Documentation </a></li>
+</ul>
+<h2>What is GDB?</h2>
+<p>GDB stands for<strong> The GNU Debugger</strong>. GDB is a unix terminal debugger, 
+  which can execute your program in a sandbox and allow you to analyze it during 
+  runtime. GDB has no GUI, but is very simple to use and in some cases can cut 
+  your debugging time from hours to minutes.</p>
+<h2>Example: A simple segmentation fault</h2>
+<p><font size="4">Downloading and running the program sans-gdb:</font></p>
+<p>In this example, we will find the segmentation fault in a small program, segfault.c. 
+  <br />
+  To start, download <a href="./segfault.c">segfault.c</a> and open it up in an 
+  editor such as vi or emacs.</p>
+<p>As you can see, the segfault.c program creates a char array with <font face="Courier New, Courier, mono">Hello</font> 
+  stored in it. The main function then calls <font face="Courier New, Courier, mono">findA()</font>, 
+  which attempts to find the first instance in the string where two 'A' characters 
+  occur in a row. </p>
+<p>Now, if you compile segfault.c</p>
+<pre>	user@plus:~&gt; gcc -Wall -o segfault segfault.c</pre>
+<p> and run it at the prompt, you will get the following:</p>
+<pre>	user@plus:~&gt; ./segfault<br />	Calling findNull, will seg fault now<br />	Segmentation fault<br />	user@plus:~&gt;</pre>
+As you can see, the program <font face="Courier New, Courier, mono">segfault</font> 
+has crashed. This occurs because <font face="Courier New, Courier, mono">Hello</font> 
+does not have two consecutive A's. After <font face="Courier New, Courier, mono">findA()</font> 
+does not find two consecutive A's <font face="Times New Roman, Times, serif">in 
+</font><font face="Courier New, Courier, mono">Hello</font>, it continues reading 
+past the end of the array into system memory, causing a segmentation fault. 
+<p><font size="4">Engaging the debugger:</font></p>
+<p>We will now use gdb to discover where this segmentation fault occurs in the 
+  code</p>
+<p>The first step in using gdb is to compile your program with debugger tags. 
+  Compiling with debugger tags embeds information about your source code into 
+  your executable file. The debugger can then use this to pinpoint where a given 
+  error occurs</p>
+<p>To add debug tags, add the <font face="Courier New, Courier, mono">-g</font> 
+  flag to the compile line.</p> 
+<pre>	user@plus:~&gt; gcc <strong>-g</strong> -Wall -o segfault segfault.c
+</pre>
+<p>Your program is now compiled with debug tags. Next, start GDB with your program:</p>
+<pre>	user@plus:~&gt; gdb ./segfault</p>
+</pre>
+<p>After starting the debugger, you will see the following, which means GDB has 
+  launched successfully:</p>
+<pre>	GNU gdb 6.4
+	Copyright 2005 Free Software Foundation, Inc.
+	GDB is free software, covered by the GNU General Public License, and you are
+	welcome to change it and/or distribute copies of it under certain conditions.
+	Type &quot;show copying&quot; to see the conditions.<br />	There is absolutely no warranty for GDB. Type &quot;show warranty&quot; for 
+	details.<br />
+	This GDB was configured as &quot;i586-suse-linux&quot;...Using host libthread_db 
+	library &quot;/lib/libthread_db.so.1&quot;.
+	(gdb)</p></pre>
+<p>GDB then presents you with a prompt. This prompt is where you input all gdb 
+  commands. For right now, we will simply run the program and see what it does. 
+  However, a list of extended GDB commands and their functions can be found <a href="http://sourceware.org/gdb/current/onlinedocs/gdb_4.html#SEC14">here</a>.</p>
+<p>If you wanted to run this program with arguments, you would run the program 
+  in the debugger by typing <font face="Courier New, Courier, mono">run</font> 
+  followed by the arguments that would normally follow the program name at the 
+  command prompt. <font face="Courier New, Courier, mono">segfault</font> does 
+  not take arguments, so in this case to run the program, simply type <strong>run</strong> 
+  at the prompt: </p> 
+<pre>	(gdb) run</pre>
+<p>Gdb then starts the program:</p>
+<pre>	Starting program: /mnt/castor/seas_home/u/user/segfault</pre>
+<p>The program then runs, crashing at a segmentation fault:</p>
+<pre>	Calling findNull, will seg fault now
+		Program received signal SIGSEGV, Segmentation fault.
+  		0x08048467 in findA (newArray=0xbfffeace &quot;Hello\n&eth;&ecirc;&yuml;&iquest;H&euml;&yuml;&iquest;|&egrave;&ecirc;&middot;&agrave;\f&quot;)
+  		at segfault.c:34
+  		34 while(newArray[i] != 'A' || newArray[i+1] != 'A'){</pre>
+After the program crashes, GDB takes over. GDB then uses the tag information embedded 
+in the executable to give you information about what caused the program to crash. 
+In this example, GDB tells us: 
+<ul>
+  <li>The type of error: <font face="Courier New, Courier, mono"><strong>Segmentation 
+    Fault</strong></font></li>
+  <li>The function where the error occurred: <font face="Courier New, Courier, mono"><strong>findA</strong></font></li>
+  <li>The variable that was used incorrectly: <font face="Courier New, Courier, mono"><strong>newArray</strong></font></li>
+  <li>The file the error was caused in: <font face="Courier New, Courier, mono"><strong>segfault.c</strong></font></li>
+  <li>The line number the error occurred at: <font face="Courier New, Courier, mono"><strong>line 
+    34</strong></font></li>
+  <li>The line of code that caused the error, a <strong><font face="Courier New, Courier, mono"> 
+    while loop</font></strong></li>
+</ul>
+<p>You can now use the above information to fix the error in your source code.<br />
+  <br />
+  Another simple gdb command is <strong>where</strong>. <font face="Courier New, Courier, mono">Where</font> 
+  will give you a <a href="http://en.wikipedia.org/wiki/Stack-based_memory_allocation">stack 
+  dump</a>, which means it will give you the calling function of the code that 
+  crashed, then the function that called that function, and recurse upwards through 
+  the functions until you reach the main function. This can be helpful if your 
+  code has significant function depth. In this case, after the program crashes, 
+  the <font face="Courier New, Courier, mono">where</font> command will return 
+  the following. 
+<pre>	(gdb) where<br />	#0 0x08048467 in findA (newArray=0xbfffeace &quot;Hello\n&eth;&ecirc;&yuml;&iquest;H&euml;&yuml;&iquest;|&egrave;&ecirc;&middot;&agrave;\f&quot;)
+	at segfault.c:34
+	#1 0x08048434 in main () at segfault.c:25</pre>
+This dump means that <font face="Courier New, Courier, mono">findA</font> was 
+the function that crashed, and that <font face="Courier New, Courier, mono">findA</font> 
+was called by <font face="Courier New, Courier, mono">main</font>.<br />
+Finally, to quit GDB, type <font face="Courier New, Courier, mono">quit</font> 
+at the command line, then type <font face="Courier New, Courier, mono">y</font> 
+when it asks to confirm: 
+<pre>	(gdb) quit<br />	The program is running. Exit anyway? (y or n) y
+</pre>
+<p>You can now fix your code, and repeat the process to see if a segmentation 
+  fault still occurs.</p>
+<p><font size="4">Additional Resources:</font></p>
+<p>This example is just a small subset of GDB's capabilities. For additional GDB 
+  commands and instructions, see the <a href="http://sourceware.org/gdb/current/onlinedocs/gdb_toc.html">GDB 
+  documentation</a>.</p>
+<p>There is another debugger called <strong>ddd</strong> that is the GUI version 
+  of GDB. Learning and using ddd is not necessary for the small programs you will 
+  be writing this course. However, the documentation for ddd can be found <a href="http://www.gnu.org/manual/ddd/html_mono/ddd.html">here</a>.</p>
+</body></html>
