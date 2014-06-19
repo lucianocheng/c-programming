@@ -1,4 +1,4 @@
-c-programming
+c-programming: Repository of C Programming Exercises, Examples, and Testing
 =============
 
 Documents and projects from co-lecturing ESE116 / Into to C Programming at the University of Pennsylvania.  
