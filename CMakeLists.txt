@@ -4,21 +4,21 @@ project(c_programming)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-    a-Spring_07/c++/DemoCode/hello
-    a-Spring_07/c++/DemoCode/hello.c
-    a-Spring_07/c++/DemoCode/hello.cpp
-    a-Spring_07/c++/DemoCode/IntCell.cpp
-    a-Spring_07/c++/Sltn/IntLinkedList.cpp
-    a-Spring_07/c++/Sltn/IntLinkedList.h
-    a-Spring_07/c++/index.shtml
-    "a-Spring_07/c++/infoAboutC++ (1).shtml"
-    a-Spring_07/c++/infoAboutC++.shtml
+        a-Spring_07/cpp_intro/DemoCode/hello
+        a-Spring_07/cpp_intro/DemoCode/hello.c
+        a-Spring_07/cpp_intro/DemoCode/hello.cpp
+        a-Spring_07/cpp_intro/DemoCode/IntCell.cpp
+        a-Spring_07/cpp_intro/Sltn/IntLinkedList.cpp
+        a-Spring_07/cpp_intro/Sltn/IntLinkedList.h
+        a-Spring_07/cpp_intro/index.shtml
+    "a-Spring_07/cpp_intro/infoAboutC++ (1).shtml"
+        a-Spring_07/cpp_intro/infoAboutC++.shtml
     a-Spring_07/hw2/Makefile.htm
     a-Spring_07/hw2/testInput.txt
     a-Spring_07/hw2/weather.c
     a-Spring_07/hw2/weather.h
-    a-Spring_07/hw3/strings.c
-    a-Spring_07/hw3/strings_ans.c
+        a-Spring_07/HW3_strings/strings.c
+        a-Spring_07/HW3_strings/strings_ans.c
     a-Spring_07/testers/hw01-tester.c
     a-Spring_07/testers/hw02-tester.c
     a-Spring_07/testers/hw03-tester.c

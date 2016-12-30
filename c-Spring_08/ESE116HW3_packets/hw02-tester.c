@@ -39,7 +39,7 @@
 
 // specific to this homework
 #include "packets.h"
-#include "packets.c"
+#include " "
 
 #define TRUE 1
 #define FALSE 0
