@@ -14,5 +14,17 @@
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Configuring done
+CMake Error at CMakeLists.txt:675 (add_executable):
+  Cannot find source file:
+
+    a-Spring_07/cpp_intro/DemoCode/hello.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: c_programming
+CMake Error: Cannot determine link language for target "c_programming".
 -- Generating done
 -- Build files have been written to: /Users/cheng/git/c-programming/cmake-build-debug
+Unable to determine product file path for target c_programming (Debug). Running and debugging will be unavailable.
