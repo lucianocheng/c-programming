@@ -1,3 +1,0 @@
-echo "./extract dirty.bmp output.txt 1776"
-rm output.txt
-./extract dirty.bmp output.txt 1776
