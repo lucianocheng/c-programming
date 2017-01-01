@@ -1,8 +1,7 @@
-c-programming: Repository of C Programming Exercises, Examples, and Testing
+c-programming: Repository of C Programming Exercises, Examples, and Testing from University of Pennsylvania Engineering ESE116.
 =============
 
-This repository contains the notes, lectures, and exercises I used for my C programming course from 2007 to 2009.
-
+This repository contains the notes, lectures, and exercises I used for the C programming course I taught at Penn from 2007 to 2009.  The course label was ESE116.
 
 Lectures
 ========
@@ -10,7 +9,9 @@ Lectures
 
 Study Notes / Slides
 ====================
-- Study notes are ordered and grouped by topic.
+
+# [Quiz 1 Review](quiz_review/review_quiz1): Unix basics
+# Quiz 2 Review:
 
 
 Exercises
@@ -18,9 +19,6 @@ Exercises
 - Exercises are grouped by exercise.
 - Each exercise contains instructions
 
-
-
-
-Documents and projects from co-lecturing ESE116 / Into to C Programming at the University of Pennsylvania.
-
-Currently work is ordered by year, which means a lot of duplication.  Eventually I'm going to clean this up so there's a 'canonical' example of each exercise.
+TODO
+====
+- Convert the Flash Pointers SWF to a GIF or a more portable format
