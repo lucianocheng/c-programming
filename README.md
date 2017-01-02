@@ -4,7 +4,7 @@ c-programming
 Course materials from Penn Engineering ESE116, 2007-2009
 --------------------------------------------------------
 
-This repository contains the notes, lectures, and exercises Luciano Cheng used for the C programming course I taught at Penn from 2007 to 2009.  The course label was ESE116.
+This repository contains the notes, lectures, and exercises used by Luciano Cheng for the C programming course at Penn from 2007 to 2009.
 
 ### Lectures
 
@@ -45,6 +45,6 @@ The C Tester is a program used to test C homework solutions.  It compiles the ho
 ### TODO
 
 - Convert the Flash Pointers SWF to a GIF or a more portable format
-- Break out
+- Break out C tester into it's own repository.
 
 
