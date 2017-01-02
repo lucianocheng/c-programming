@@ -34,9 +34,28 @@ Each quiz had a "study guide" webpage that covered most of the material.
 
 Homeworks include provided code, solution, and programmatic tester template.
 
+1. [Homework 1: Hal, the calculator](HW1_hal/hw01_hal.html)
+
 ### Labs
 
 Labs include provided code and solution.
+
+1. **Lab 0: Example C Program**
+    - [Github Source Directory](https://github.com/lucianocheng/c-programming/tree/master/LAB0_example)
+    - [Original Problem Code](https://github.com/lucianocheng/c-programming/blob/master/LAB0_example/lab_example.c)
+    - [Solution](https://github.com/lucianocheng/c-programming/blob/master/LAB0_example/lab_example_sol.c)
+2. **Lab 1, Intro to C**
+    - Part 1: Unix Basics
+        - [Lab Instructions](LAB1_unix/unixGettingStarted.html)
+    - Part 2: Bowling Database
+        - [Lab Instructions](LAB1_bowling/struct_lab.html)
+        - [Solution](https://github.com/lucianocheng/c-programming/blob/master/LAB1_bowling/bowling_ans.c)
+    - Part 3: Strings
+        - [Lab Instructions](LAB1_strings/strings_lab.html)
+4. **Lab 2: Pointers**
+    - [Lab Instructions](LAB2_pointers/index.shtml)
+5. **Lab 3: Lego Mindstorms**
+    - [Lab Instructions](LAB3_lego_mindstorms/LegoLab1.html)
 
 ### C Tester
 
@@ -46,5 +65,7 @@ The C Tester is a program used to test C homework solutions.  It compiles the ho
 
 - Convert the Flash Pointers SWF to a GIF or a more portable format
 - Break out C tester into it's own repository.
+- Fix links in the lab / homework descriptions
+- Find `strings.c` for Lab 1 String Exercise
 
 
