@@ -34,7 +34,14 @@ Each quiz had a "study guide" webpage that covered most of the material.
 
 Homeworks include provided code, solution, and programmatic tester template.
 
-1. [Homework 1: Hal, the calculator](HW1_hal/hw01_hal.html)
+1. [HW 1: Hal, the calculator](HW1_hal/hw01_hal.html)
+2. [HW 2: Skynet](HW2_skynet/hw02_skynet.html)
+3. [HW 3v1: Packet Routing](HW3_packets/hw03_packets.html)
+4. [HW 3v2: Strings](HW3_strings/tokenizer.html)
+5. [HW 4: Pointers](HW4_pointers/index.shtml)
+6. [HW 5: Tokenizer](HW5_tokenizer/tokenizer.html)
+7. [HW 6: Weather DB](HW6_weather/index.shtml)
+8. [HW 7: Malloc](HW7_malloc/Supplied/index.html)
 
 ### Labs
 
@@ -67,5 +74,7 @@ The C Tester is a program used to test C homework solutions.  It compiles the ho
 - Break out C tester into it's own repository.
 - Fix links in the lab / homework descriptions
 - Find `strings.c` for Lab 1 String Exercise
+- Find instructions for the Weather Database assignment (Part 2)
+- Link to homework solutions in github.
 
 
